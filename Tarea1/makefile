@@ -1,3 +1,4 @@
+# Definir el compilador, por defecto usará g++ pero se cambiará a clang++ para MSan
 CC=g++
 STD=-std=c++17
 CFLAGS=-Wall
@@ -6,7 +7,7 @@ SRC=$(shell find src -name "*.cpp")
 LFLAGS=-L/usr/local/lib -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -llua5.3
 EXEC=intro
 
-# Regla para compilar el proyecto
+# Regla para compilar el proyecto sin ASan o MSan
 build:
 	$(CC) $(CFLAGS) $(STD) $(INC_PATH) $(SRC) $(LFLAGS) -o $(EXEC)
 
@@ -17,3 +18,11 @@ run:
 # Regla para limpiar los archivos generados
 clean:
 	rm $(EXEC)
+
+# Regla para compilar con AddressSanitizer (ASan)
+asan:
+	$(CC) $(CFLAGS) -fsanitize=address $(STD) $(INC_PATH) $(SRC) $(LFLAGS) -o $(EXEC)
+
+# Regla para compilar con MemorySanitizer (MSan), usando clang++ en lugar de g++
+msan:
+	clang++ $(CFLAGS) -fsanitize=memory $(STD) $(INC_PATH) $(SRC) $(LFLAGS) -o $(EXEC)

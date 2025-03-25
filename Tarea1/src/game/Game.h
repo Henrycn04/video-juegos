@@ -10,26 +10,23 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include "Entities.h"
+
 
 const int FPS = 60;
 const int MILLISECS_PER_FRAME = 1000 / FPS;
 
-struct windowData {
+struct windowData { // ya se usa
     int w, h, r, g, b;
 };
 
-struct fontData {
+struct fontData { // ya se usa
     std::string p;
     int r, g, b, s;
 };
 
-struct entityData {
-    std::string l, p;
-    int w, h;
-    glm::vec2 pos;
-    glm::vec2 vel;
-    double a;
-};
+
+
 
 class Game {
 private:
@@ -41,32 +38,26 @@ private:
     size_t windowHeight = 0;
 
     bool isRunning = false;
+    bool isPaused = false;
     int mPreviousFrame = 0;
 
-// Imagen
-    SDL_Texture* imgTexture = nullptr;
-    glm::vec2 pos = glm::vec2();
-    glm::vec2 imgVel = glm::vec2();
-    size_t imgWidth = 0;
-    size_t imgHeight = 0;
-    SDL_Rect srcRect = {0,0,0,0}; // pos, tamanno
-    double angle = 0.0;
-
-// Texto
+// Fuentes
     TTF_Font* font = nullptr;
-    SDL_Texture* txtTexture = nullptr;
     int fontSize = 0;
     SDL_Color fontColor = {0, 0, 0};
-    std::string message = "";
-    glm::vec2 txtPos = glm::vec2();
-    size_t txtWidth = 0;
-    size_t txtHeight = 0;
-    double txtAngle = 0.0;
+
+
 
     void processInput();
     void update();
     void render();
     void readConfig();
+
+    windowData windowD;
+    fontData fontD;
+    std::vector<entityData> entidades;
+    
+    std::vector<Entities> generados;
 public:
     Game();
     ~Game();

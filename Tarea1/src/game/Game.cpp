@@ -20,15 +20,13 @@ void Game::init(){
         return;
     }
 
-    this->windowHeight = 600;
-    this->windowWidth = 800;
     // Crear ventana
     this->window = SDL_CreateWindow(
         "Tarea 1",
         SDL_WINDOWPOS_CENTERED, //Pos ventana
         SDL_WINDOWPOS_CENTERED,
-        this->windowWidth, 
-        this->windowHeight,
+        this->windowD.w, 
+        this->windowD.h,
         SDL_WINDOW_SHOWN // Flags
     );
 
@@ -39,75 +37,114 @@ void Game::init(){
     );
 
     // Cargar texto
-    this->fontSize = 12;
-    this->font = TTF_OpenFont("./assets/fonts/press_start_2p.ttf", this->fontSize);
+    
+    this->fontSize = fontD.s;
+    this->font = TTF_OpenFont(this->fontD.p.c_str(), this->fontSize);
 
     this->isRunning = true;
-
+    
     // Cargar imagen
-    this->imgHeight = 32;
-    this->imgWidth = 32;
-    this->pos.x = (this->windowWidth / 2) - (this->imgWidth/2);
-    this->pos.y = (this->windowHeight / 2) - (this->imgHeight/2);
-    this->imgVel.x = 50; // 50 pixels/s
-    this->imgVel.y = -50; // 50 pixels/s
-    SDL_Surface* imgSurface = IMG_Load("./assets/images/skull_00.png");
-    this->imgTexture = SDL_CreateTextureFromSurface(this->renderer, imgSurface);
-    SDL_FreeSurface(imgSurface);
+    for (const auto& entidad : entidades) {
+        Entities entidadAgregada;
+    
+        // Verificar si la imagen existe
+        if (entidad.p.empty()) {
+            std::cout << "No image path provided for entity, skipping..." << std::endl;
+            continue;  // Saltar iteración si no hay imagen
+        }
+    
+        // Verificar si el archivo de imagen se puede cargar
+        SDL_Surface* imgSurface = IMG_Load(entidad.p.c_str());
+        if (imgSurface == nullptr) {
+            std::cout << "Failed to load image: " << entidad.p << ", skipping..." << std::endl;
+            continue;  // Saltar iteración si no se carga la imagen
+        }
+    
+    
+        entidadAgregada.heightImg = entidad.h;
+        entidadAgregada.widthImg = entidad.w;
+        entidadAgregada.posImg.x = entidad.pos.x;
+        entidadAgregada.posImg.y = entidad.pos.y;
+        entidadAgregada.velImg.x = entidad.vel.x;
+        entidadAgregada.velImg.y = entidad.vel.y;
+        entidadAgregada.velTxt.x = entidad.vel.x;
+        entidadAgregada.velTxt.y = entidad.vel.y;
 
-    this->srcRect.x = 0;
-    this->srcRect.y = 0;
-    this->srcRect.w = this->imgWidth;
-    this->srcRect.h = this->imgHeight;
-
-    // Iniciar texto
-    this->message = "Tarea 1";
-    this->fontColor.b = 255;
-    this->fontColor.g = 255;
-
-    SDL_Surface* txtSurface = TTF_RenderText_Solid(this->font, this->message.c_str(),
-        this->fontColor);
-    this->txtTexture = SDL_CreateTextureFromSurface(this->renderer, txtSurface);
-    this->txtWidth = txtSurface->w;
-    this->txtHeight = txtSurface->h;
-    this->txtPos.x = (this->windowWidth / 2) - (this->txtWidth/2);
-    this->txtPos.y = 20;
-    SDL_FreeSurface(txtSurface);
-
+        entidadAgregada.textureImg = SDL_CreateTextureFromSurface(this->renderer, imgSurface);
+        SDL_FreeSurface(imgSurface);
+    
+        if (entidadAgregada.textureImg == nullptr) {
+            std::cout << "Failed to create texture from image, skipping..." << std::endl;
+            continue;  // Saltar si no se puede crear la textura
+        }
+    
+        entidadAgregada.srcRectImg.x = 0;
+        entidadAgregada.srcRectImg.y = 0;
+        entidadAgregada.srcRectImg.w = entidadAgregada.widthImg;
+        entidadAgregada.srcRectImg.h = entidadAgregada.heightImg;
+    
+        // Verificar si el texto es válido
+        if (entidad.l.empty()) {
+            std::cout << "No label text provided, skipping..." << std::endl;
+            continue;  // Saltar si no hay texto
+        }
+    
+        // Iniciar texto
+        entidadAgregada.messageTxt = entidad.l;
+        entidadAgregada.colorTxt.b = 255;
+        entidadAgregada.colorTxt.g = 255;
+        entidadAgregada.colorTxt.r = 255;
+    
+        SDL_Surface* txtSurface = TTF_RenderText_Solid(this->font, entidadAgregada.messageTxt.c_str(), entidadAgregada.colorTxt);
+        if (txtSurface == nullptr) {
+            std::cout << "Failed to render text: " << entidadAgregada.messageTxt << ", skipping..." << std::endl;
+        }
+        
+    
+        entidadAgregada.textureTxt = SDL_CreateTextureFromSurface(this->renderer, txtSurface);
+        entidadAgregada.widthTxt = txtSurface->w;
+        entidadAgregada.heightTxt = txtSurface->h;
+        entidadAgregada.posTxt.x = entidad.pos.x;
+        entidadAgregada.posTxt.y = entidad.pos.y;
+        
+        SDL_FreeSurface(txtSurface);
+    
+        if (entidadAgregada.textureTxt == nullptr) {
+            std::cout << "Failed to create texture from text, skipping..." << std::endl;
+            continue;  // Saltar si no se puede crear la textura del texto
+        }
+    
+        // Agregar entidad generada a la lista
+        generados.push_back(entidadAgregada);
+    }
+    
 }
 void Game::readConfig() {
     std::string nombreArchivo = "config.txt";
     std::ifstream archivoEntrada(nombreArchivo);
-    std::vector<windowData> windows;
-    std::vector<fontData> fonts;
-    std::vector<entityData> entidades;
-    std::string etiqueta;
+    std::string lector;
 
-    while (archivoEntrada >> etiqueta) {
-        windowData ventana;
-        if (etiqueta.compare("window") == 0) {
-            archivoEntrada >> ventana.w >> ventana.h >> ventana.r >> ventana.g >> ventana.b;
-            windows.push_back(ventana);
+    while (archivoEntrada >> lector) {
+        if (lector.compare("window") == 0) {
+            archivoEntrada >> this->windowD.w >> this->windowD.h >> this->windowD.r >> this->windowD.g >> this->windowD.b;
             break;
         }
     }
-    while (archivoEntrada >> etiqueta) {
-        fontData fuente;
-        if (etiqueta.compare("font") == 0) {
-            archivoEntrada >> fuente.p;
-            archivoEntrada >> fuente.r >> fuente.g >> fuente.b >> fuente.s;
-            fonts.push_back(fuente);
+    while (archivoEntrada >> lector) {
+        if (lector.compare("font") == 0) {
+            archivoEntrada >> this->fontD.p;
+            archivoEntrada >> this->fontD.r >> this->fontD.g >> this->fontD.b >> this->fontD.s;
             break;
         }
     }
-    while (archivoEntrada >> etiqueta) {
+    while (archivoEntrada >> lector) {
         entityData entidad;
-        if (etiqueta.compare("entity") == 0) {
+        if (lector.compare("entity") == 0) {
             archivoEntrada >> entidad.l;
             archivoEntrada >> entidad.p;
             archivoEntrada >> entidad.w >> entidad.h;
             archivoEntrada >> entidad.pos.x >> entidad.pos.y >> entidad.vel.x >> entidad.vel.y >> entidad.a;
-            entidades.push_back(entidad);
+            this->entidades.push_back(entidad);
         }
     }
 }
@@ -125,6 +162,8 @@ void Game::processInput() {
         case SDL_KEYDOWN:
             if(sdlEvent.key.keysym.sym == SDLK_ESCAPE) {
                 isRunning = false;
+            } else if (sdlEvent.key.keysym.sym == SDLK_p){
+                isPaused = !isPaused;
             }
         default:
             break;
@@ -144,18 +183,35 @@ void Game::update() {
     double deltaTime = (SDL_GetTicks() - this->mPreviousFrame) / 1000.0;
 
     this->mPreviousFrame = SDL_GetTicks();
-
-    this->pos.x += this->imgVel.x * deltaTime;
-    this->pos.y += this->imgVel.y * deltaTime;
+    for (auto& entidad : this->generados) {
+        if (!isPaused) {
+            entidad.mover(deltaTime, this->windowD.w - 27, this->windowD.h - 27);
+        }
+    }
 }
 void Game::render() {
     SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
     SDL_RenderClear(this->renderer);
-    SDL_Rect imgDstRect = {this->pos.x, this->pos.y, this->imgWidth, this->imgHeight};
-    SDL_Rect txtDstRect = {this->txtPos.x, this->txtPos.y, this->txtWidth, this->txtHeight};
-    // Dibujar imagen
-    SDL_RenderCopyEx(this->renderer, this->imgTexture, &this->srcRect, &imgDstRect, this->angle, NULL, SDL_FLIP_NONE);
-    SDL_RenderCopyEx(this->renderer, this->txtTexture, NULL, &txtDstRect, this->txtAngle, NULL, SDL_FLIP_NONE);
+
+    for (auto& entidad : this->generados) {
+        SDL_Rect imgDstRect = {
+            static_cast<int>(entidad.posImg.x),
+            static_cast<int>(entidad.posImg.y),
+            static_cast<int>(entidad.widthImg),
+            static_cast<int>(entidad.heightImg)
+        };
+    
+        SDL_Rect txtDstRect = {
+            static_cast<int>(entidad.posTxt.x),
+            static_cast<int>(entidad.posTxt.y),
+            static_cast<int>(entidad.widthTxt),
+            static_cast<int>(entidad.heightTxt)
+        };
+    
+        SDL_RenderCopyEx(this->renderer, entidad.textureImg, &entidad.srcRectImg, &imgDstRect, entidad.angleImg, NULL, SDL_FLIP_NONE);
+        SDL_RenderCopyEx(this->renderer, entidad.textureTxt, NULL, &txtDstRect, entidad.angleTxt, NULL, SDL_FLIP_NONE);
+    }
+    
 
     SDL_RenderPresent(this->renderer);
 }
@@ -169,11 +225,25 @@ void Game::run(){
     
 }
 void Game::destroy(){
-    SDL_DestroyTexture(this->txtTexture);
-    SDL_DestroyTexture(this->imgTexture);
+    for (auto& entidad : this->generados) {
+        if (entidad.textureImg != nullptr) {
+            SDL_DestroyTexture(entidad.textureImg);
+        }
+        if (entidad.textureTxt != nullptr) {
+            SDL_DestroyTexture(entidad.textureTxt);
+        }
+    }
 
-    SDL_DestroyRenderer(this->renderer);
-    SDL_DestroyWindow(this->window);
+    if (this->renderer != nullptr) {
+        SDL_DestroyRenderer(this->renderer);
+    }
+    if (this->window != nullptr) {
+        SDL_DestroyWindow(this->window);
+    }
+
+    if (this->font != nullptr) {
+        TTF_CloseFont(this->font);
+    }
 
     TTF_Quit();
     SDL_Quit();
