@@ -45,79 +45,83 @@ void Game::init(){
     
     // Cargar imagen
     for (const auto& entidad : entidades) {
-        Entities entidadAgregada;
-    
-        // Verificar si la imagen existe
-        if (entidad.p.empty()) {
-            std::cout << "No image path provided for entity, skipping..." << std::endl;
-            continue;  // Saltar iteración si no hay imagen
-        }
-    
-        // Verificar si el archivo de imagen se puede cargar
-        SDL_Surface* imgSurface = IMG_Load(entidad.p.c_str());
-        if (imgSurface == nullptr) {
-            std::cout << "Failed to load image: " << entidad.p << ", skipping..." << std::endl;
-            continue;  // Saltar iteración si no se carga la imagen
-        }
-    
-    
-        entidadAgregada.heightImg = entidad.h;
-        entidadAgregada.widthImg = entidad.w;
-        entidadAgregada.posImg.x = entidad.pos.x;
-        entidadAgregada.posImg.y = entidad.pos.y;
-        entidadAgregada.velImg.x = entidad.vel.x;
-        entidadAgregada.velImg.y = entidad.vel.y;
-        entidadAgregada.velTxt.x = entidad.vel.x;
-        entidadAgregada.velTxt.y = entidad.vel.y;
-
-        entidadAgregada.textureImg = SDL_CreateTextureFromSurface(this->renderer, imgSurface);
-        SDL_FreeSurface(imgSurface);
-    
-        if (entidadAgregada.textureImg == nullptr) {
-            std::cout << "Failed to create texture from image, skipping..." << std::endl;
-            continue;  // Saltar si no se puede crear la textura
-        }
-    
-        entidadAgregada.srcRectImg.x = 0;
-        entidadAgregada.srcRectImg.y = 0;
-        entidadAgregada.srcRectImg.w = entidadAgregada.widthImg;
-        entidadAgregada.srcRectImg.h = entidadAgregada.heightImg;
-    
-        // Verificar si el texto es válido
-        if (entidad.l.empty()) {
-            std::cout << "No label text provided, skipping..." << std::endl;
-            continue;  // Saltar si no hay texto
-        }
-    
-        // Iniciar texto
-        entidadAgregada.messageTxt = entidad.l;
-        entidadAgregada.colorTxt.b = 255;
-        entidadAgregada.colorTxt.g = 255;
-        entidadAgregada.colorTxt.r = 255;
-    
-        SDL_Surface* txtSurface = TTF_RenderText_Solid(this->font, entidadAgregada.messageTxt.c_str(), entidadAgregada.colorTxt);
-        if (txtSurface == nullptr) {
-            std::cout << "Failed to render text: " << entidadAgregada.messageTxt << ", skipping..." << std::endl;
-        }
-        
-    
-        entidadAgregada.textureTxt = SDL_CreateTextureFromSurface(this->renderer, txtSurface);
-        entidadAgregada.widthTxt = txtSurface->w;
-        entidadAgregada.heightTxt = txtSurface->h;
-        entidadAgregada.posTxt.x = entidad.pos.x;
-        entidadAgregada.posTxt.y = entidad.pos.y;
-        
-        SDL_FreeSurface(txtSurface);
-    
-        if (entidadAgregada.textureTxt == nullptr) {
-            std::cout << "Failed to create texture from text, skipping..." << std::endl;
-            continue;  // Saltar si no se puede crear la textura del texto
-        }
-    
-        // Agregar entidad generada a la lista
-        generados.push_back(entidadAgregada);
+        startEntities(entidad);
     }
     
+}
+void Game::startEntities(entityData entidad) {
+    Entities entidadAgregada;
+    
+    // Verificar si la imagen existe
+    if (entidad.p.empty()) {
+        std::cout << "No image path provided for entity, skipping..." << std::endl;
+        return;  // Saltar iteración si no hay imagen
+    }
+
+    // Verificar si el archivo de imagen se puede cargar
+    SDL_Surface* imgSurface = IMG_Load(entidad.p.c_str());
+    if (imgSurface == nullptr) {
+        std::cout << "Failed to load image: " << entidad.p << ", skipping..." << std::endl;
+        return;  // Saltar iteración si no se carga la imagen
+    }
+
+
+    entidadAgregada.heightImg = entidad.h;
+    entidadAgregada.widthImg = entidad.w;
+    entidadAgregada.posImg.x = entidad.pos.x;
+    entidadAgregada.posImg.y = entidad.pos.y;
+    entidadAgregada.velImg.x = entidad.vel.x;
+    entidadAgregada.velImg.y = entidad.vel.y;
+    entidadAgregada.velTxt.x = entidad.vel.x;
+    entidadAgregada.velTxt.y = entidad.vel.y;
+
+    entidadAgregada.textureImg = SDL_CreateTextureFromSurface(this->renderer, imgSurface);
+    SDL_FreeSurface(imgSurface);
+
+    if (entidadAgregada.textureImg == nullptr) {
+        std::cout << "Failed to create texture from image, skipping..." << std::endl;
+        return;  // Saltar si no se puede crear la textura
+    }
+
+    entidadAgregada.srcRectImg.x = 0;
+    entidadAgregada.srcRectImg.y = 0;
+    entidadAgregada.srcRectImg.w = entidadAgregada.widthImg;
+    entidadAgregada.srcRectImg.h = entidadAgregada.heightImg;
+
+    // Verificar si el texto es válido
+    if (entidad.l.empty()) {
+        std::cout << "No label text provided, skipping..." << std::endl;
+        return;  // Saltar si no hay texto
+    }
+
+    // Iniciar texto
+    entidadAgregada.messageTxt = entidad.l;
+    entidadAgregada.colorTxt.b = 255;
+    entidadAgregada.colorTxt.g = 255;
+    entidadAgregada.colorTxt.r = 255;
+
+    SDL_Surface* txtSurface = TTF_RenderText_Solid(this->font, entidadAgregada.messageTxt.c_str(), entidadAgregada.colorTxt);
+    if (txtSurface == nullptr) {
+        std::cout << "Failed to render text: " << entidadAgregada.messageTxt << ", skipping..." << std::endl;
+    }
+    
+
+    entidadAgregada.textureTxt = SDL_CreateTextureFromSurface(this->renderer, txtSurface);
+    entidadAgregada.widthTxt = txtSurface->w;
+    entidadAgregada.heightTxt = txtSurface->h;
+    entidadAgregada.posTxt.x = entidad.pos.x;
+    entidadAgregada.posTxt.y = entidad.pos.y;
+    
+    SDL_FreeSurface(txtSurface);
+
+    if (entidadAgregada.textureTxt == nullptr) {
+        std::cout << "Failed to create texture from text, skipping..." << std::endl;
+        return;  // Saltar si no se puede crear la textura del texto
+    }
+
+    // Agregar entidad generada a la lista
+    generados.push_back(entidadAgregada);
+
 }
 void Game::readConfig() {
     std::string nombreArchivo = "config.txt";
@@ -152,7 +156,7 @@ void Game::readConfig() {
 void Game::processInput() {
     //Registro de datos de un evento
     SDL_Event sdlEvent;
-    // saca de la cola de eventos de SDL y lo guarda en un registro de tipo SDL_Event
+    // Saca de la cola de eventos de SDL y lo guarda en un registro de tipo SDL_Event
     while (SDL_PollEvent(&sdlEvent)){
         switch (sdlEvent.type)
         {
@@ -185,9 +189,53 @@ void Game::update() {
     this->mPreviousFrame = SDL_GetTicks();
     for (auto& entidad : this->generados) {
         if (!isPaused) {
-            entidad.mover(deltaTime, this->windowD.w - 27, this->windowD.h - 27);
+            this->moveEntity(entidad, deltaTime, this->windowD.w - 27, this->windowD.h - 27);
         }
     }
+}
+void Game::moveEntity(Entities& entidad, double deltaTime, int windowWidth, int windowHeight) {
+    // Mover la imagen
+    entidad.posImg.x += entidad.velImg.x * deltaTime;
+    entidad.posImg.y += entidad.velImg.y * deltaTime;
+
+    // Mover el texto
+    entidad.posTxt.x += entidad.velTxt.x * deltaTime;
+    entidad.posTxt.y += entidad.velTxt.y * deltaTime;
+
+    // Rebotar la imagen en los bordes de la ventana
+    if (entidad.posImg.x < 0) {
+        entidad.posImg.x = 0;
+        entidad.velImg.x = -entidad.velImg.x;  // Invertir la velocidad en X
+    } else if (entidad.posImg.x > windowWidth) {
+        entidad.posImg.x = windowWidth;
+        entidad.velImg.x = -entidad.velImg.x;  // Invertir la velocidad en X
+    }
+
+    if (entidad.posImg.y < 0) {
+        entidad.posImg.y = 0;
+        entidad.velImg.y = -entidad.velImg.y;  // Invertir la velocidad en Y
+    } else if (entidad.posImg.y > windowHeight) {
+        entidad.posImg.y = windowHeight;
+        entidad.velImg.y = -entidad.velImg.y;  // Invertir la velocidad en Y
+    }
+
+    // Rebotar el texto en los bordes de la ventana
+    if (entidad.posTxt.x < 0) {
+        entidad.posTxt.x = 0;
+        entidad.velTxt.x = -entidad.velTxt.x;  // Invertir la velocidad en X
+    } else if (entidad.posTxt.x > windowWidth) {
+        entidad.posTxt.x = windowWidth;
+        entidad.velTxt.x = -entidad.velTxt.x;  // Invertir la velocidad en X
+    }
+
+    if (entidad.posTxt.y < 0) {
+        entidad.posTxt.y = 0;
+        entidad.velTxt.y = -entidad.velTxt.y;  // Invertir la velocidad en Y
+    } else if (entidad.posTxt.y > windowHeight) {
+        entidad.posTxt.y = windowHeight;
+        entidad.velTxt.y = -entidad.velTxt.y;  // Invertir la velocidad en Y
+    }
+
 }
 void Game::render() {
     SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);

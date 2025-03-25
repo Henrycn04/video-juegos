@@ -58,6 +58,8 @@ private:
     std::vector<entityData> entidades;
     
     std::vector<Entities> generados;
+    void startEntities(entityData entidad);
+    void moveEntity(Entities& entidad, double deltaTime, int windowWidth, int windowHeight);
 public:
     Game();
     ~Game();
