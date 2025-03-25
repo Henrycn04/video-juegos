@@ -36,14 +36,14 @@ void Game::init(){
         0
     );
 
-    // Cargar texto
+    // Cargar fuente
     
     this->fontSize = fontD.s;
     this->font = TTF_OpenFont(this->fontD.p.c_str(), this->fontSize);
 
     this->isRunning = true;
     
-    // Cargar imagen
+    // Cargar imagen y texto asociado
     for (const auto& entidad : entidades) {
         startEntities(entidad);
     }
@@ -54,15 +54,14 @@ void Game::startEntities(entityData entidad) {
     
     // Verificar si la imagen existe
     if (entidad.p.empty()) {
-        std::cout << "No image path provided for entity, skipping..." << std::endl;
-        return;  // Saltar iteración si no hay imagen
+        std::cout << "No hay path para la imagen, saltando..." << std::endl;
+        return;
     }
 
-    // Verificar si el archivo de imagen se puede cargar
     SDL_Surface* imgSurface = IMG_Load(entidad.p.c_str());
     if (imgSurface == nullptr) {
-        std::cout << "Failed to load image: " << entidad.p << ", skipping..." << std::endl;
-        return;  // Saltar iteración si no se carga la imagen
+        std::cout << "Fallo al cargar la imagen: " << entidad.p << ", saltando..." << std::endl;
+        return;
     }
 
 
@@ -79,8 +78,8 @@ void Game::startEntities(entityData entidad) {
     SDL_FreeSurface(imgSurface);
 
     if (entidadAgregada.textureImg == nullptr) {
-        std::cout << "Failed to create texture from image, skipping..." << std::endl;
-        return;  // Saltar si no se puede crear la textura
+        std::cout << "Fallo al crear la textura de la imagen, saltando..." << std::endl;
+        return;
     }
 
     entidadAgregada.srcRectImg.x = 0;
@@ -88,10 +87,9 @@ void Game::startEntities(entityData entidad) {
     entidadAgregada.srcRectImg.w = entidadAgregada.widthImg;
     entidadAgregada.srcRectImg.h = entidadAgregada.heightImg;
 
-    // Verificar si el texto es válido
     if (entidad.l.empty()) {
-        std::cout << "No label text provided, skipping..." << std::endl;
-        return;  // Saltar si no hay texto
+        std::cout << "No hay label text, saltando..." << std::endl;
+        return; 
     }
 
     // Iniciar texto
@@ -102,7 +100,7 @@ void Game::startEntities(entityData entidad) {
 
     SDL_Surface* txtSurface = TTF_RenderText_Solid(this->font, entidadAgregada.messageTxt.c_str(), entidadAgregada.colorTxt);
     if (txtSurface == nullptr) {
-        std::cout << "Failed to render text: " << entidadAgregada.messageTxt << ", skipping..." << std::endl;
+        std::cout << "Fallo al renderizar el texto: " << entidadAgregada.messageTxt << ", saltando..." << std::endl;
     }
     
 
@@ -115,7 +113,7 @@ void Game::startEntities(entityData entidad) {
     SDL_FreeSurface(txtSurface);
 
     if (entidadAgregada.textureTxt == nullptr) {
-        std::cout << "Failed to create texture from text, skipping..." << std::endl;
+        std::cout << "Fallo al crear la textura, saltando..." << std::endl;
         return;  // Saltar si no se puede crear la textura del texto
     }
 
@@ -198,49 +196,49 @@ void Game::moveEntity(Entities& entidad, double deltaTime, int windowWidth, int 
     entidad.posImg.x += entidad.velImg.x * deltaTime;
     entidad.posImg.y += entidad.velImg.y * deltaTime;
 
-    // Mover el texto
+
     entidad.posTxt.x += entidad.velTxt.x * deltaTime;
     entidad.posTxt.y += entidad.velTxt.y * deltaTime;
 
-    // Rebotar la imagen en los bordes de la ventana
+    // Maneja el rebote de la imagen
     if (entidad.posImg.x < 0) {
         entidad.posImg.x = 0;
-        entidad.velImg.x = -entidad.velImg.x;  // Invertir la velocidad en X
+        entidad.velImg.x = -entidad.velImg.x;
     } else if (entidad.posImg.x > windowWidth) {
         entidad.posImg.x = windowWidth;
-        entidad.velImg.x = -entidad.velImg.x;  // Invertir la velocidad en X
+        entidad.velImg.x = -entidad.velImg.x;
     }
 
     if (entidad.posImg.y < 0) {
         entidad.posImg.y = 0;
-        entidad.velImg.y = -entidad.velImg.y;  // Invertir la velocidad en Y
+        entidad.velImg.y = -entidad.velImg.y;
     } else if (entidad.posImg.y > windowHeight) {
         entidad.posImg.y = windowHeight;
-        entidad.velImg.y = -entidad.velImg.y;  // Invertir la velocidad en Y
+        entidad.velImg.y = -entidad.velImg.y;
     }
 
-    // Rebotar el texto en los bordes de la ventana
+    // Maneja el rebote del texto
     if (entidad.posTxt.x < 0) {
         entidad.posTxt.x = 0;
-        entidad.velTxt.x = -entidad.velTxt.x;  // Invertir la velocidad en X
+        entidad.velTxt.x = -entidad.velTxt.x; 
     } else if (entidad.posTxt.x > windowWidth) {
         entidad.posTxt.x = windowWidth;
-        entidad.velTxt.x = -entidad.velTxt.x;  // Invertir la velocidad en X
+        entidad.velTxt.x = -entidad.velTxt.x;
     }
 
     if (entidad.posTxt.y < 0) {
         entidad.posTxt.y = 0;
-        entidad.velTxt.y = -entidad.velTxt.y;  // Invertir la velocidad en Y
+        entidad.velTxt.y = -entidad.velTxt.y;
     } else if (entidad.posTxt.y > windowHeight) {
         entidad.posTxt.y = windowHeight;
-        entidad.velTxt.y = -entidad.velTxt.y;  // Invertir la velocidad en Y
+        entidad.velTxt.y = -entidad.velTxt.y;
     }
 
 }
 void Game::render() {
     SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
     SDL_RenderClear(this->renderer);
-
+    // Se renderizan las imagenes y los textos
     for (auto& entidad : this->generados) {
         SDL_Rect imgDstRect = {
             static_cast<int>(entidad.posImg.x),

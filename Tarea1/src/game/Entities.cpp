@@ -7,7 +7,3 @@ Entities::~Entities() {
     
 }
 
-void Entities::mover(double deltaTime, int windowWidth, int windowHeight){
-
-}
-

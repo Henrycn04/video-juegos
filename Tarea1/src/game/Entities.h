@@ -23,7 +23,7 @@ class Entities {
 public:
     Entities();
     ~Entities();
-    void mover(double deltaTime, int windowWidth, int windowHeight);
+
 // Imagen
     SDL_Texture* textureImg = nullptr;
     glm::vec2 posImg = glm::vec2();
