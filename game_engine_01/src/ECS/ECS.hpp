@@ -1,10 +1,13 @@
 #ifndef ECS_HPP
 #define ECS_HPP
 
-
+#include <bitset>
 #include <memory>
 #include <vector>
 #include "../Utils/Pool.hpp"
+
+const unsigned int MAX_COMPONENTS = 64;
+typedef std::bitset<MAX_COMPONENTS> Signature;
 
 
 struct IComponent {
@@ -30,6 +33,20 @@ class Entity {
 };
 
 class System {
+    private:
+        Signature componentSignature;
+        std::vector<Entity> entities;
+
+    public:
+        System() = default;
+        ~System() = default;
+        void AddEntityToSystem(Entity entity);
+        void RemoveEntityFromSystem(Entity entity);
+        std::vector<Entity> GetSystemEntities() const;
+        const Signature& GetComponentSignature() const;
+
+        template <typename TComponent> 
+        void RequireComponent();
 
 };
 
@@ -38,5 +55,11 @@ class Registry {
         int numEntity = 0;
         std::vector<std::shared_ptr<IPool>> componentsPools;
 };
+
+template <typename TComponent>
+void System::RequireComponent() {
+    const int componentId = Component<TComponent>::GetId();
+    componentSignature.set(componentId);
+}
 
 #endif

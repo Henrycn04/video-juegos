@@ -1,7 +1,6 @@
 #ifndef POOL_HPP
 #define POOL_HPP
 #include <vector>
-std::vector<IPool> pool;
 
 
 class IPool {
@@ -9,13 +8,15 @@ class IPool {
         virtual ~IPool() = default;
 };
 
+std::vector<IPool> pool;
+
 template <typename TComponent>
 class Pool : public IPool{
 
     private:
         std::vector<TComponent> data;
     public:
-        Pool(Int size = 100) {
+        Pool(int size = 100) {
             data.rend(size);
         }
         virtual ~Pool() = default;
