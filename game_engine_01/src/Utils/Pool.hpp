@@ -16,7 +16,7 @@ class Pool : public IPool{
     private:
         std::vector<TComponent> data;
     public:
-        Pool(int size = 100) {
+        Pool(int size = 1000) {
             data.rend(size);
         }
         virtual ~Pool() = default;
