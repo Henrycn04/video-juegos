@@ -8,7 +8,6 @@ class IPool {
         virtual ~IPool() = default;
 };
 
-std::vector<IPool> pool;
 
 template <typename TComponent>
 class Pool : public IPool{
@@ -17,7 +16,7 @@ class Pool : public IPool{
         std::vector<TComponent> data;
     public:
         Pool(int size = 1000) {
-            data.rend(size);
+            data.resize(size);
         }
         virtual ~Pool() = default;
 
@@ -25,7 +24,7 @@ class Pool : public IPool{
             return data.empty();
         }
         int GetSize() const {
-            return data.size();
+            return static_cast<int>(data.size());
         }
         void Resize(int n) {
             data.resize(n);

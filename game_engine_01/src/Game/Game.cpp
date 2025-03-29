@@ -1,10 +1,13 @@
 #include "Game.hpp"
-
+#include "../Components/TransformComponent.hpp"
 Game::Game() {
     std::cout<< "[GAME] Se ejecuta constructor" << std::endl;
+
+    this->registry = std::make_unique<Registry>();
 }
 
 Game::~Game() {
+    this->registry.reset();
     std::cout<< "[GAME] Se ejecuta destructor" << std::endl;
 }
 
@@ -49,6 +52,10 @@ void Game::init(){
 
     this->isRunning = true;
 }
+void Game::Setup(){ 
+    Entity e = this->registry->CreateEntity();
+    e.AddComponent<TransformComponent>(glm::vec2(100.0, 100.0), glm::vec2(1.0, 1.0), 0.0);
+}
 void Game::processInput() {
     //Registro de datos de un evento
     SDL_Event sdlEvent;
@@ -70,6 +77,21 @@ void Game::processInput() {
     }
 }
 
+void Game::update() {
+    // Calcular la espera; SDL_GetTicks retorna la cantidad de milisecs desde  que se inicio SDL
+    int timeToWait = MILLISECS_PER_FRAME - (SDL_GetTicks() - this->mPreviousFrame);
+
+    if (timeToWait > 0 && timeToWait <= MILLISECS_PER_FRAME) {
+        SDL_Delay(timeToWait);
+    }
+
+    // Calculo delta time en segundos
+    //double deltaTime = (SDL_GetTicks() - this->mPreviousFrame) / 1000.0;
+
+    this->mPreviousFrame = SDL_GetTicks();
+
+}
+
 void Game::render() {
     SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
     SDL_RenderClear(this->renderer);
@@ -80,6 +102,8 @@ void Game::render() {
 }
 
 void Game::run(){
+    Setup();
+
     while (this->isRunning) {
         processInput();
         //update();
@@ -107,21 +131,6 @@ void Game::readConfig() {
     }
 }
 
-
-void Game::update() {
-    // Calcular la espera; SDL_GetTicks retorna la cantidad de milisecs desde  que se inicio SDL
-    int timeToWait = MILLISECS_PER_FRAME - (SDL_GetTicks() - this->mPreviousFrame);
-
-    if (timeToWait > 0 && timeToWait <= MILLISECS_PER_FRAME) {
-        SDL_Delay(timeToWait);
-    }
-
-    // Calculo delta time en segundos
-    double deltaTime = (SDL_GetTicks() - this->mPreviousFrame) / 1000.0;
-
-    this->mPreviousFrame = SDL_GetTicks();
-
-}
 
 
 

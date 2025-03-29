@@ -10,6 +10,8 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <memory>
+#include "../ECS/ECS.hpp"
 
 const int FPS = 60;
 const int MILLISECS_PER_FRAME = 1000 / FPS;
@@ -25,10 +27,14 @@ private:
     size_t windowHeight = 0;
 
     bool isRunning = false;
+
+    std::unique_ptr<Registry> registry;
+
     bool isPaused = false;
     int mPreviousFrame = 0;
 
 private:
+    void Setup();
     void processInput();
     void update();
     void render();
