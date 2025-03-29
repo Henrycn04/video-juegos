@@ -152,6 +152,8 @@ void Registry::AddComponent(Entity entity, TArgs&&... args){
     TComponent newComponent(std::forward<TArgs>(args)...);
     componentPool->Set(entityId, newComponent);
     entityComponentSignatures[entityId].set(componentId);
+
+    std::cout << "[Registry] Se agrega el componente " << componentId << " a la entidad " << entityId << std::endl;
 }
 template <typename TComponent>
 void Registry::RemoveComponent(Entity entity){

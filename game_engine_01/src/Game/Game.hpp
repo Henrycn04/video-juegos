@@ -11,9 +11,10 @@
 #include <fstream>
 #include <vector>
 #include <memory>
+#include "../AssetManager/AssetManager.hpp"
 #include "../ECS/ECS.hpp"
 
-const int FPS = 60;
+const int FPS = 30;
 const int MILLISECS_PER_FRAME = 1000 / FPS;
 
 
@@ -26,7 +27,10 @@ private:
     size_t windowWidth = 0;
     size_t windowHeight = 0;
 
+    int millisecsPreviousFrame = 0;
+
     bool isRunning = false;
+    std::unique_ptr<AssetManager> assetManager;
 
     std::unique_ptr<Registry> registry;
 

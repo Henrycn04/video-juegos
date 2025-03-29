@@ -1,12 +1,20 @@
 #include "Game.hpp"
+
+#include "../Components/RigidBodyComponent.hpp"
+#include "../Components/SpriteComponent.hpp"
 #include "../Components/TransformComponent.hpp"
+#include "../Systems/MovementSystem.hpp"
+#include "../Systems/RenderSystem.hpp"
+
+
 Game::Game() {
     std::cout<< "[GAME] Se ejecuta constructor" << std::endl;
-
+    this->assetManager = std::make_unique<AssetManager>();
     this->registry = std::make_unique<Registry>();
 }
 
 Game::~Game() {
+    this->assetManager.reset();
     this->registry.reset();
     std::cout<< "[GAME] Se ejecuta destructor" << std::endl;
 }
@@ -53,8 +61,16 @@ void Game::init(){
     this->isRunning = true;
 }
 void Game::Setup(){ 
-    Entity e = this->registry->CreateEntity();
-    e.AddComponent<TransformComponent>(glm::vec2(100.0, 100.0), glm::vec2(1.0, 1.0), 0.0);
+    this->registry->AddSystem<MovementSystem>();
+    this->registry->AddSystem<RenderSystem>();
+
+    assetManager->AddTexture(this->renderer, "enemy_alan", "./assets/images/enemy_alan.png");
+
+    Entity enemy = this->registry->CreateEntity();
+    enemy.AddComponent<RigidBodyComponent>(glm::vec2(50, 0));
+    enemy.AddComponent<SpriteComponent>("enemy_alan", 16, 16, 0, 0);
+    enemy.AddComponent<TransformComponent>(glm::vec2(100.0, 100.0), glm::vec2(2.0, 2.0), 0.0);
+
 }
 void Game::processInput() {
     //Registro de datos de un evento
@@ -69,6 +85,8 @@ void Game::processInput() {
         case SDL_KEYDOWN:
             if(sdlEvent.key.keysym.sym == SDLK_ESCAPE) {
                 isRunning = false;
+            } else if (sdlEvent.key.keysym.sym == SDLK_p) {
+                isPaused = !isPaused;
             }
         default:
             break;
@@ -78,17 +96,18 @@ void Game::processInput() {
 }
 
 void Game::update() {
-    // Calcular la espera; SDL_GetTicks retorna la cantidad de milisecs desde  que se inicio SDL
-    int timeToWait = MILLISECS_PER_FRAME - (SDL_GetTicks() - this->mPreviousFrame);
-
+    int timeToWait = MILLISECS_PER_FRAME - (SDL_GetTicks() - this->millisecsPreviousFrame);
     if (timeToWait > 0 && timeToWait <= MILLISECS_PER_FRAME) {
         SDL_Delay(timeToWait);
     }
 
-    // Calculo delta time en segundos
-    //double deltaTime = (SDL_GetTicks() - this->mPreviousFrame) / 1000.0;
+    double dt = (SDL_GetTicks() - this->millisecsPreviousFrame) / 1000.0f;
+    this->millisecsPreviousFrame = SDL_GetTicks();
 
-    this->mPreviousFrame = SDL_GetTicks();
+    this->registry->Update();
+    if (!isPaused) {
+        this->registry->GetSystem<MovementSystem>().Update(dt);
+    }
 
 }
 
@@ -96,7 +115,7 @@ void Game::render() {
     SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
     SDL_RenderClear(this->renderer);
 
-    
+    this->registry->GetSystem<RenderSystem>().Update(this->renderer, this->assetManager);
 
     SDL_RenderPresent(this->renderer);
 }
@@ -106,7 +125,7 @@ void Game::run(){
 
     while (this->isRunning) {
         processInput();
-        //update();
+        update();
         render();
     }
     
