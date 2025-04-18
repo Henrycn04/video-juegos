@@ -5,6 +5,9 @@ int IComponent::nextId = 0;
 int Entity::GetId() const{
     return id;
 }
+void Entity::Kill(){
+    registry->KillEntity(*this);
+}
 void System::AddEntityToSystem(Entity entity) {
     this->entities.push_back(entity);
 }

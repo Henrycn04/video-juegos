@@ -12,6 +12,7 @@
 #include <vector>
 #include <memory>
 #include "../AssetManager/AssetManager.hpp"
+#include "../EventManager/EventManager.hpp"
 #include "../ECS/ECS.hpp"
 
 const int FPS = 30;
@@ -31,7 +32,7 @@ private:
 
     bool isRunning = false;
     std::unique_ptr<AssetManager> assetManager;
-
+    std::unique_ptr<EventManager> eventManager;
     std::unique_ptr<Registry> registry;
 
     bool isPaused = false;

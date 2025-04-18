@@ -3,13 +3,18 @@
 #include "../Components/RigidBodyComponent.hpp"
 #include "../Components/SpriteComponent.hpp"
 #include "../Components/TransformComponent.hpp"
+#include "../Components/CircleColliderComponent.hpp"
+#include "../Components/AnimationComponent.hpp"
+
 #include "../Systems/MovementSystem.hpp"
 #include "../Systems/RenderSystem.hpp"
-
-
+#include "../Systems/CollisionSystem.hpp"
+#include "../Systems/DamageSystem.hpp"
+#include "../Systems/AnimationSystem.hpp"
 Game::Game() {
     std::cout<< "[GAME] Se ejecuta constructor" << std::endl;
     this->assetManager = std::make_unique<AssetManager>();
+    this->eventManager = std::make_unique<EventManager>();
     this->registry = std::make_unique<Registry>();
 }
 
@@ -61,15 +66,28 @@ void Game::init(){
     this->isRunning = true;
 }
 void Game::Setup(){ 
+
+    this->registry->AddSystem<CollisionSystem>();
     this->registry->AddSystem<MovementSystem>();
     this->registry->AddSystem<RenderSystem>();
+    this->registry->AddSystem<DamageSystem>();
+    this->registry->AddSystem<AnimationSystem>();
 
     assetManager->AddTexture(this->renderer, "enemy_alan", "./assets/images/enemy_alan.png");
 
-    Entity enemy = this->registry->CreateEntity();
-    enemy.AddComponent<RigidBodyComponent>(glm::vec2(50, 0));
-    enemy.AddComponent<SpriteComponent>("enemy_alan", 16, 16, 0, 0);
-    enemy.AddComponent<TransformComponent>(glm::vec2(100.0, 100.0), glm::vec2(2.0, 2.0), 0.0);
+    Entity enemy01 = this->registry->CreateEntity();
+    enemy01.AddComponent<AnimationComponent>(6, 10, true);
+    enemy01.AddComponent<CircleColliderComponent>(16, 16, 16);
+    enemy01.AddComponent<RigidBodyComponent>(glm::vec2(25, 0));
+    enemy01.AddComponent<SpriteComponent>("enemy_alan", 16, 16, 0, 0);
+    enemy01.AddComponent<TransformComponent>(glm::vec2(200.0, 100.0), glm::vec2(4.0, 3.0), 0.0);
+
+    Entity enemy02 = this->registry->CreateEntity();
+    enemy02.AddComponent<AnimationComponent>(6, 10, true);
+    enemy02.AddComponent<CircleColliderComponent>(16, 16, 16);
+    enemy02.AddComponent<RigidBodyComponent>(glm::vec2(-25, 0));
+    enemy02.AddComponent<SpriteComponent>("enemy_alan", 16, 16, 0, 0);
+    enemy02.AddComponent<TransformComponent>(glm::vec2(450.0, 100.0), glm::vec2(4.0, 3.0), 0.0);
 
 }
 void Game::processInput() {
@@ -103,11 +121,17 @@ void Game::update() {
 
     double dt = (SDL_GetTicks() - this->millisecsPreviousFrame) / 1000.0f;
     this->millisecsPreviousFrame = SDL_GetTicks();
+    // Registry
+    eventManager->Restart();
+    this->registry->GetSystem<DamageSystem>().SubscribeToCollisionEvent(eventManager);
 
     this->registry->Update();
+    
+    this->registry->GetSystem<AnimationSystem>().Update();
     if (!isPaused) {
         this->registry->GetSystem<MovementSystem>().Update(dt);
     }
+    this->registry->GetSystem<CollisionSystem>().Update(eventManager);
 
 }
 
