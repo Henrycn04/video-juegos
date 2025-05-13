@@ -56,6 +56,10 @@
         "variant": "cpp",
         "iomanip": "cpp",
         "ranges": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "set": "cpp",
+        "typeindex": "cpp",
+        "list": "cpp",
+        "map": "cpp"
     }
 }
