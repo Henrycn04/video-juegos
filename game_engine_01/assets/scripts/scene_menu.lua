@@ -1,5 +1,9 @@
 
 scene = {
+    background = {
+        [0] = {assetId = "background1", file_path = "./assets/images/background1.jpg"},
+
+    },
     -- Tabla de imagenes
     sprites = {
     },
@@ -16,8 +20,6 @@ scene = {
         {name = "move_up", key = 119},
         {name = "move_down", key = 115},
         {name = "jump", key = 32},
-        
-
     },
     -- Tabla de acciones y botones del raton
     buttons = {
@@ -27,6 +29,30 @@ scene = {
     -- Tabla de entidades
     entities = {
         [0] =
+                {
+            components = {
+                sprite = {
+                    assetId = "background1",
+                    width = 800,
+                    height = 600,
+                    src_rect = {
+                        x = 0,
+                        y = 0,
+                    },
+                },
+                transform = {
+                    position = {
+                        x = 0.0,
+                        y = 0.0
+                    },
+                    scale = {
+                        x = 1.0,
+                        y = 1.0
+                    },
+                    rotation = 0.0
+                },
+            }
+        },
         -- Player
         {
             components = {
@@ -36,9 +62,9 @@ scene = {
                 text = {
                     text = "Crimson Engine",
                     fontId = "press_start_32",
-                    r = 150,
-                    g = 0,
-                    b = 150,
+                    r = 50,
+                    g = 255,
+                    b = 50,
                     a = 255,
 
                 },
@@ -69,7 +95,7 @@ scene = {
                     text = "Level 01",
                     fontId = "press_start_24",
                     r = 150,
-                    g = 150,
+                    g = 255,
                     b = 0,
                     a = 255,
 

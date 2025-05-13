@@ -8,9 +8,7 @@
 #include "../Components/ScriptComponent.hpp"
 #include "../Components/TextComponent.hpp"
 #include "../Components/ClickableComponent.hpp"
-
-
-
+#include "../Components/DrawableComponent.hpp"
 SceneLoader::SceneLoader() {
     std::cout << "[SceneLoader] Se ejecuta constructor" << std::endl;
 }
@@ -30,6 +28,11 @@ void SceneLoader::LoadScene(const std::string& scenePath, sol::state& lua,
     }
     lua.script_file(scenePath);
     sol::table scene = lua["scene"];
+
+    sol::table background = scene["background"];
+    LoadBackground(renderer, background, assetManager);
+
+
     sol::table sprites = scene["sprites"];
     LoadSprites(renderer, sprites, assetManager);
 
@@ -49,6 +52,28 @@ void SceneLoader::LoadScene(const std::string& scenePath, sol::state& lua,
     std::cout << "[SceneLoader] Se cargó la escena correctamente." << std::endl;
 
 }
+void SceneLoader::LoadBackground(SDL_Renderer* renderer, const sol::table& backgrounds, std::unique_ptr<AssetManager>& assetManager){
+    int index = 0;
+
+    while (true) {
+        sol::optional<sol::table> hasBackground = backgrounds[index];
+        if (hasBackground == sol::nullopt) {
+            break;
+        }
+
+        sol::table background = backgrounds[index];
+
+        std::string assetId = background["assetId"];
+
+        std::string filePath = background["file_path"];
+
+        assetManager->AddTexture(renderer, assetId, filePath);
+
+        index++;
+    }
+}
+
+
 void SceneLoader::LoadSprites(SDL_Renderer* renderer, const sol::table& sprites, std::unique_ptr<AssetManager>& assetManager){
     int index = 0;
     while (true) {
@@ -65,6 +90,7 @@ void SceneLoader::LoadSprites(SDL_Renderer* renderer, const sol::table& sprites,
 
         index++;
     }
+    std::cout << "[SceneLoader] Se cargaron los sprites correctamente." << std::endl;
 }
 void SceneLoader::LoadFonts(const sol::table& fonts, std::unique_ptr<AssetManager>& assetManager){
     int index = 0;
@@ -145,7 +171,12 @@ void SceneLoader::LoadEntities(sol::state& lua, const sol::table& entities, std:
 
                 );
             }
+            sol::optional<sol::table> hasDrawable = components["drawable"];
+            if (hasDrawable != sol::nullopt) {
+                newEntity.AddComponent<DrawableComponent>();
+            }
 
+            
             sol::optional<sol::table> hasCircleCollider = components["circle_collider"];
             if (hasCircleCollider != sol::nullopt) {
                 newEntity.AddComponent<CircleColliderComponent>(
@@ -210,6 +241,7 @@ void SceneLoader::LoadEntities(sol::state& lua, const sol::table& entities, std:
                     components["text"]["a"]
                 );
             }
+
 
             sol::optional<sol::table> hasTransform = components["transform"];
             if (hasTransform != sol::nullopt) {

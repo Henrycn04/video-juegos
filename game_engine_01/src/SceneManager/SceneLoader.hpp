@@ -11,6 +11,7 @@
 
 class SceneLoader {
     private:
+    void LoadBackground(SDL_Renderer* renderer, const sol::table& background, std::unique_ptr<AssetManager>& assetManager);
     void LoadSprites(SDL_Renderer* renderer, const sol::table& sprites, std::unique_ptr<AssetManager>& assetManager);
 
     void LoadFonts(const sol::table& fonts, std::unique_ptr<AssetManager>& assetManager);

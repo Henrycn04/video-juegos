@@ -12,6 +12,7 @@
 #include "../Systems/AnimationSystem.hpp"
 #include "../Systems/RenderTextSystem.hpp"
 #include "../Systems/UISystem.hpp"
+#include "../Systems/DrawSystem.hpp"
 
 Game::Game() {
     std::cout<< "[GAME] Se ejecuta constructor" << std::endl;
@@ -83,6 +84,7 @@ void Game::Setup(){
     this->registry->AddSystem<ScriptSystem>();
     this->registry->AddSystem<RenderTextSystem>();
     this->registry->AddSystem<UISystem>();
+    this->registry->AddSystem<DrawSystem>();
 
     sceneManager->LoadSceneFromScript("./assets/scripts/scenes.lua", lua);
     
@@ -122,6 +124,7 @@ void Game::processInput() {
             controllerManager->SetMousePosition(sdlEvent.button.x, sdlEvent.button.y);
             controllerManager->MouseButtonDown(static_cast<int>(sdlEvent.button.button));
             eventManager->EmitEvent<ClickEvent>(static_cast<int>(sdlEvent.button.button), sdlEvent.button.x, sdlEvent.button.y);
+            std::cout << "[GAME] Click en la posicion: " << sdlEvent.button.x << ", " << sdlEvent.button.y << std::endl;
             break;
         case SDL_MOUSEBUTTONUP:
             controllerManager->SetMousePosition(sdlEvent.button.x, sdlEvent.button.y);
@@ -164,7 +167,9 @@ void Game::render() {
     SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
     SDL_RenderClear(this->renderer);
     this->registry->GetSystem<RenderSystem>().Update(this->renderer, this->assetManager);
+    this->registry->GetSystem<DrawSystem>().Update(this->renderer);
     this->registry->GetSystem<RenderTextSystem>().Update(this->renderer, this->assetManager);
+
     SDL_RenderPresent(this->renderer);
 }
 

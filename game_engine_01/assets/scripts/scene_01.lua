@@ -1,5 +1,8 @@
 
 scene = {
+    background = {
+        [0] = {assetId = "background1", file_path = "./assets/images/background1.jpg"},
+    },
     -- Tabla de imagenes
     sprites = {
         [0] = 
@@ -18,6 +21,9 @@ scene = {
         {name = "move_up", key = 119},
         {name = "move_down", key = 115},
         {name = "jump", key = 32},
+        { name = "draw_red", key = 49 },   -- tecla 1
+        { name = "draw_blue", key = 50 },  -- tecla 2
+        { name = "draw_green", key = 51 },
         
 
     },
@@ -29,6 +35,30 @@ scene = {
     -- Tabla de entidades
     entities = {
         [0] =
+            {
+            components = {
+                sprite = {
+                    assetId = "background1",
+                    width = 800,
+                    height = 600,
+                    src_rect = {
+                        x = 0,
+                        y = 0,
+                    },
+                },
+                transform = {
+                    position = {
+                        x = 0.0,
+                        y = 0.0
+                    },
+                    scale = {
+                        x = 1.0,
+                        y = 1.0
+                    },
+                    rotation = 0.0
+                },
+            }
+        },
         -- Player
         {
             components = { -- Jugador
@@ -163,9 +193,9 @@ scene = {
                 text = {
                     text = "Score: 100",
                     fontId = "press_start_24",
-                    r = 150,
-                    g = 0,
-                    b = 150,
+                    r = 50,
+                    g = 255,
+                    b = 50,
                     a = 255,
 
                 },
@@ -181,6 +211,16 @@ scene = {
                     rotation = 0.0
                 },
             }
-        }
+        },
+                {
+            components = {
+                drawable = {},
+                script = {
+                    path = "./assets/scripts/mouse_draw.lua"
+                },
+            }
+
+        },
+
     }
 }

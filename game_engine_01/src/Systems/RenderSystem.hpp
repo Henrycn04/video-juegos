@@ -31,6 +31,7 @@ class RenderSystem : public System {
                     NULL,
                     SDL_FLIP_NONE
                 );
+                
             }
 
         }
