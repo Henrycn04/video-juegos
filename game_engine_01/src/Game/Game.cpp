@@ -1,26 +1,34 @@
 #include "Game.hpp"
 
-#include "../Components/RigidBodyComponent.hpp"
-#include "../Components/SpriteComponent.hpp"
-#include "../Components/TransformComponent.hpp"
-#include "../Components/CircleColliderComponent.hpp"
-#include "../Components/AnimationComponent.hpp"
+
+
+#include "../Events/ClickEvent.hpp"
 
 #include "../Systems/MovementSystem.hpp"
 #include "../Systems/RenderSystem.hpp"
 #include "../Systems/CollisionSystem.hpp"
 #include "../Systems/DamageSystem.hpp"
+#include "../Systems/ScriptSystem.hpp"
 #include "../Systems/AnimationSystem.hpp"
+#include "../Systems/RenderTextSystem.hpp"
+#include "../Systems/UISystem.hpp"
+
 Game::Game() {
     std::cout<< "[GAME] Se ejecuta constructor" << std::endl;
     this->assetManager = std::make_unique<AssetManager>();
+    this->controllerManager = std::make_unique<ControllerManager>();
     this->eventManager = std::make_unique<EventManager>();
     this->registry = std::make_unique<Registry>();
+    this->sceneManager = std::make_unique<SceneManager>();
+    
 }
 
 Game::~Game() {
     this->assetManager.reset();
+    this->controllerManager.reset();
+    this->eventManager.reset();
     this->registry.reset();
+    this->sceneManager.reset();
     std::cout<< "[GAME] Se ejecuta destructor" << std::endl;
 }
 
@@ -72,22 +80,14 @@ void Game::Setup(){
     this->registry->AddSystem<RenderSystem>();
     this->registry->AddSystem<DamageSystem>();
     this->registry->AddSystem<AnimationSystem>();
+    this->registry->AddSystem<ScriptSystem>();
+    this->registry->AddSystem<RenderTextSystem>();
+    this->registry->AddSystem<UISystem>();
 
-    assetManager->AddTexture(this->renderer, "enemy_alan", "./assets/images/enemy_alan.png");
-
-    Entity enemy01 = this->registry->CreateEntity();
-    enemy01.AddComponent<AnimationComponent>(6, 10, true);
-    enemy01.AddComponent<CircleColliderComponent>(16, 16, 16);
-    enemy01.AddComponent<RigidBodyComponent>(glm::vec2(25, 0));
-    enemy01.AddComponent<SpriteComponent>("enemy_alan", 16, 16, 0, 0);
-    enemy01.AddComponent<TransformComponent>(glm::vec2(200.0, 100.0), glm::vec2(4.0, 3.0), 0.0);
-
-    Entity enemy02 = this->registry->CreateEntity();
-    enemy02.AddComponent<AnimationComponent>(6, 10, true);
-    enemy02.AddComponent<CircleColliderComponent>(16, 16, 16);
-    enemy02.AddComponent<RigidBodyComponent>(glm::vec2(-25, 0));
-    enemy02.AddComponent<SpriteComponent>("enemy_alan", 16, 16, 0, 0);
-    enemy02.AddComponent<TransformComponent>(glm::vec2(450.0, 100.0), glm::vec2(4.0, 3.0), 0.0);
+    sceneManager->LoadSceneFromScript("./assets/scripts/scenes.lua", lua);
+    
+    lua.open_libraries(sol::lib::base, sol::lib::math);
+    registry->GetSystem<ScriptSystem>().CreateLuaBinding(lua);
 
 }
 void Game::processInput() {
@@ -101,11 +101,32 @@ void Game::processInput() {
             isRunning = false;
             break;
         case SDL_KEYDOWN:
-            if(sdlEvent.key.keysym.sym == SDLK_ESCAPE) {
+            if(sdlEvent.key.keysym.sym == SDLK_ESCAPE) { // maybe cambiar a controllerManager
+                sceneManager->StopScene();
                 isRunning = false;
+                break;
             } else if (sdlEvent.key.keysym.sym == SDLK_p) {
                 isPaused = !isPaused;
             }
+            controllerManager->KeyDown(sdlEvent.key.keysym.sym);
+            break;
+        case SDL_KEYUP:
+            controllerManager->KeyUp(sdlEvent.key.keysym.sym);
+            break;
+        case SDL_MOUSEMOTION:
+            int x, y;
+            SDL_GetMouseState(&x, &y);
+            controllerManager->SetMousePosition(x, y);
+            break;
+        case SDL_MOUSEBUTTONDOWN:
+            controllerManager->SetMousePosition(sdlEvent.button.x, sdlEvent.button.y);
+            controllerManager->MouseButtonDown(static_cast<int>(sdlEvent.button.button));
+            eventManager->EmitEvent<ClickEvent>(static_cast<int>(sdlEvent.button.button), sdlEvent.button.x, sdlEvent.button.y);
+            break;
+        case SDL_MOUSEBUTTONUP:
+            controllerManager->SetMousePosition(sdlEvent.button.x, sdlEvent.button.y);
+            controllerManager->MouseButtonUp(static_cast<int>(sdlEvent.button.button));
+            break;
         default:
             break;
         }
@@ -123,34 +144,49 @@ void Game::update() {
     this->millisecsPreviousFrame = SDL_GetTicks();
     // Registry
     eventManager->Restart();
-    this->registry->GetSystem<DamageSystem>().SubscribeToCollisionEvent(eventManager);
 
-    this->registry->Update();
-    
-    this->registry->GetSystem<AnimationSystem>().Update();
     if (!isPaused) {
+        this->registry->GetSystem<UISystem>().SubscribeToClickEvent(eventManager);
+        this->registry->GetSystem<DamageSystem>().SubscribeToCollisionEvent(eventManager);
+
+        this->registry->Update();
+        this->registry->GetSystem<ScriptSystem>().Update(lua);
+        
+        this->registry->GetSystem<AnimationSystem>().Update();
         this->registry->GetSystem<MovementSystem>().Update(dt);
+        this->registry->GetSystem<CollisionSystem>().Update(eventManager);
     }
-    this->registry->GetSystem<CollisionSystem>().Update(eventManager);
+    
 
 }
 
 void Game::render() {
     SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
     SDL_RenderClear(this->renderer);
-
     this->registry->GetSystem<RenderSystem>().Update(this->renderer, this->assetManager);
-
+    this->registry->GetSystem<RenderTextSystem>().Update(this->renderer, this->assetManager);
     SDL_RenderPresent(this->renderer);
+}
+
+void Game::RunScene() {
+    this->sceneManager->LoadScene();
+    while (sceneManager->IsSceneRunning()) {
+        this->processInput();
+        this->update();
+        this->render();
+    }
+    assetManager->ClearAssets();
+    registry->ClearAllEntities();
+
+    
 }
 
 void Game::run(){
     Setup();
 
     while (this->isRunning) {
-        processInput();
-        update();
-        render();
+        sceneManager->StartScene();
+        RunScene();
     }
     
 }

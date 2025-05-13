@@ -122,6 +122,8 @@ class Registry {
         // add and remove entities to systems
         void AddEntityToSystems(Entity entity);
         void RemoveEntityFromSystems(Entity entity);
+
+        void ClearAllEntities();
 };
 
 template <typename TComponent>
