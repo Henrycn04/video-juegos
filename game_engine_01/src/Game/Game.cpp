@@ -13,6 +13,8 @@
 #include "../Systems/RenderTextSystem.hpp"
 #include "../Systems/UISystem.hpp"
 #include "../Systems/DrawSystem.hpp"
+#include "../Systems/HealthSystem.hpp"
+#include "../Systems/EnemySystem.hpp"
 
 Game::Game() {
     std::cout<< "[GAME] Se ejecuta constructor" << std::endl;
@@ -85,10 +87,12 @@ void Game::Setup(){
     this->registry->AddSystem<RenderTextSystem>();
     this->registry->AddSystem<UISystem>();
     this->registry->AddSystem<DrawSystem>();
+    this->registry->AddSystem<HealthSystem>();
+    this->registry->AddSystem<EnemySystem>();
 
     sceneManager->LoadSceneFromScript("./assets/scripts/scenes.lua", lua);
     
-    lua.open_libraries(sol::lib::base, sol::lib::math);
+    lua.open_libraries(sol::lib::base, sol::lib::math, sol::lib::os);
     registry->GetSystem<ScriptSystem>().CreateLuaBinding(lua);
 
 }
@@ -158,6 +162,7 @@ void Game::update() {
         this->registry->GetSystem<AnimationSystem>().Update();
         this->registry->GetSystem<MovementSystem>().Update(dt);
         this->registry->GetSystem<CollisionSystem>().Update(eventManager);
+        this->registry->GetSystem<EnemySystem>().Update(registry);
     }
     
 

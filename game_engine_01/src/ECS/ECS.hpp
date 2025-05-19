@@ -88,7 +88,6 @@ class Registry {
         Registry();
         ~Registry();
         void Update();
-
         // Entity management
 
         Entity CreateEntity();
@@ -123,6 +122,9 @@ class Registry {
         void AddEntityToSystems(Entity entity);
         void RemoveEntityFromSystems(Entity entity);
 
+        template<typename T>
+        std::vector<Entity> GetEntitiesFromSystem();
+
         void ClearAllEntities();
 };
 
@@ -131,6 +133,16 @@ void System::RequireComponent() {
     const int componentId = Component<TComponent>::GetId();
     componentSignature.set(componentId);
 }
+
+template<typename T>
+std::vector<Entity> Registry::GetEntitiesFromSystem() {
+    if (!HasSystem<T>()) return {};
+
+    auto& systemDerived = GetSystem<T>();
+    return systemDerived.GetSystemEntities();
+}
+
+
 
 template <typename TComponent, typename... TArgs>
 void Registry::AddComponent(Entity entity, TArgs&&... args){

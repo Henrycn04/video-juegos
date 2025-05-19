@@ -15,6 +15,9 @@ class RenderSystem : public System {
             for (auto entity : GetSystemEntities()) {
                 const auto transform = entity.GetComponent<TransformComponent>();
                 const auto sprite = entity.GetComponent<SpriteComponent>();
+                if (!sprite.active) {
+                    continue;
+                }
                 SDL_Rect srcRect = sprite.srcRect;
                 SDL_Rect dstRect = {
                     static_cast<int>(transform.position.x),
@@ -29,7 +32,7 @@ class RenderSystem : public System {
                     &dstRect,
                     transform.rotation,
                     NULL,
-                    SDL_FLIP_NONE
+                    sprite.flip
                 );
                 
             }

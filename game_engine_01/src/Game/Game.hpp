@@ -25,8 +25,6 @@ private:
 
     SDL_Window* window = nullptr;
 
-    size_t windowWidth = 0;
-    size_t windowHeight = 0;
 
     int millisecsPreviousFrame = 0;
     bool isRunning = false;
@@ -35,7 +33,8 @@ private:
     int mPreviousFrame = 0;
 public:
     SDL_Renderer* renderer = nullptr;
-
+    size_t windowWidth = 0;
+    size_t windowHeight = 0;
     std::unique_ptr<ControllerManager> controllerManager;
     std::unique_ptr<AssetManager> assetManager;
     std::unique_ptr<EventManager> eventManager;

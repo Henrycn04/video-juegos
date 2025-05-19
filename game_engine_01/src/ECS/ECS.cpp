@@ -11,6 +11,8 @@ void Entity::Kill(){
 void System::AddEntityToSystem(Entity entity) {
     this->entities.push_back(entity);
 }
+
+
 void System::RemoveEntityFromSystem(Entity entity) {
     auto it = std::remove_if(entities.begin(), entities.end(), 
     [&entity](Entity other) {return entity == other;});

@@ -13,6 +13,7 @@ public:
         RequireComponent<ScriptComponent>();
     }
     void CreateLuaBinding(sol::state& lua) {
+        lua.script("math.randomseed(os.time())");
         lua.new_usertype<Entity>("entity");
         lua.set_function("is_action_activated", IsActionActivated);
         lua.set_function("set_velocity", SetVelocity);
@@ -23,6 +24,9 @@ public:
         lua.set_function("push_draw_point", PushDrawPoint);
 
         lua.set_function("get_mouse_position", GetMousePosition);
+        lua.set_function("get_player_position", GetPlayerPosition);
+        lua.set_function("get_enemy_position", GetEnemyPosition);
+        lua.set_function("attack_melee", AttackMelee);
 
     }
     void Update(sol::state& lua) {

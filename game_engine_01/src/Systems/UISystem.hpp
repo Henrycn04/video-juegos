@@ -30,7 +30,6 @@ class UISystem : public System {
             for (auto entity : GetSystemEntities()) {
                 auto& transform = entity.GetComponent<TransformComponent>();
                 auto& text = entity.GetComponent<TextComponent>();
-std::cout << "[UISystem] Clicked on entity with ID: " << entity.GetId() << std::endl;
                 if (transform.position.x < e.x && e.x < transform.position.x + text.width &&
                     transform.position.y < e.y && e.y < transform.position.y + text.height) {
                     

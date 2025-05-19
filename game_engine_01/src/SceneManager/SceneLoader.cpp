@@ -4,11 +4,15 @@
 #include "../Components/SpriteComponent.hpp"
 #include "../Components/TransformComponent.hpp"
 #include "../Components/CircleColliderComponent.hpp"
+#include "../Components/HealthComponent.hpp"
 #include "../Components/AnimationComponent.hpp"
 #include "../Components/ScriptComponent.hpp"
 #include "../Components/TextComponent.hpp"
 #include "../Components/ClickableComponent.hpp"
 #include "../Components/DrawableComponent.hpp"
+#include "../Components/EnemyComponent.hpp"
+
+
 SceneLoader::SceneLoader() {
     std::cout << "[SceneLoader] Se ejecuta constructor" << std::endl;
 }
@@ -185,6 +189,25 @@ void SceneLoader::LoadEntities(sol::state& lua, const sol::table& entities, std:
                     components["circle_collider"]["height"]
                 );
             }
+            sol::optional<sol::table> hasHealth = components["health"];
+            if (hasHealth != sol::nullopt) {
+                newEntity.AddComponent<HealthComponent>(
+                    components["health"]["health"],
+                    components["health"]["maxHealth"],
+                    components["health"]["isPlayer"],
+                    components["health"]["damage"],
+                    components["health"]["attack_timeout"]
+                );
+            }
+            sol::optional<sol::table> hasEnemy = components["enemy"];
+            if (hasEnemy != sol::nullopt) {
+                newEntity.AddComponent<EnemyComponent>(
+                    components["enemy"]["amountToSpawn"],
+                    newEntity.GetId()
+                );
+            }
+
+
             sol::optional<sol::table> hasClickable = components["clickable"];
             if (hasClickable != sol::nullopt) {
                 newEntity.AddComponent<ClickableComponent>(

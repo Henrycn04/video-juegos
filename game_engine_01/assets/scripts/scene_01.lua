@@ -6,7 +6,7 @@ scene = {
     -- Tabla de imagenes
     sprites = {
         [0] = 
-        {assetId = "enemy_alan", file_path = "./assets/images/enemy_alan.png"},
+        {assetId = "tank01", file_path = "./assets/images/tank01.png"},
         {assetId = "player_dino", file_path = "./assets/images/dino.png"}
     },
     -- Tabla de fuentes
@@ -59,7 +59,93 @@ scene = {
                 },
             }
         },
-        -- Player
+                        {
+            components = {
+                drawable = {},
+                script = {
+                    path = "./assets/scripts/mouse_draw.lua"
+                },
+            }
+
+        },
+        {
+        components = { -- Enemigo plantilla
+                animation = {
+                    num_frames = 7,
+                    frame_speed_rate = 10,
+                    loop = true,
+                },
+                health = {
+                    health = 100,
+                    maxHealth = 100,
+                    isPlayer = false,
+                    damage = 10,
+                    attack_timeout = 1.0,
+                },
+                enemy = {
+                    amountToSpawn = 3,
+                },
+                rigidbody = {
+                    velocity = {
+                        x = 0,
+                        y = 0
+                    },
+                },
+                script = {
+                    path = "./assets/scripts/tank_movement.lua"
+                },
+                sprite = {
+                    assetId = "tank01",
+                    width = 156,
+                    height = 64,
+                    src_rect = {
+                        x = 0,
+                        y = 0,
+                    },
+                    active = false,
+                },
+                transform = { -- Generar en 0, luego se crean
+                    position = {
+                        x = 0.0,
+                        y = 0.0
+                    },
+                    scale = {
+                        x = 1,
+                        y = 1
+                    },
+                    rotation = 0.0
+                },
+            },
+
+
+        },
+        -- Crear una entidad de proyectil que usen los rangers
+        { -- Texto de puntuacion
+            components = {
+                clickable = {
+                },
+                text = {
+                    text = "Score: 100",
+                    fontId = "press_start_24",
+                    r = 50,
+                    g = 255,
+                    b = 50,
+                    a = 255,
+
+                },
+                transform = {
+                    position = {
+                        x = 500,
+                        y = 50
+                    },
+                    scale = {
+                        x = 1.0,
+                        y = 1.0
+                    },
+                    rotation = 0.0
+                },
+            }
+        },
         {
             components = { -- Jugador
                 animation = {
@@ -71,6 +157,13 @@ scene = {
                     radius = 12,
                     width = 24,
                     height = 24
+                },
+                health = {
+                    health = 100,
+                    maxHealth = 100,
+                    isPlayer = true,
+                    damage = 10,
+                    attack_timeout = 1.0,
                 },
                 rigidbody = {
                     velocity = {
@@ -102,124 +195,6 @@ scene = {
                     rotation = 0.0
                 },
             }
-        },
-        {
-            components = { -- Alan 1
-                animation = {
-                    num_frames = 6,
-                    frame_speed_rate = 10,
-                    loop = true,
-                },
-                circle_collider = {
-                    radius = 16,
-                    width = 16,
-                    height = 16
-                },
-                rigidbody = {
-                    velocity = {
-                        x = 25,
-                        y = 0
-                    },
-                },
-                sprite = {
-                    assetId = "enemy_alan",
-                    width = 16,
-                    height = 16,
-                    src_rect = {
-                        x = 16,
-                        y = 0,
-                    },
-                },
-                transform = {
-                    position = {
-                        x = 200.0,
-                        y = 100.0
-                    },
-                    scale = {
-                        x = 4.0,
-                        y = 3.0
-                    },
-                    rotation = 0.0
-                },
-            }
-        },
-        {
-            components = { -- Alan 2
-                animation = {
-                    num_frames = 6,
-                    frame_speed_rate = 10,
-                    loop = true,
-                },
-                circle_collider = {
-                    radius = 16,
-                    width = 16,
-                    height = 16
-                },
-                rigidbody = {
-                    velocity = {
-                        x = -25,
-                        y = 0
-                    },
-                },
-                sprite = {
-                    assetId = "enemy_alan",
-                    width = 16,
-                    height = 16,
-                    src_rect = {
-                        x = 16,
-                        y = 0,
-                    },
-                },
-                transform = {
-                    position = {
-                        x = 450.0,
-                        y = 100.0
-                    },
-                    scale = {
-                        x = 4.0,
-                        y = 3.0
-                    },
-                    rotation = 0.0
-                },
-            },
-
-
-        },
-        {
-            components = {
-                clickable = {
-
-                },
-                text = {
-                    text = "Score: 100",
-                    fontId = "press_start_24",
-                    r = 50,
-                    g = 255,
-                    b = 50,
-                    a = 255,
-
-                },
-                transform = {
-                    position = {
-                        x = 500,
-                        y = 50
-                    },
-                    scale = {
-                        x = 1.0,
-                        y = 1.0
-                    },
-                    rotation = 0.0
-                },
-            }
-        },
-                {
-            components = {
-                drawable = {},
-                script = {
-                    path = "./assets/scripts/mouse_draw.lua"
-                },
-            }
-
         },
 
     }

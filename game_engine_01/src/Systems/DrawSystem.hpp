@@ -4,12 +4,14 @@
 #include "../ECS/ECS.hpp"
 #include "../Components/DrawableComponent.hpp"
 #include <chrono>
+#include "../Game/Game.hpp"
 class DrawSystem : public System {
 public:
     DrawSystem() {
         RequireComponent<DrawableComponent>();
     }
 void Update(SDL_Renderer* renderer) {
+    
     for (auto entity : GetSystemEntities()) {
         auto& drawable = entity.GetComponent<DrawableComponent>();
         
@@ -24,12 +26,11 @@ void Update(SDL_Renderer* renderer) {
 
             SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
             
-            // Eliminar puntos que tengan más de 5 segundos de haber sido dibujados
+            // Eliminar puntos que tengan más de 4 segundos de haber sido dibujados
             auto now = std::chrono::steady_clock::now();
             for (auto it = drawable.colorPoints[i].begin(); it != drawable.colorPoints[i].end(); ) {
                 auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - it->second);
-                std::cout << "Duración: " << duration.count() << std::endl;
-                if (duration.count() > 3) {
+                if (duration.count() > 4) {
                     it = drawable.colorPoints[i].erase(it); // Elimina el punto
                 } else {
                     ++it;
@@ -38,14 +39,16 @@ void Update(SDL_Renderer* renderer) {
 
             // Dibuja los puntos restantes
             for (const auto& point : drawable.colorPoints[i]) {
-                int size = 10; // Tamaño del trazo
-                SDL_Rect drawRect = {
-                    static_cast<int>(point.first.x) - size / 2,
-                    static_cast<int>(point.first.y) - size / 2,
-                    size,
-                    size
-                };
-                SDL_RenderFillRect(renderer, &drawRect);
+                if (point.first.y > 75) {
+                    int size = 10; // Tamaño del trazo
+                    SDL_Rect drawRect = {
+                        static_cast<int>(point.first.x) - size / 2,
+                        static_cast<int>(point.first.y) - size / 2,
+                        size,
+                        size
+                    };
+                    SDL_RenderFillRect(renderer, &drawRect);
+                }
             }
         }
     }
