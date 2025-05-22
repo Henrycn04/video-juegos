@@ -45,6 +45,7 @@ scene = {
                         x = 0,
                         y = 0,
                     },
+                    active = true,
                 },
                 transform = {
                     position = {
@@ -59,7 +60,7 @@ scene = {
                 },
             }
         },
-                        {
+        {
             components = {
                 drawable = {},
                 script = {
@@ -75,6 +76,11 @@ scene = {
                     frame_speed_rate = 10,
                     loop = true,
                 },
+                circle_collider = {
+                    radius = 16,
+                    width = 32,
+                    height = 32
+                },
                 health = {
                     health = 100,
                     maxHealth = 100,
@@ -83,7 +89,7 @@ scene = {
                     attack_timeout = 1.0,
                 },
                 enemy = {
-                    amountToSpawn = 3,
+                    amountToSpawn = 4,
                 },
                 rigidbody = {
                     velocity = {
@@ -96,10 +102,10 @@ scene = {
                 },
                 sprite = {
                     assetId = "tank01",
-                    width = 156,
-                    height = 64,
+                    width = 32,
+                    height = 32,
                     src_rect = {
-                        x = 0,
+                        x = 32,
                         y = 0,
                     },
                     active = false,
@@ -114,6 +120,8 @@ scene = {
                         y = 1
                     },
                     rotation = 0.0
+                },
+                effect_receiver = {
                 },
             },
 
@@ -182,6 +190,7 @@ scene = {
                         x = 24,
                         y = 0,
                     },
+                    active = true,
                 },
                 transform = {
                     position = {
@@ -193,6 +202,8 @@ scene = {
                         y = 2.0
                     },
                     rotation = 0.0
+                },
+                effect_receiver = {
                 },
             }
         },

@@ -39,6 +39,7 @@ scene = {
                         x = 0,
                         y = 0,
                     },
+                    active = true,
                 },
                 transform = {
                     position = {

@@ -27,6 +27,8 @@ public:
         lua.set_function("get_player_position", GetPlayerPosition);
         lua.set_function("get_enemy_position", GetEnemyPosition);
         lua.set_function("attack_melee", AttackMelee);
+        lua.set_function("get_all_enemies", GetAllEnemies);
+        lua.set_function("get_enemy_position_by_id", GetEnemyPositionById);
 
     }
     void Update(sol::state& lua) {

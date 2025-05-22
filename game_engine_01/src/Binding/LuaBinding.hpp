@@ -9,6 +9,7 @@
 #include "../Components/HealthComponent.hpp"
 #include "../Components/TransformComponent.hpp"
 #include "../Systems/HealthSystem.hpp"
+#include "../Systems/EnemySystem.hpp"
 #include <chrono>
 bool IsActionActivated(const std::string& action) {
     return Game::GetInstance().controllerManager->IsActionActivated(action);
@@ -58,6 +59,39 @@ std::tuple<int, int> GetEnemyPosition(Entity self) {
     // Si no tiene componente de posición, devolver por defecto
     return std::make_tuple(0, 0);
 }
+std::tuple<int, int> GetEnemyPositionById(int id) {
+    auto& registry = Game::GetInstance().registry;
+    auto entities = registry->GetEntitiesFromSystem<EnemySystem>();
+    
+    for (const auto& entity : entities) {
+        if (entity.GetId() == id) {
+            if (entity.HasComponent<TransformComponent>()) {
+                auto& transform = entity.GetComponent<TransformComponent>();
+                return std::make_tuple(
+                    static_cast<int>(transform.position.x),
+                    static_cast<int>(transform.position.y)
+                );
+            }
+            break; // Encontramos la entidad, pero no tiene TransformComponent
+        }
+    }
+    // No se encontró la entidad o no tiene TransformComponent
+    return std::make_tuple(0, 0);
+}
+int GetAllEnemies(lua_State* L) {
+    auto& registry = Game::GetInstance().registry;
+    auto entities = registry->GetEntitiesFromSystem<EnemySystem>();
+
+    lua_newtable(L);
+    int index = 1;
+    for (const auto& entity : entities) {
+        lua_pushinteger(L, static_cast<lua_Integer>(entity.GetId()));
+        lua_rawseti(L, -2, index);
+        index++;
+    }
+
+    return 1;
+}
 
 void AttackMelee(Entity attacker) {
     auto& registry = Game::GetInstance().registry;
@@ -84,7 +118,7 @@ void AttackMelee(Entity attacker) {
     if (foundPlayer && playerEntity.HasComponent<HealthComponent>()) {
         auto& attackerHealth = attacker.GetComponent<HealthComponent>();
         auto& healthSystem = registry->GetSystem<HealthSystem>();
-        healthSystem.ReduceHP(playerEntity, attackerHealth.damage);
+        healthSystem.ReduceHP(playerEntity, attackerHealth.damage, attacker);
     }
 }
 

@@ -11,7 +11,7 @@
 #include "../Components/ClickableComponent.hpp"
 #include "../Components/DrawableComponent.hpp"
 #include "../Components/EnemyComponent.hpp"
-
+#include "../Components/EffectReceiverComponent.hpp"
 
 SceneLoader::SceneLoader() {
     std::cout << "[SceneLoader] Se ejecuta constructor" << std::endl;
@@ -249,7 +249,8 @@ void SceneLoader::LoadEntities(sol::state& lua, const sol::table& entities, std:
                     components["sprite"]["width"],
                     components["sprite"]["height"],
                     components["sprite"]["src_rect"]["x"],
-                    components["sprite"]["src_rect"]["y"]
+                    components["sprite"]["src_rect"]["y"],
+                    components["sprite"]["active"]
                 );
             }
 
@@ -274,6 +275,12 @@ void SceneLoader::LoadEntities(sol::state& lua, const sol::table& entities, std:
                     glm::vec2(components["transform"]["scale"]["x"], 
                         components["transform"]["scale"]["y"]),
                     components["transform"]["rotation"]
+                );
+            }
+
+            sol::optional<sol::table> hasEffectReceiver = components["effect_receiver"];
+            if (hasEffectReceiver != sol::nullopt) {
+                newEntity.AddComponent<EffectReceiverComponent>(
                 );
             }
 

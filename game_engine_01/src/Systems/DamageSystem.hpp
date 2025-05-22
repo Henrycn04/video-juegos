@@ -18,8 +18,7 @@ class DamageSystem : public System {
 
     void OnCollision(CollisionEvent& event) {
         std::cout << "[DamageSystem] Colision entre " << event.entityA.GetId() << " y " << event.entityB.GetId() << std::endl;
-        event.entityA.Kill();
-        event.entityB.Kill();
+
     }
 };
 

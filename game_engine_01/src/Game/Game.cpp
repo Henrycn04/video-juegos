@@ -15,7 +15,7 @@
 #include "../Systems/DrawSystem.hpp"
 #include "../Systems/HealthSystem.hpp"
 #include "../Systems/EnemySystem.hpp"
-
+#include "../Systems/DrawingEffectSystem.hpp"
 Game::Game() {
     std::cout<< "[GAME] Se ejecuta constructor" << std::endl;
     this->assetManager = std::make_unique<AssetManager>();
@@ -89,6 +89,7 @@ void Game::Setup(){
     this->registry->AddSystem<DrawSystem>();
     this->registry->AddSystem<HealthSystem>();
     this->registry->AddSystem<EnemySystem>();
+    this->registry->AddSystem<DrawingEffectSystem>();
 
     sceneManager->LoadSceneFromScript("./assets/scripts/scenes.lua", lua);
     
@@ -163,6 +164,7 @@ void Game::update() {
         this->registry->GetSystem<MovementSystem>().Update(dt);
         this->registry->GetSystem<CollisionSystem>().Update(eventManager);
         this->registry->GetSystem<EnemySystem>().Update(registry);
+        this->registry->GetSystem<DrawingEffectSystem>().Update();
     }
     
 
@@ -171,8 +173,10 @@ void Game::update() {
 void Game::render() {
     SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
     SDL_RenderClear(this->renderer);
-    this->registry->GetSystem<RenderSystem>().Update(this->renderer, this->assetManager);
+    // Cargar el fondo primero
+    this->registry->GetSystem<RenderSystem>().UpdateBackground(this->renderer, this->assetManager);
     this->registry->GetSystem<DrawSystem>().Update(this->renderer);
+    this->registry->GetSystem<RenderSystem>().Update(this->renderer, this->assetManager);
     this->registry->GetSystem<RenderTextSystem>().Update(this->renderer, this->assetManager);
 
     SDL_RenderPresent(this->renderer);

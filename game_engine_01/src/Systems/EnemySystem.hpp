@@ -9,6 +9,10 @@
 #include "../Components/RigidBodyComponent.hpp"
 #include "../Components/SpriteComponent.hpp"
 #include "../Components/TransformComponent.hpp"
+#include "../Components/ScriptComponent.hpp"
+#include "../Components/DrawableComponent.hpp"
+#include "../Components/EnemyComponent.hpp"
+#include "../Components/EffectReceiverComponent.hpp"
 #include <memory>
 #include <cstdlib>
 
@@ -83,6 +87,9 @@ private:
             auto transform = source.GetComponent<TransformComponent>();
             transform.position = GetRandomSpawnPosition();
             target.AddComponent<TransformComponent>(transform);
+        }
+        if (source.HasComponent<EffectReceiverComponent>()) {
+            target.AddComponent<EffectReceiverComponent>(source.GetComponent<EffectReceiverComponent>());
         }
 
         // EnemyComponent sin capacidad de spawnear otros

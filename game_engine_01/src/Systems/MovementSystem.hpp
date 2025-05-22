@@ -21,6 +21,11 @@ class MovementSystem : public System {
                 const auto& rigidBody = entity.GetComponent<RigidBodyComponent>();
                 auto& transform = entity.GetComponent<TransformComponent>();
                 auto& sprite = entity.GetComponent<SpriteComponent>();
+                
+                if (!sprite.active) {
+                    continue;
+                }
+
 
                 transform.position.x += rigidBody.velocity.x * dt;
                 transform.position.y += rigidBody.velocity.y * dt;

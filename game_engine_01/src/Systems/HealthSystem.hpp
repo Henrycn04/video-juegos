@@ -11,39 +11,42 @@ public:
         RequireComponent<HealthComponent>();
     }
 
-    void ReduceHP(Entity entity, int damage) {
+    void ReduceHP(Entity entity, int damage, Entity attacker) {
         if (!entity.HasComponent<HealthComponent>()) return;
+        if (!attacker.HasComponent<HealthComponent>()) return;
 
-        auto& health = entity.GetComponent<HealthComponent>();
+        auto& attackerHealth = attacker.GetComponent<HealthComponent>();
+        auto& targetHealth = entity.GetComponent<HealthComponent>();
 
         // Obtener tiempo actual
         auto now = std::chrono::steady_clock::now();
 
-        // Calcular tiempo transcurrido desde último ataque
-        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - health.attackTimeoutDuration).count();
-        int timeoutMs = static_cast<int>(health.attackTimeout * 1000); // convertir segundos a ms
+        // Calcular tiempo transcurrido desde el último ataque del atacante
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - attackerHealth.attackTimeoutDuration).count();
+        int timeoutMs = static_cast<int>(attackerHealth.attackTimeout * 1000); // segundos a ms
 
         if (elapsed < timeoutMs) {
-            // Todavía no ha pasado suficiente tiempo para aplicar daño
+            // Todavía no ha pasado suficiente tiempo desde el último ataque
             return;
         }
 
-        // Actualizar el tiempo del último ataque
-        health.attackTimeoutDuration = now;
+        // Actualizar el tiempo del último ataque del atacante
+        attackerHealth.attackTimeoutDuration = now;
 
-        // Aplicar daño
-        health.health -= damage;
-        std::cout << "[HEALTH] Entity " << entity.GetId() << " took " << damage << " damage. Remaining health: " << health.health << std::endl;
+        // Aplicar daño a la víctima
+        targetHealth.health -= damage;
+        std::cout << "[HEALTH] Entity " << entity.GetId() << " took " << damage << " damage. Remaining health: " << targetHealth.health << std::endl;
 
-        if (health.health <= 0) {
-            health.health = 0;
-            if (!health.isPlayer) {
+        if (targetHealth.health <= 0) {
+            targetHealth.health = 0;
+            if (!targetHealth.isPlayer) {
                 entity.Kill(); // Matar la entidad no jugador
             } else {
                 // Aquí lógica para jugador muerto, si quieres
             }
         }
     }
+
 
 
     void SetHealth(Entity entity, int value) {
