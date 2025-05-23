@@ -13,7 +13,8 @@
 
 class DrawingEffectSystem : public System {
 private:
-    const int EFFECT_RADIUS = 15; // Radio de detección de cada punto dibujado
+    const int EFFECT_RADIUS = 15; // Radio de detección aumentado para mejor cobertura
+    const float DAMAGE_INTERVAL = 1.0f; // Intervalo de daño en segundos
     
 public:
     DrawingEffectSystem() {
@@ -21,52 +22,102 @@ public:
     }
     
     void Update() {
-        // Primero resetear todos los efectos
-        ResetAllEffects();
-        
         // Procesar efectos para cada entidad que dibuja
         for (auto drawingEntity : GetSystemEntities()) {
             auto& drawable = drawingEntity.GetComponent<DrawableComponent>();
             
-            // Procesar cada color (0=rojo/daño, 1=azul/speed, 2=verde/slow)
-            for (int colorIndex = 0; colorIndex < drawable.colorPoints.size(); ++colorIndex) {
-                ProcessEffectForColor(drawable.colorPoints[colorIndex], colorIndex);
+            // Solo procesar color rojo (índice 0) para daño
+            if (!drawable.colorPoints.empty() && !drawable.colorPoints[0].empty()) {
+                ProcessDamageEffect(drawable.colorPoints[0]);
+            }
+            
+            // Procesar otros colores si necesitas
+            for (int colorIndex = 1; colorIndex < drawable.colorPoints.size(); ++colorIndex) {
+                ProcessOtherEffects(drawable.colorPoints[colorIndex], colorIndex);
             }
         }
     }
 
 private:
-    void ResetAllEffects() {
-        // Resetear efectos en todas las entidades que pueden recibirlos
-        auto& registry = Game::GetInstance().registry;
-        auto allEntities = registry->GetEntitiesFromSystem<DrawingEffectSystem>();
-        for (auto entity : allEntities) {
-            auto& effectReceiver = entity.GetComponent<EffectReceiverComponent>();
-            effectReceiver.takingDamage = false;
-            effectReceiver.slowed = false;
-            effectReceiver.speedBoosted = false;
-        }
-    }
-    
-    void ProcessEffectForColor(const std::vector<std::pair<glm::vec2, std::chrono::steady_clock::time_point>>& points, int colorIndex) {
+    void ProcessDamageEffect(const std::vector<std::pair<glm::vec2, std::chrono::steady_clock::time_point>>& points) {
         auto now = std::chrono::steady_clock::now();
-        
-        for (const auto& point : points) {
-            // Verificar si el punto no ha expirado (misma lógica que DrawSystem)
-            auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - point.second);
-            if (duration.count() > 4) continue;
-            
-            // Solo procesar puntos que están en el área de juego (misma lógica que DrawSystem)
-            if (point.first.y <= 75) continue;
-            
-            // Verificar colisiones con entidades
-            CheckCollisionsAtPoint(point.first, colorIndex);
-        }
-    }
-    
-    void CheckCollisionsAtPoint(const glm::vec2& drawPoint, int colorIndex) {
         auto& registry = Game::GetInstance().registry;
         auto entitiesWithCollider = registry->GetEntitiesFromSystem<CollisionSystem>();
+        
+        // Contar puntos válidos para debugging
+        int validPointsCount = 0;
+        for (const auto& point : points) {
+            auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - point.second);
+            if (duration.count() <= 4 && point.first.y > 75) {
+                validPointsCount++;
+            }
+        }
+        
+        // Para cada entidad que puede recibir efectos
+        for (auto entity : entitiesWithCollider) {
+            if (!entity.HasComponent<EffectReceiverComponent>() || 
+                !entity.HasComponent<TransformComponent>() ||
+                !entity.HasComponent<EnemyComponent>()) { // Solo enemigos reciben daño
+                continue;
+            }
+            
+            auto& transform = entity.GetComponent<TransformComponent>();
+            auto& collider = entity.GetComponent<CircleColliderComponent>();
+            auto& effectReceiver = entity.GetComponent<EffectReceiverComponent>();
+            
+            // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA - Calcular centro real del hitbox
+            // Si transform.position es esquina superior izquierda, centramos el hitbox
+            glm::vec2 entityCenter = glm::vec2(
+                transform.position.x + (collider.width * transform.scale.x / 2),
+                transform.position.y + (collider.height * transform.scale.y / 2)
+            );
+            
+            int entityRadius = collider.radius * std::max(transform.scale.x, transform.scale.y) / 2;
+            
+            // Verificar si la entidad está actualmente sobre algún trazo rojo válido
+            bool isOnDamageTrace = false;
+            int collisionCount = 0;
+            
+            for (const auto& point : points) {
+                // Verificar si el punto no ha expirado
+                auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - point.second);
+                if (duration.count() > 4) continue;
+                
+                // Solo procesar puntos que están en el área de juego
+                if (point.first.y <= 75) continue;
+                
+                // Verificar colisión con radio expandido para mejor detección
+                if (CheckPointToCircleCollision(point.first, entityCenter, entityRadius + EFFECT_RADIUS)) {
+                    isOnDamageTrace = true;
+                    collisionCount++;
+                }
+            }
+            
+            // Debugging detallado
+            bool wasReceivingDamage = effectReceiver.takingDamage;
+            
+            // Actualizar el estado de daño
+            effectReceiver.takingDamage = isOnDamageTrace;
+            
+            // Log para debugging cuando cambia el estado o cuando debería estar recibiendo daño
+            if (isOnDamageTrace || wasReceivingDamage != isOnDamageTrace) {
+                std::cout << "[DEBUG] Entity " << entity.GetId() 
+                         << " - Position: (" << entityCenter.x << ", " << entityCenter.y << ")"
+                         << " - Radius: " << entityRadius
+                         << " - Valid points: " << validPointsCount
+                         << " - Collisions: " << collisionCount
+                         << " - Taking damage: " << (isOnDamageTrace ? "YES" : "NO")
+                         << " - State changed: " << (wasReceivingDamage != isOnDamageTrace ? "YES" : "NO")
+                         << std::endl;
+            }
+        }
+    }
+    
+    void ProcessOtherEffects(const std::vector<std::pair<glm::vec2, std::chrono::steady_clock::time_point>>& points, int colorIndex) {
+        auto now = std::chrono::steady_clock::now();
+        auto& registry = Game::GetInstance().registry;
+        auto entitiesWithCollider = registry->GetEntitiesFromSystem<CollisionSystem>();
+        
         for (auto entity : entitiesWithCollider) {
             if (!entity.HasComponent<EffectReceiverComponent>() || !entity.HasComponent<TransformComponent>()) {
                 continue;
@@ -76,17 +127,46 @@ private:
             auto& collider = entity.GetComponent<CircleColliderComponent>();
             auto& effectReceiver = entity.GetComponent<EffectReceiverComponent>();
             
-            // Calcular centro de la entidad (usando tu lógica existente)
+            // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA - Calcular centro real del hitbox
+            // Si transform.position es esquina superior izquierda, centramos el hitbox
             glm::vec2 entityCenter = glm::vec2(
-                transform.position.x - ((collider.width / 2) * transform.scale.x / 2),
-                transform.position.y - ((collider.height / 2) * transform.scale.y / 2)
+                transform.position.x + (collider.width * transform.scale.x / 2),
+                transform.position.y + (collider.height * transform.scale.y / 2)
             );
             
             int entityRadius = collider.radius * transform.scale.x / 2;
+            bool isOnTrace = false;
             
-            // Verificar colisión entre el punto dibujado y la entidad
-            if (CheckPointToCircleCollision(drawPoint, entityCenter, entityRadius + EFFECT_RADIUS)) {
-                ApplyEffectToEntity(effectReceiver, colorIndex, entity);
+            for (const auto& point : points) {
+                auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - point.second);
+                if (duration.count() > 4) continue;
+                if (point.first.y <= 75) continue;
+                
+                if (CheckPointToCircleCollision(point.first, entityCenter, entityRadius + EFFECT_RADIUS)) {
+                    isOnTrace = true;
+                    break;
+                }
+            }
+            
+            // Aplicar efectos según el color
+            bool isEnemy = entity.HasComponent<EnemyComponent>();
+            
+            switch (colorIndex) {
+                case 1: // Azul - Speed (solo jugador)
+                    if (!isEnemy) {
+                        effectReceiver.speedBoosted = isOnTrace;
+                    } else {
+                        effectReceiver.speedBoosted = false;
+                    }
+                    break;
+                    
+                case 2: // Verde - Slow (solo enemigos)
+                    if (isEnemy) {
+                        effectReceiver.slowed = isOnTrace;
+                    } else {
+                        effectReceiver.slowed = false;
+                    }
+                    break;
             }
         }
     }
@@ -95,35 +175,6 @@ private:
         glm::vec2 diff = point - circleCenter;
         double distance = glm::sqrt((diff.x * diff.x) + (diff.y * diff.y));
         return distance <= radius;
-    }
-    
-    void ApplyEffectToEntity(EffectReceiverComponent& effectReceiver, int colorIndex, Entity entity) {
-        // Verificar si es jugador o enemigo (puedes usar un tag component para esto)
-        // Por ahora uso una lógica simple - ajusta según tu implementación
-        bool isEnemy = entity.HasComponent<EnemyComponent>(); // Asumiendo que tienes este component
-        
-        switch (colorIndex) {
-            case 0: // Rojo - Daño (solo enemigos)
-                if (isEnemy) {
-                    std::cout << "Enemigo tomando daño" << std::endl;
-                    effectReceiver.takingDamage = true;
-                }
-                break;
-                
-            case 1: // Azul - Speed (solo jugador)
-                if (!isEnemy) {
-                    std::cout << "Jugador con speed boost" << std::endl;
-                    effectReceiver.speedBoosted = true;
-                }
-                break;
-                
-            case 2: // Verde - Slow (solo enemigos)
-                if (isEnemy) {
-                    std::cout << "Enemigo slowed" << std::endl;
-                    effectReceiver.slowed = true;
-                }
-                break;
-        }
     }
 };
 

@@ -6,6 +6,7 @@
 #include "../AssetManager/AssetManager.hpp"
 #include "../Components/TextComponent.hpp"
 #include "../Components/TransformComponent.hpp"
+#include "../Components/HealthComponent.hpp"
 #include "../ECS/ECS.hpp"
 
 class RenderTextSystem : public System {
@@ -19,22 +20,45 @@ class RenderTextSystem : public System {
         for (auto entity : GetSystemEntities()) {
             auto& text = entity.GetComponent<TextComponent>();
             auto& transform = entity.GetComponent<TransformComponent>();
+            if (entity.HasComponent<HealthComponent>() ) {
+                const auto sprite = entity.GetComponent<SpriteComponent>();
+                if (!sprite.active) {
+                    continue;
+                }
 
-            SDL_Surface* surface = TTF_RenderText_Blended(assetManager->GetFont(text.fontId), text.text.c_str(), text.color);
-            text.width = surface->w;
-            text.height = surface->h;
-            SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-            SDL_FreeSurface(surface);
+                text.text = std::to_string(entity.GetComponent<HealthComponent>().health);
+                SDL_Surface* surface = TTF_RenderText_Blended(assetManager->GetFont(text.fontId), text.text.c_str(), text.color);
+                text.width = surface->w;
+                text.height = surface->h;
+                SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+                SDL_FreeSurface(surface);
 
-            SDL_Rect dstrect = {
-            static_cast<int>(transform.position.x),
-            static_cast<int>(transform.position.y),
-            text.width * static_cast<int>(transform.scale.x),
-            text.height * static_cast<int>(transform.scale.y)
-            };
+                SDL_Rect dstrect = {
+                    static_cast<int>(transform.position.x),
+                    static_cast<int>(transform.position.y - 20),
+                    text.width * static_cast<int>(transform.scale.x),
+                    text.height * static_cast<int>(transform.scale.y)
+                };
 
-            SDL_RenderCopy(renderer, texture, NULL, &dstrect);
-            SDL_DestroyTexture(texture);
+                SDL_RenderCopy(renderer, texture, NULL, &dstrect);
+                SDL_DestroyTexture(texture);
+            } else {
+                SDL_Surface* surface = TTF_RenderText_Blended(assetManager->GetFont(text.fontId), text.text.c_str(), text.color);
+                text.width = surface->w;
+                text.height = surface->h;
+                SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+                SDL_FreeSurface(surface);
+
+                SDL_Rect dstrect = {
+                    static_cast<int>(transform.position.x),
+                    static_cast<int>(transform.position.y),
+                    text.width * static_cast<int>(transform.scale.x),
+                    text.height * static_cast<int>(transform.scale.y)
+                };
+
+                SDL_RenderCopy(renderer, texture, NULL, &dstrect);
+                SDL_DestroyTexture(texture);
+            }
         }
     }
 };

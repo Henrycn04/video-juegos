@@ -13,6 +13,7 @@
 #include "../Components/DrawableComponent.hpp"
 #include "../Components/EnemyComponent.hpp"
 #include "../Components/EffectReceiverComponent.hpp"
+#include "../Components/TextComponent.hpp"
 #include <memory>
 #include <cstdlib>
 
@@ -91,6 +92,10 @@ private:
         if (source.HasComponent<EffectReceiverComponent>()) {
             target.AddComponent<EffectReceiverComponent>(source.GetComponent<EffectReceiverComponent>());
         }
+        if (source.HasComponent<TextComponent>()) {
+            target.AddComponent<TextComponent>(source.GetComponent<TextComponent>());
+        }
+
 
         // EnemyComponent sin capacidad de spawnear otros
         target.AddComponent<EnemyComponent>(0);

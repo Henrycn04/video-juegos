@@ -165,6 +165,7 @@ void Game::update() {
         this->registry->GetSystem<CollisionSystem>().Update(eventManager);
         this->registry->GetSystem<EnemySystem>().Update(registry);
         this->registry->GetSystem<DrawingEffectSystem>().Update();
+        this->registry->GetSystem<HealthSystem>().Update();
     }
     
 

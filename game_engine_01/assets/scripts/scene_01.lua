@@ -77,19 +77,19 @@ scene = {
                     loop = true,
                 },
                 circle_collider = {
-                    radius = 16,
-                    width = 32,
-                    height = 32
+                    radius = 13,
+                    width = 23,
+                    height = 30
                 },
                 health = {
-                    health = 100,
-                    maxHealth = 100,
+                    health = 40,
+                    maxHealth = 40,
                     isPlayer = false,
                     damage = 10,
                     attack_timeout = 1.0,
                 },
                 enemy = {
-                    amountToSpawn = 4,
+                    amountToSpawn = 15,
                 },
                 rigidbody = {
                     velocity = {
@@ -102,10 +102,10 @@ scene = {
                 },
                 sprite = {
                     assetId = "tank01",
-                    width = 32,
-                    height = 32,
+                    width = 23,
+                    height = 30,
                     src_rect = {
-                        x = 32,
+                        x = 0,
                         y = 0,
                     },
                     active = false,
@@ -122,6 +122,14 @@ scene = {
                     rotation = 0.0
                 },
                 effect_receiver = {
+                },
+                text = {
+                    text = "",
+                    fontId = "press_start_24",
+                    r = 50,
+                    g = 255,
+                    b = 50,
+                    a = 255,
                 },
             },
 
@@ -191,6 +199,14 @@ scene = {
                         y = 0,
                     },
                     active = true,
+                },
+                text = {
+                    text = "",
+                    fontId = "press_start_24",
+                    r = 50,
+                    g = 255,
+                    b = 50,
+                    a = 255,
                 },
                 transform = {
                     position = {
