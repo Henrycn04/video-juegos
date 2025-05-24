@@ -63,5 +63,6 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "format": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "/home/henry/Documents/video-juegos/game_engine_01/libs/glm"
 }

@@ -1,4 +1,4 @@
-enemy_velocity = 85
+enemy_velocity = 75
 
 function update()
     local player_x, player_y = get_player_position()

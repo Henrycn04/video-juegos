@@ -41,6 +41,7 @@ public:
     std::unique_ptr<Registry> registry;
     std::unique_ptr<SceneManager> sceneManager;
     sol::state lua;
+    int enemiesLeft = 0;
 
 
 private:

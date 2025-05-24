@@ -4,6 +4,7 @@
 #include <memory>
 #include "../Components/HealthComponent.hpp"
 #include "../Components/EffectReceiverComponent.hpp"
+#include "../Components/RigidBodyComponent.hpp"
 #include "../ECS/ECS.hpp"
 
 class HealthSystem : public System {
@@ -47,7 +48,7 @@ public:
                     if (effectReceiver.takingDamage && !entityHealth.isPlayer) {
                         ProcessZoneDamage(entity, playerDamage, playerTimeout);
                     }
-
+                    ApplySpeedEffect(entity, effectReceiver, entityHealth);
                     // Procesar otros efectos
                     if (effectReceiver.slowed && !entityHealth.isPlayer) {
                         // Aplicar lógica de ralentización
@@ -64,6 +65,15 @@ public:
     }
 
 private:
+    void ApplySpeedEffect(Entity& entity, EffectReceiverComponent& effectReceiver, HealthComponent& entityHealth) {
+        bool isPlayer = entityHealth.isPlayer;
+        if (isPlayer && effectReceiver.speedBoosted) {
+            entity.GetComponent<RigidBodyComponent>().velocity *= 1.5f; // Aumentar velocidad
+        } else if (!isPlayer && effectReceiver.slowed) {
+            entity.GetComponent<RigidBodyComponent>().velocity *= 0.3f; // Reducir velocidad
+        }
+
+    }
     void ProcessZoneDamage(Entity entity, int damage, float damageInterval) {
         if (!entity.HasComponent<HealthComponent>()) return;
         
@@ -91,16 +101,12 @@ private:
         
         // Aplicar daño
         targetHealth.health -= damage;
-        std::cout << "[ZONE DAMAGE] Entity " << entity.GetId() << " took " << damage << " damage. Remaining health: " << targetHealth.health << std::endl;
         
         // Verificar muerte
         if (targetHealth.health <= 0) {
             targetHealth.health = 0;
             if (!targetHealth.isPlayer) {
                 entity.Kill(); // Matar la entidad no jugador
-            } else {
-                // Lógica para jugador muerto
-                //std::cout << "¡Jugador muerto!" << std::endl;
             }
         }
     }

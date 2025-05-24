@@ -24,15 +24,21 @@ public:
     }
 
     void Update(std::unique_ptr<Registry>& registry) {
+        Game& game = Game::GetInstance();
         for (auto spawner : GetSystemEntities()) {
+
             auto& enemySpawner = spawner.GetComponent<EnemyComponent>();
 
             int currentAlive = CountClonesFrom(spawner.GetId());
-            if (currentAlive < enemySpawner.amountToSpawn) {
+            if (currentAlive < enemySpawner.amountToSpawn && enemySpawner.totalAmount > 0) {
                 Entity newEnemy = registry->CreateEntity();
                 CloneEntityFromTemplate(spawner, newEnemy);
+                enemySpawner.totalAmount--;
+                game.enemiesLeft--;
             }
+
         }
+
     }
 
 private:

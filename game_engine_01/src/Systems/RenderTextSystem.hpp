@@ -7,6 +7,10 @@
 #include "../Components/TextComponent.hpp"
 #include "../Components/TransformComponent.hpp"
 #include "../Components/HealthComponent.hpp"
+#include "../Components/DamageChargeComponent.hpp"
+#include "../Components/SprintChargeComponent.hpp"
+#include "../Components/SlowChargeComponent.hpp"
+
 #include "../ECS/ECS.hpp"
 
 class RenderTextSystem : public System {
@@ -36,13 +40,37 @@ class RenderTextSystem : public System {
                 SDL_Rect dstrect = {
                     static_cast<int>(transform.position.x),
                     static_cast<int>(transform.position.y - 20),
-                    text.width * static_cast<int>(transform.scale.x),
-                    text.height * static_cast<int>(transform.scale.y)
+                    text.width * static_cast<int>(transform.scale.x) / 2,
+                    text.height * static_cast<int>(transform.scale.y) / 2
                 };
 
                 SDL_RenderCopy(renderer, texture, NULL, &dstrect);
                 SDL_DestroyTexture(texture);
-            } else {
+            } else if (entity.HasComponent<DamageChargeComponent>() || entity.HasComponent<SprintChargeComponent>() || entity.HasComponent<SlowChargeComponent>() ) {
+                if (entity.HasComponent<DamageChargeComponent>()) {
+                    text.text = entity.GetComponent<DamageChargeComponent>().chargeDisplay;
+                } else if (entity.HasComponent<SprintChargeComponent>()) {
+                    text.text = entity.GetComponent<SprintChargeComponent>().chargeDisplay;
+                } else if (entity.HasComponent<SlowChargeComponent>()) {
+                    text.text = entity.GetComponent<SlowChargeComponent>().chargeDisplay;
+                }
+                SDL_Surface* surface = TTF_RenderText_Blended(assetManager->GetFont(text.fontId), text.text.c_str(), text.color);
+                text.width = surface->w;
+                text.height = surface->h;
+                SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+                SDL_FreeSurface(surface);
+
+                SDL_Rect dstrect = {
+                    static_cast<int>(transform.position.x),
+                    static_cast<int>(transform.position.y - 20),
+                    text.width * static_cast<int>(transform.scale.x) / 2,
+                    text.height * static_cast<int>(transform.scale.y) / 2
+                };
+
+                SDL_RenderCopy(renderer, texture, NULL, &dstrect);
+                SDL_DestroyTexture(texture);
+            }
+            else {
                 SDL_Surface* surface = TTF_RenderText_Blended(assetManager->GetFont(text.fontId), text.text.c_str(), text.color);
                 text.width = surface->w;
                 text.height = surface->h;

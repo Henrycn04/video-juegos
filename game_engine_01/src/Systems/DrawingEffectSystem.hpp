@@ -65,8 +65,6 @@ private:
             auto& collider = entity.GetComponent<CircleColliderComponent>();
             auto& effectReceiver = entity.GetComponent<EffectReceiverComponent>();
             
-            // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA - Calcular centro real del hitbox
-            // Si transform.position es esquina superior izquierda, centramos el hitbox
             glm::vec2 entityCenter = glm::vec2(
                 transform.position.x + (collider.width * transform.scale.x / 2),
                 transform.position.y + (collider.height * transform.scale.y / 2)
@@ -93,23 +91,8 @@ private:
                 }
             }
             
-            // Debugging detallado
-            bool wasReceivingDamage = effectReceiver.takingDamage;
-            
-            // Actualizar el estado de daño
             effectReceiver.takingDamage = isOnDamageTrace;
             
-            // Log para debugging cuando cambia el estado o cuando debería estar recibiendo daño
-            if (isOnDamageTrace || wasReceivingDamage != isOnDamageTrace) {
-                std::cout << "[DEBUG] Entity " << entity.GetId() 
-                         << " - Position: (" << entityCenter.x << ", " << entityCenter.y << ")"
-                         << " - Radius: " << entityRadius
-                         << " - Valid points: " << validPointsCount
-                         << " - Collisions: " << collisionCount
-                         << " - Taking damage: " << (isOnDamageTrace ? "YES" : "NO")
-                         << " - State changed: " << (wasReceivingDamage != isOnDamageTrace ? "YES" : "NO")
-                         << std::endl;
-            }
         }
     }
     
@@ -127,8 +110,6 @@ private:
             auto& collider = entity.GetComponent<CircleColliderComponent>();
             auto& effectReceiver = entity.GetComponent<EffectReceiverComponent>();
             
-            // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA - Calcular centro real del hitbox
-            // Si transform.position es esquina superior izquierda, centramos el hitbox
             glm::vec2 entityCenter = glm::vec2(
                 transform.position.x + (collider.width * transform.scale.x / 2),
                 transform.position.y + (collider.height * transform.scale.y / 2)

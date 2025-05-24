@@ -7,11 +7,15 @@ scene = {
     sprites = {
         [0] = 
         {assetId = "tank01", file_path = "./assets/images/tank01.png"},
-        {assetId = "player_dino", file_path = "./assets/images/dino.png"}
+        {assetId = "player_dino", file_path = "./assets/images/dino.png"},
+        {assetId = "ranger01", file_path = "./assets/images/ranger01.png"},
+        {assetId = "melee02", file_path = "./assets/images/melee02.png"},
     },
     -- Tabla de fuentes
     fonts = {
         [0] = {fontId = "press_start_24", filePath = "./assets/fonts/press_start_2p.ttf", fontSize = 24},
+        {fontId = "press_start_32", filePath = "./assets/fonts/press_start_2p.ttf", fontSize = 32},
+
 
     },
     -- Tabla de acciones y teclas
@@ -62,7 +66,8 @@ scene = {
         },
         {
             components = {
-                drawable = {},
+                drawable = {
+                },
                 script = {
                     path = "./assets/scripts/mouse_draw.lua"
                 },
@@ -70,7 +75,141 @@ scene = {
 
         },
         {
-        components = { -- Enemigo plantilla
+        components = { -- Enemigo plantilla ranger
+                animation = {
+                    num_frames = 6,
+                    frame_speed_rate = 18,
+                    loop = true,
+                },
+                circle_collider = {
+                    radius = 10,
+                    width = 22,
+                    height = 20
+                },
+                health = {
+                    health = 60,
+                    maxHealth = 60,
+                    isPlayer = false,
+                    damage = 0,
+                    attack_timeout = 1.0,
+                },
+                enemy = {
+                    amountToSpawn = 1,
+                    totalAmount = 1,
+                },
+                rigidbody = {
+                    velocity = {
+                        x = 0,
+                        y = 0
+                    },
+                },
+                script = {
+                    path = "./assets/scripts/ranger_movement.lua"
+                },
+                sprite = {
+                    assetId = "ranger01",
+                    width = 22,
+                    height = 20,
+                    src_rect = {
+                        x = 0,
+                        y = 0,
+                    },
+                    active = false,
+                },
+                transform = { -- Generar en 0, luego se crean
+                    position = {
+                        x = 0.0,
+                        y = 0.0
+                    },
+                    scale = {
+                        x = 1,
+                        y = 1
+                    },
+                    rotation = 0.0
+                },
+                effect_receiver = {
+                },
+                text = {
+                    text = "",
+                    fontId = "press_start_24",
+                    r = 50,
+                    g = 255,
+                    b = 50,
+                    a = 255,
+                },
+            },
+
+
+        },
+        {
+        components = { -- Enemigo plantilla melee
+                animation = {
+                    num_frames = 7,
+                    frame_speed_rate = 10,
+                    loop = true,
+                },
+                circle_collider = {
+                    radius = 13,
+                    width = 28,
+                    height = 29
+                },
+                health = {
+                    health = 80,
+                    maxHealth = 80,
+                    isPlayer = false,
+                    damage = 15,
+                    attack_timeout = 1.0,
+                },
+                enemy = {
+                    amountToSpawn = 1,
+                    totalAmount = 1,
+                },
+                rigidbody = {
+                    velocity = {
+                        x = 0,
+                        y = 0
+                    },
+                },
+                script = {
+                    path = "./assets/scripts/melee_movement.lua"
+                },
+                sprite = {
+                    assetId = "melee02",
+                    width = 28,
+                    height = 29,
+                    src_rect = {
+                        x = 0,
+                        y = 0,
+                    },
+                    active = false,
+                },
+                transform = { -- Generar en 0, luego se crean
+                    position = {
+                        x = 0.0,
+                        y = 0.0
+                    },
+                    scale = {
+                        x = 1,
+                        y = 1
+                    },
+                    rotation = 0.0
+                },
+                effect_receiver = {
+                },
+                text = {
+                    text = "",
+                    fontId = "press_start_24",
+                    r = 50,
+                    g = 255,
+                    b = 50,
+                    a = 255,
+                },
+            },
+
+
+        },
+        {
+        components = { -- Enemigo plantilla tanque
                 animation = {
                     num_frames = 7,
                     frame_speed_rate = 10,
@@ -89,7 +228,8 @@ scene = {
                     attack_timeout = 1.0,
                 },
                 enemy = {
-                    amountToSpawn = 15,
+                    amountToSpawn = 1,
+                    totalAmount = 1,
                 },
                 rigidbody = {
                     velocity = {
@@ -162,6 +302,90 @@ scene = {
                 },
             }
         },
+        { -- Carga de danno
+            components = {
+                damageCharge = {
+                    totalCharge = 100,
+                    initialCharge = 100,
+                },
+                text = {
+                    text = "D",
+                    fontId = "press_start_32",
+                    r = 255,
+                    g = 0,
+                    b = 0,
+                    a = 255,
+
+                },
+                transform = {
+                    position = {
+                        x = 50,
+                        y = 50
+                    },
+                    scale = {
+                        x = 1.5,
+                        y = 2
+                    },
+                    rotation = 0.0
+                },
+            }
+        },
+                { -- Carga de rapidez
+            components = {
+                sprintCharge = {
+                    totalCharge = 100,
+                    initialCharge = 100,
+                },
+                text = {
+                    text = "R",
+                    fontId = "press_start_32",
+                    r = 0,
+                    g = 0,
+                    b = 255,
+                    a = 255,
+
+                },
+                transform = {
+                    position = {
+                        x = 175,
+                        y = 50
+                    },
+                    scale = {
+                        x = 1.5,
+                        y = 2
+                    },
+                    rotation = 0.0
+                },
+            }
+        },
+        { -- Carga de slow
+            components = {
+                slowCharge = {
+                    totalCharge = 100,
+                    initialCharge = 100,
+                },
+                text = {
+                    text = "S",
+                    fontId = "press_start_32",
+                    r = 0,
+                    g = 255,
+                    b = 0,
+                    a = 255,
+
+                },
+                transform = {
+                    position = {
+                        x = 300,
+                        y = 50
+                    },
+                    scale = {
+                        x = 1.5,
+                        y = 2
+                    },
+                    rotation = 0.0
+                },
+            }
+        },
         {
             components = { -- Jugador
                 animation = {
@@ -222,7 +446,7 @@ scene = {
                 effect_receiver = {
                 },
             }
-        },
+        },     
 
     }
 }

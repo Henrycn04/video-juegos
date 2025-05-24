@@ -5,6 +5,7 @@
 #include "../Components/DrawableComponent.hpp"
 #include <chrono>
 #include "../Game/Game.hpp"
+#include "../Systems/ChargeManageSystem.hpp"
 class DrawSystem : public System {
 public:
     DrawSystem() {
@@ -50,6 +51,8 @@ void Update(SDL_Renderer* renderer) {
                     SDL_RenderFillRect(renderer, &drawRect);
                 }
             }
+
+
         }
     }
 }

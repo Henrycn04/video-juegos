@@ -16,6 +16,8 @@
 #include "../Systems/HealthSystem.hpp"
 #include "../Systems/EnemySystem.hpp"
 #include "../Systems/DrawingEffectSystem.hpp"
+#include "../Systems/ChargeManageSystem.hpp"
+
 Game::Game() {
     std::cout<< "[GAME] Se ejecuta constructor" << std::endl;
     this->assetManager = std::make_unique<AssetManager>();
@@ -90,6 +92,7 @@ void Game::Setup(){
     this->registry->AddSystem<HealthSystem>();
     this->registry->AddSystem<EnemySystem>();
     this->registry->AddSystem<DrawingEffectSystem>();
+    this->registry->AddSystem<ChargeManageSystem>();
 
     sceneManager->LoadSceneFromScript("./assets/scripts/scenes.lua", lua);
     
@@ -161,11 +164,15 @@ void Game::update() {
         this->registry->GetSystem<ScriptSystem>().Update(lua);
         
         this->registry->GetSystem<AnimationSystem>().Update();
-        this->registry->GetSystem<MovementSystem>().Update(dt);
         this->registry->GetSystem<CollisionSystem>().Update(eventManager);
         this->registry->GetSystem<EnemySystem>().Update(registry);
         this->registry->GetSystem<DrawingEffectSystem>().Update();
         this->registry->GetSystem<HealthSystem>().Update();
+        this->registry->GetSystem<MovementSystem>().Update(dt);
+        this->registry->GetSystem<ChargeManageSystem>().Update();
+        if (!enemiesLeft) {
+            // Fin del nivel
+        }
     }
     
 

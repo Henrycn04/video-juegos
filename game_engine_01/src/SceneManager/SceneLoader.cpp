@@ -12,7 +12,10 @@
 #include "../Components/DrawableComponent.hpp"
 #include "../Components/EnemyComponent.hpp"
 #include "../Components/EffectReceiverComponent.hpp"
-
+#include "../Components/DamageChargeComponent.hpp"
+#include "../Components/SprintChargeComponent.hpp"
+#include "../Components/SlowChargeComponent.hpp"
+#include "../Game/Game.hpp"
 SceneLoader::SceneLoader() {
     std::cout << "[SceneLoader] Se ejecuta constructor" << std::endl;
 }
@@ -21,8 +24,8 @@ SceneLoader::~SceneLoader(){
 
 }
 void SceneLoader::LoadScene(const std::string& scenePath, sol::state& lua, 
-        std::unique_ptr<AssetManager>& assetManager, std::unique_ptr<ControllerManager>& controllerManager, 
-            std::unique_ptr<Registry>& registry, SDL_Renderer* renderer) {
+    std::unique_ptr<AssetManager>& assetManager, std::unique_ptr<ControllerManager>& controllerManager, 
+    std::unique_ptr<Registry>& registry, SDL_Renderer* renderer) {
     sol::load_result script_result = lua.load_file(scenePath);
     if (!script_result.valid()) {
         sol::error err = script_result;
@@ -203,8 +206,11 @@ void SceneLoader::LoadEntities(sol::state& lua, const sol::table& entities, std:
             if (hasEnemy != sol::nullopt) {
                 newEntity.AddComponent<EnemyComponent>(
                     components["enemy"]["amountToSpawn"],
-                    newEntity.GetId()
+                    newEntity.GetId(),
+                    components["enemy"]["totalAmount"]
+
                 );
+                Game::GetInstance().enemiesLeft += newEntity.GetComponent<EnemyComponent>().totalAmount;
             }
 
 
@@ -284,6 +290,30 @@ void SceneLoader::LoadEntities(sol::state& lua, const sol::table& entities, std:
                 );
             }
 
+            sol::optional<sol::table> hasDamageCharge = components["damageCharge"];
+            if (hasDamageCharge != sol::nullopt) {
+                newEntity.AddComponent<DamageChargeComponent>(
+                    components["damageCharge"]["totalCharge"],
+                    components["damageCharge"]["initialCharge"]
+                );
+            }
+            sol::optional<sol::table> hasSprintCharge = components["sprintCharge"];
+            if (hasSprintCharge != sol::nullopt) {
+                newEntity.AddComponent<SprintChargeComponent>(
+                    components["sprintCharge"]["totalCharge"],
+                    components["sprintCharge"]["initialCharge"]
+
+                );
+            }
+            sol::optional<sol::table> hasSlowCharge = components["slowCharge"];
+            if (hasSlowCharge != sol::nullopt) {
+                newEntity.AddComponent<SlowChargeComponent>(
+                    components["slowCharge"]["totalCharge"],
+                    components["slowCharge"]["initialCharge"]
+                );
+            }
+
+        
             
         }
         index++;

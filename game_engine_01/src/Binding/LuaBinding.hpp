@@ -10,6 +10,7 @@
 #include "../Components/TransformComponent.hpp"
 #include "../Systems/HealthSystem.hpp"
 #include "../Systems/EnemySystem.hpp"
+#include "../Systems/ChargeManageSystem.hpp"
 #include <chrono>
 bool IsActionActivated(const std::string& action) {
     return Game::GetInstance().controllerManager->IsActionActivated(action);
@@ -141,9 +142,10 @@ void GoToScene(const std::string& sceneName) {
 
 void PushDrawPoint(Entity entity, int index, int x, int y) {
     auto& draw = entity.GetComponent<DrawableComponent>();
-    if (index >= 0 && index < (int)draw.colorPoints.size()) {
+    if (index >= 0 && index < (int)draw.colorPoints.size() && Game::GetInstance().registry->GetSystem<ChargeManageSystem>().HasSufficientCharge(index) == true) {
         // Añadimos el punto con el timestamp
         draw.colorPoints[index].emplace_back(glm::vec2(x, y), std::chrono::steady_clock::now());
+        Game::GetInstance().registry->GetSystem<ChargeManageSystem>().ConsumeChargeForDrawing(index);
     }
 }
 
