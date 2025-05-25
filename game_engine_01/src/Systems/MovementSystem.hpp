@@ -31,18 +31,23 @@ class MovementSystem : public System {
 
                 transform.position.x += rigidBody.velocity.x * dt;
                 transform.position.y += rigidBody.velocity.y * dt;
-
+                bool crash = false;
                 // Clamp tomando en cuenta tamaño del sprite
                 if (transform.position.x < 0) {
                     transform.position.x = 0;
+                    crash = true;
                 } else if (transform.position.x > game.windowWidth - (sprite.width * transform.scale.x)) {
                     transform.position.x = game.windowWidth - (sprite.width * transform.scale.x);
+                    crash = true;
+
                 }
 
                 if (transform.position.y < 75) {
                     transform.position.y = 75;
+                    crash = true;
                 } else if (transform.position.y > game.windowHeight - (sprite.height * transform.scale.y)) {
                     transform.position.y = game.windowHeight - (sprite.height * transform.scale.y);
+                    crash = true;
                 }
                 // Ajustar orientación horizontal del sprite según velocidad
                 
@@ -53,6 +58,10 @@ class MovementSystem : public System {
                 }
                 if (entity.HasComponent<ProjectileComponent>()) {
                     sprite.flip = SDL_FLIP_NONE;
+                }
+                if (entity.HasComponent<ProjectileComponent>() && crash) {
+                    sprite.flip = SDL_FLIP_NONE;
+                    entity.Kill();
                 }
 
             }

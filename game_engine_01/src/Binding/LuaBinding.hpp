@@ -162,7 +162,7 @@ void AttackRanger(Entity attacker) {
             glm::vec2 normalizedDirection = glm::normalize(direction);
 
             // Definir la velocidad del proyectil (ajusta este valor según tu juego)
-            float projectileSpeed = 30.0f; // pixels per second, por ejemplo
+            float projectileSpeed = 100.0f; // pixels per second, por ejemplo
 
             // Calcular la velocidad final
             glm::vec2 velocity = normalizedDirection * projectileSpeed;

@@ -35,8 +35,9 @@ public:
                 Entity newEnemy = registry->CreateEntity();
                 CloneEntityFromTemplate(spawner, newEnemy);
                 enemySpawner.totalAmount--;
-                game.enemiesLeft--;
+                game.enemiesLeftToSpawn--;
             }
+            
 
         }
 
@@ -52,9 +53,6 @@ public:
                 newEnemy.GetComponent<TransformComponent>().rotation = rotation;
                 newEnemy.GetComponent<RigidBodyComponent>().velocity = velocity;
                 newEnemy.GetComponent<HealthComponent>().damage = damage;
-                //TODO: Revisar
-                std::cout << "Enemy created con: " 
-                    << newEnemy.GetComponent<HealthComponent>().damage << std::endl;
                 break;
             }
 
@@ -128,7 +126,8 @@ private:
 
         // EnemyComponent sin capacidad de spawnear otros
         if (source.HasComponent<EnemyComponent>()) {
-            target.AddComponent<EnemyComponent>(0);
+            target.AddComponent<EnemyComponent>(source.GetComponent<EnemyComponent>());
+            target.GetComponent<EnemyComponent>().amountToSpawn = 0;
             target.GetComponent<EnemyComponent>().spawnerId = source.GetId();
         }
     }

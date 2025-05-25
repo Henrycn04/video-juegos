@@ -16,6 +16,9 @@
 #include "../Components/SprintChargeComponent.hpp"
 #include "../Components/SlowChargeComponent.hpp"
 #include "../Components/ProjectileComponent.hpp"
+#include "../Components/SoundComponent.hpp"
+#include "../Components/IdentifierComponent.hpp"
+
 #include "../Game/Game.hpp"
 SceneLoader::SceneLoader() {
     std::cout << "[SceneLoader] Se ejecuta constructor" << std::endl;
@@ -48,6 +51,9 @@ void SceneLoader::LoadScene(const std::string& scenePath, sol::state& lua,
     LoadFonts(fonts, assetManager);
     
 
+    sol::table sounds = scene["sounds"];
+    LoadSounds(sounds, assetManager);
+    
     sol::table keys = scene["keys"];
     LoadKey(keys, controllerManager);
 
@@ -117,6 +123,30 @@ void SceneLoader::LoadFonts(const sol::table& fonts, std::unique_ptr<AssetManage
 
         index++;
     }
+        std::cout << "[SceneLoader] Se cargaron las fuentes correctamente." << std::endl;
+
+}
+void SceneLoader::LoadSounds(const sol::table& sounds, std::unique_ptr<AssetManager>& assetManager){
+    int index = 0;
+    while (true) {
+        sol::optional<sol::table> hasSound = sounds[index];
+        if (hasSound == sol::nullopt) {
+            break;
+        }
+        
+
+        sol::table sound = sounds[index];
+
+        std::string soundId = sound["soundId"];
+        std::string filePath = sound["filePath"];
+
+
+        assetManager->AddSound(soundId, filePath);
+
+        index++;
+    }
+        std::cout << "[SceneLoader] Se cargaron los sonidos correctamente." << std::endl;
+
 }
     // fonts loader
 void SceneLoader::LoadKey(const sol::table& keys, std::unique_ptr<ControllerManager>& controllerManager){
@@ -215,9 +245,11 @@ void SceneLoader::LoadEntities(sol::state& lua, const sol::table& entities, std:
                 newEntity.AddComponent<EnemyComponent>(
                     components["enemy"]["amountToSpawn"],
                     newEntity.GetId(),
-                    components["enemy"]["totalAmount"]
+                    components["enemy"]["totalAmount"],
+                    components["enemy"]["points"]
 
                 );
+                Game::GetInstance().enemiesLeftToSpawn += newEntity.GetComponent<EnemyComponent>().totalAmount;
                 Game::GetInstance().enemiesLeft += newEntity.GetComponent<EnemyComponent>().totalAmount;
             }
 
@@ -267,6 +299,16 @@ void SceneLoader::LoadEntities(sol::state& lua, const sol::table& entities, std:
                     components["sprite"]["active"]
                 );
             }
+            sol::optional<sol::table> hasSound= components["sound"];
+            if (hasSound != sol::nullopt) {
+                newEntity.AddComponent<SoundComponent>(
+                    components["sound"]["soundId"],
+                    components["sound"]["volume"],
+                    components["sound"]["loops"],
+                    components["sound"]["autoPlay"],
+                    components["sound"]["active"]
+                );
+            }
 
             sol::optional<sol::table> hasText = components["text"];
             if (hasText != sol::nullopt) {
@@ -295,6 +337,16 @@ void SceneLoader::LoadEntities(sol::state& lua, const sol::table& entities, std:
             sol::optional<sol::table> hasEffectReceiver = components["effect_receiver"];
             if (hasEffectReceiver != sol::nullopt) {
                 newEntity.AddComponent<EffectReceiverComponent>(
+                );
+            }
+
+
+            sol::optional<sol::table> hasIdentifier = components["identifier"];
+
+            if (hasIdentifier != sol::nullopt) {
+                newEntity.AddComponent<IdentifierComponent>(
+                    components["identifier"]["id"],
+                    components["identifier"]["name"]
                 );
             }
 

@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 #include <glm/glm.hpp>
 #include <iostream>
 #include <sol/sol.hpp>  // Sol2 al final
@@ -41,9 +42,12 @@ public:
     std::unique_ptr<Registry> registry;
     std::unique_ptr<SceneManager> sceneManager;
     sol::state lua;
+    int enemiesLeftToSpawn = 0;
     int enemiesLeft = 0;
-
-
+    int totalPoints = 0;
+    bool finDelNivel = false;
+    bool win = false;
+    
 private:
     void Setup();
     void RunScene();

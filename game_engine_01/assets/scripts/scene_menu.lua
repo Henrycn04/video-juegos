@@ -13,6 +13,9 @@ scene = {
         {fontId = "press_start_32", filePath = "./assets/fonts/press_start_2p.ttf", fontSize = 32},
 
     },
+        sounds = {
+        [0] = {soundId = "vvv", filePath = "./assets/sounds/VVV.mp3"},
+    },
     -- Tabla de acciones y teclas
     keys = {
         [0] = {name = "move_left", key = 97},
@@ -53,6 +56,18 @@ scene = {
                     rotation = 0.0
                 },
             }
+        },
+                {
+            components = { -- sonido
+                sound = {
+                    soundId = "vvv",
+                    volume = 76,
+                    loops = -1,
+                    autoPlay = true,
+                    active = true,
+                },
+            }
+
         },
         -- Player
         {

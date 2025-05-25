@@ -17,8 +17,10 @@ scene = {
     fonts = {
         [0] = {fontId = "press_start_24", filePath = "./assets/fonts/press_start_2p.ttf", fontSize = 24},
         {fontId = "press_start_32", filePath = "./assets/fonts/press_start_2p.ttf", fontSize = 32},
+    },
 
-
+    sounds = {
+        [0] = {soundId = "vvv", filePath = "./assets/sounds/VVV.mp3"},
     },
     -- Tabla de acciones y teclas
     keys = {
@@ -77,6 +79,18 @@ scene = {
 
         },
         {
+            components = { -- sonido
+                sound = {
+                    soundId = "vvv",
+                    volume = 60,
+                    loops = -1,
+                    autoPlay = true,
+                    active = true,
+                },
+            }
+
+        },
+        {
         components = { -- Enemigo plantilla ranger
                 animation = {
                     num_frames = 6,
@@ -92,12 +106,13 @@ scene = {
                     health = 60,
                     maxHealth = 60,
                     isPlayer = false,
-                    damage = 30,
+                    damage = 20,
                     attack_timeout = 1.0,
                 },
                 enemy = {
-                    amountToSpawn = 1,
-                    totalAmount = 1,
+                    amountToSpawn = 0,
+                    totalAmount = 0,
+                    points = 20
                 },
                 rigidbody = {
                     velocity = {
@@ -163,8 +178,9 @@ scene = {
                     attack_timeout = 1.0,
                 },
                 enemy = {
-                    amountToSpawn = 0,
-                    totalAmount = 0,
+                    amountToSpawn = 1,
+                    totalAmount = 1,
+                    points = 15
                 },
                 rigidbody = {
                     velocity = {
@@ -223,15 +239,16 @@ scene = {
                     height = 30
                 },
                 health = {
-                    health = 40,
-                    maxHealth = 40,
+                    health = 120,
+                    maxHealth = 120,
                     isPlayer = false,
                     damage = 10,
                     attack_timeout = 1.0,
                 },
                 enemy = {
-                    amountToSpawn = 0,
-                    totalAmount = 0,
+                    amountToSpawn = 1,
+                    totalAmount = 1,
+                    points = 10
                 },
                 rigidbody = {
                     velocity = {
@@ -300,6 +317,7 @@ scene = {
                 enemy = {
                     amountToSpawn = 0,
                     totalAmount = 0,
+                    points = 0
                 },
                 sprite = {
                     assetId = "arrow01",
@@ -329,6 +347,10 @@ scene = {
         -- Crear una entidad de proyectil que usen los rangers
         { -- Texto de puntuacion
             components = {
+                identifier = {
+                    id = 0,
+                    name = "puntuacion"
+                },
                 clickable = {
                 },
                 text = {

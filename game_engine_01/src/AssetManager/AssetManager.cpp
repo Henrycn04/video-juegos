@@ -17,6 +17,11 @@ void AssetManager::ClearAssets() {
         TTF_CloseFont(font.second);
     }
     fonts.clear();
+
+    for (auto& sound : sounds) {
+        Mix_FreeChunk(sound.second);
+    }
+    sounds.clear();
 }
 void AssetManager::AddTexture(SDL_Renderer* renderer, const std::string& textureId, const std::string& filePath) {
     SDL_Surface* surface = IMG_Load(filePath.c_str());
@@ -46,4 +51,16 @@ void AssetManager::AddFont(const std::string& fontId, const std::string& filePat
 }
 TTF_Font* AssetManager::GetFont(const std::string& fontId){
     return fonts[fontId];
+}
+void AssetManager::AddSound(const std::string& soundId, const std::string& filePath) {
+    Mix_Chunk* sound = Mix_LoadWAV(filePath.c_str());
+    if (sound == nullptr) {
+        std::cerr << "[AssetManager] Error al cargar el sonido: " << Mix_GetError() << std::endl;
+        return;
+    }
+    sounds.emplace(soundId, sound);
+}
+
+Mix_Chunk* AssetManager::GetSound(const std::string& soundId) {
+    return sounds[soundId];
 }

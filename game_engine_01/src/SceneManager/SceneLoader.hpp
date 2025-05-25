@@ -15,6 +15,7 @@ class SceneLoader {
     void LoadSprites(SDL_Renderer* renderer, const sol::table& sprites, std::unique_ptr<AssetManager>& assetManager);
 
     void LoadFonts(const sol::table& fonts, std::unique_ptr<AssetManager>& assetManager);
+    void LoadSounds(const sol::table& sounds, std::unique_ptr<AssetManager>& assetManager);
 
     void LoadKey(const sol::table& keys, std::unique_ptr<ControllerManager>& controllerManager);
 

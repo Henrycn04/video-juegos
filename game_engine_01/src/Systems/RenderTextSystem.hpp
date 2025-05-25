@@ -10,6 +10,7 @@
 #include "../Components/DamageChargeComponent.hpp"
 #include "../Components/SprintChargeComponent.hpp"
 #include "../Components/SlowChargeComponent.hpp"
+#include "../Components/IdentifierComponent.hpp"
 
 #include "../ECS/ECS.hpp"
 
@@ -54,6 +55,26 @@ class RenderTextSystem : public System {
                 } else if (entity.HasComponent<SlowChargeComponent>()) {
                     text.text = entity.GetComponent<SlowChargeComponent>().chargeDisplay;
                 }
+                SDL_Surface* surface = TTF_RenderText_Blended(assetManager->GetFont(text.fontId), text.text.c_str(), text.color);
+                text.width = surface->w;
+                text.height = surface->h;
+                SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+                SDL_FreeSurface(surface);
+
+                SDL_Rect dstrect = {
+                    static_cast<int>(transform.position.x),
+                    static_cast<int>(transform.position.y - 20),
+                    text.width * static_cast<int>(transform.scale.x) / 2,
+                    text.height * static_cast<int>(transform.scale.y) / 2
+                };
+
+                SDL_RenderCopy(renderer, texture, NULL, &dstrect);
+                SDL_DestroyTexture(texture);
+            }   else if (entity.HasComponent<IdentifierComponent>() && entity.GetComponent<IdentifierComponent>().name == "puntuacion") {
+
+                text.text = "Score: " + std::to_string(Game::GetInstance().totalPoints);
+
+
                 SDL_Surface* surface = TTF_RenderText_Blended(assetManager->GetFont(text.fontId), text.text.c_str(), text.color);
                 text.width = surface->w;
                 text.height = surface->h;

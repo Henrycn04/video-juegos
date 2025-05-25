@@ -30,6 +30,11 @@ class DamageSystem : public System {
         
         if (health.isPlayer) {
             health.health -= arrow.damage;
+            if (health.health <= 0) {
+                health.health = 0;
+                Game::GetInstance().finDelNivel = true;
+                Game::GetInstance().win = false;
+            }
             event.entityB.Kill();
         }
     } else if (event.entityB.HasComponent<HealthComponent>() && event.entityA.HasComponent<ProjectileComponent>()) {
@@ -38,6 +43,11 @@ class DamageSystem : public System {
         
         if (health.isPlayer) {
             health.health -= arrow.damage;
+            if (health.health <= 0) {
+                health.health = 0;
+                Game::GetInstance().finDelNivel = true;
+                Game::GetInstance().win = false;
+            }
             event.entityA.Kill();
         }
     }

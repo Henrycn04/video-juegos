@@ -17,6 +17,7 @@
 #include "../Systems/EnemySystem.hpp"
 #include "../Systems/DrawingEffectSystem.hpp"
 #include "../Systems/ChargeManageSystem.hpp"
+#include "../Systems/SoundSystem.hpp"
 
 Game::Game() {
     std::cout<< "[GAME] Se ejecuta constructor" << std::endl;
@@ -53,6 +54,15 @@ void Game::init(){
         std::cerr <<"[GAME] Error al inicializar SDL TTF." << std::endl;
         return;
     }
+        // Inicializar SDL_mixer
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+        std::cerr << "[GAME] Error al inicializar SDL_mixer: " << Mix_GetError() << std::endl;
+        return;
+    }
+    
+    // Opcional: Configurar el número de canales de mezcla
+    Mix_AllocateChannels(16);
+
     this->windowWidth = 800;
     this->windowHeight = 600;
     // Crear ventana
@@ -93,6 +103,8 @@ void Game::Setup(){
     this->registry->AddSystem<EnemySystem>();
     this->registry->AddSystem<DrawingEffectSystem>();
     this->registry->AddSystem<ChargeManageSystem>();
+    this->registry->AddSystem<SoundSystem>();
+   
 
     sceneManager->LoadSceneFromScript("./assets/scripts/scenes.lua", lua);
     
@@ -170,8 +182,16 @@ void Game::update() {
         this->registry->GetSystem<HealthSystem>().Update();
         this->registry->GetSystem<MovementSystem>().Update(dt);
         this->registry->GetSystem<ChargeManageSystem>().Update();
-        if (!enemiesLeft) {
-            // Fin del nivel
+        if (finDelNivel && win) {
+            Game::GetInstance().sceneManager->SetNextScene("win_scene");
+            Game::GetInstance().sceneManager->StopScene();
+            win = false;
+            finDelNivel = false;
+        } else if (finDelNivel && !win) {
+            Game::GetInstance().sceneManager->SetNextScene("lose_scene");
+            Game::GetInstance().sceneManager->StopScene();
+            finDelNivel = false;
+            win = false;
         }
     }
     
@@ -187,7 +207,9 @@ void Game::render() {
     this->registry->GetSystem<RenderSystem>().Update(this->renderer, this->assetManager);
     this->registry->GetSystem<RenderTextSystem>().Update(this->renderer, this->assetManager);
 
+
     SDL_RenderPresent(this->renderer);
+    this->registry->GetSystem<SoundSystem>().Update(this->assetManager);
 }
 
 void Game::RunScene() {
@@ -243,7 +265,7 @@ void Game::destroy(){
         SDL_DestroyWindow(this->window);
     }
 
-
+    Mix_CloseAudio();
     TTF_Quit();
     SDL_Quit();
 }

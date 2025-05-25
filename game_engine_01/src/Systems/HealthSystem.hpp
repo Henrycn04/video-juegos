@@ -106,7 +106,13 @@ private:
         if (targetHealth.health <= 0) {
             targetHealth.health = 0;
             if (!targetHealth.isPlayer) {
-                entity.Kill(); // Matar la entidad no jugador
+                Game::GetInstance().totalPoints += entity.GetComponent<EnemyComponent>().points;
+                Game::GetInstance().enemiesLeft --;
+                entity.Kill();
+                if (Game::GetInstance().enemiesLeft == 0) {                     
+                    Game::GetInstance().finDelNivel = true;                     
+                    Game::GetInstance().win = true;                 
+                }
             }
         }
     }
@@ -141,7 +147,8 @@ public:
             if (!targetHealth.isPlayer) {
                 entity.Kill();
             } else {
-                //std::cout << "¡Jugador muerto!" << std::endl;
+                Game::GetInstance().finDelNivel = true;
+                Game::GetInstance().win = false;
             }
         }
     }
