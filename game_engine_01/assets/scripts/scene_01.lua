@@ -10,6 +10,8 @@ scene = {
         {assetId = "player_dino", file_path = "./assets/images/dino.png"},
         {assetId = "ranger01", file_path = "./assets/images/ranger01.png"},
         {assetId = "melee02", file_path = "./assets/images/melee02.png"},
+        {assetId = "arrow01", file_path = "./assets/images/arrow01.png"},
+
     },
     -- Tabla de fuentes
     fonts = {
@@ -90,7 +92,7 @@ scene = {
                     health = 60,
                     maxHealth = 60,
                     isPlayer = false,
-                    damage = 0,
+                    damage = 30,
                     attack_timeout = 1.0,
                 },
                 enemy = {
@@ -161,8 +163,8 @@ scene = {
                     attack_timeout = 1.0,
                 },
                 enemy = {
-                    amountToSpawn = 1,
-                    totalAmount = 1,
+                    amountToSpawn = 0,
+                    totalAmount = 0,
                 },
                 rigidbody = {
                     velocity = {
@@ -228,8 +230,8 @@ scene = {
                     attack_timeout = 1.0,
                 },
                 enemy = {
-                    amountToSpawn = 1,
-                    totalAmount = 1,
+                    amountToSpawn = 0,
+                    totalAmount = 0,
                 },
                 rigidbody = {
                     velocity = {
@@ -270,6 +272,55 @@ scene = {
                     g = 255,
                     b = 50,
                     a = 255,
+                },
+            },
+
+
+        },
+        {   components = { -- Flecha
+                animation = {
+                    num_frames = 30,
+                    frame_speed_rate = 30,
+                    loop = true,
+                },
+                circle_collider = {
+                    radius = 8,
+                    width = 16,
+                    height = 5
+                },
+                rigidbody = {
+                    velocity = {
+                        x = 0,
+                        y = 0
+                    },
+                },
+                
+                projectile = {
+                },
+                enemy = {
+                    amountToSpawn = 0,
+                    totalAmount = 0,
+                },
+                sprite = {
+                    assetId = "arrow01",
+                    width = 16,
+                    height = 5,
+                    src_rect = {
+                        x = 0,
+                        y = 0,
+                    },
+                    active = false,
+                },
+                transform = { -- Generar en 0, luego se crean
+                    position = {
+                        x = 0.0,
+                        y = 0.0
+                    },
+                    scale = {
+                        x = 1,
+                        y = 1
+                    },
+                    rotation = 0.0
                 },
             },
 
@@ -419,7 +470,7 @@ scene = {
                     width = 24,
                     height = 24,
                     src_rect = {
-                        x = 24,
+                        x = 0,
                         y = 0,
                     },
                     active = true,
@@ -446,7 +497,7 @@ scene = {
                 effect_receiver = {
                 },
             }
-        },     
+        },
 
     }
 }

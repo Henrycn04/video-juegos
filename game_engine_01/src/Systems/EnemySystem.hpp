@@ -14,6 +14,7 @@
 #include "../Components/EnemyComponent.hpp"
 #include "../Components/EffectReceiverComponent.hpp"
 #include "../Components/TextComponent.hpp"
+#include "../Components/ProjectileComponent.hpp"
 #include <memory>
 #include <cstdlib>
 
@@ -39,6 +40,25 @@ public:
 
         }
 
+    }
+
+    // este es el disparo como tal, trabajar con rotacion igual
+    void CreateEnemyProjectile(std::unique_ptr<Registry>& registry, glm::vec2 velocity, glm::vec2 position, double rotation, int damage) {
+        for (auto spawner : GetSystemEntities()) {
+            if (spawner.HasComponent<ProjectileComponent>() ) {
+                Entity newEnemy = registry->CreateEntity();
+                CloneEntityFromTemplate(spawner, newEnemy);
+                newEnemy.GetComponent<TransformComponent>().position = position;
+                newEnemy.GetComponent<TransformComponent>().rotation = rotation;
+                newEnemy.GetComponent<RigidBodyComponent>().velocity = velocity;
+                newEnemy.GetComponent<HealthComponent>().damage = damage;
+                //TODO: Revisar
+                std::cout << "Enemy created con: " 
+                    << newEnemy.GetComponent<HealthComponent>().damage << std::endl;
+                break;
+            }
+
+        }
     }
 
 private:
@@ -101,11 +121,16 @@ private:
         if (source.HasComponent<TextComponent>()) {
             target.AddComponent<TextComponent>(source.GetComponent<TextComponent>());
         }
+        if (source.HasComponent<ProjectileComponent>()) {
+            target.AddComponent<ProjectileComponent>(source.GetComponent<ProjectileComponent>());
+        }
 
 
         // EnemyComponent sin capacidad de spawnear otros
-        target.AddComponent<EnemyComponent>(0);
-        target.GetComponent<EnemyComponent>().spawnerId = source.GetId();
+        if (source.HasComponent<EnemyComponent>()) {
+            target.AddComponent<EnemyComponent>(0);
+            target.GetComponent<EnemyComponent>().spawnerId = source.GetId();
+        }
     }
 
     glm::vec2 GetRandomSpawnPosition() {

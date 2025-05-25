@@ -10,7 +10,7 @@ function update()
     
     if distance < 150 then
         set_velocity(this, 0, 0)
-        --attack_melee(this)
+        attack_ranger(this)
         return
     end
     

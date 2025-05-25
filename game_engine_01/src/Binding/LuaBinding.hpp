@@ -8,6 +8,8 @@
 #include "../Components/DrawableComponent.hpp"
 #include "../Components/HealthComponent.hpp"
 #include "../Components/TransformComponent.hpp"
+#include "../Components/ProjectileComponent.hpp"
+#include "../Systems/EnemySystem.hpp"
 #include "../Systems/HealthSystem.hpp"
 #include "../Systems/EnemySystem.hpp"
 #include "../Systems/ChargeManageSystem.hpp"
@@ -122,7 +124,58 @@ void AttackMelee(Entity attacker) {
         healthSystem.ReduceHP(playerEntity, attackerHealth.damage, attacker);
     }
 }
+void AttackRanger(Entity attacker) {
+    auto& registry = Game::GetInstance().registry;
+    if (!attacker.HasComponent<HealthComponent>()) return;
 
+    // Obtener entidades manejadas por HealthSystem
+    auto entities = registry->GetEntitiesFromSystem<EnemySystem>();
+
+    for (auto& entity : entities) { // buggeado
+        if (entity.HasComponent<ProjectileComponent>() && entity.GetComponent<SpriteComponent>().active == false) {
+
+            auto& health = attacker.GetComponent<HealthComponent>();
+            float damageInterval = health.attackTimeout;
+            // Obtener tiempo actual
+            auto now = std::chrono::steady_clock::now();
+            
+            // Calcular tiempo transcurrido desde el último daño recibido por esta entidad específica
+            auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - attacker.GetComponent<HealthComponent>().attackTimeoutDuration).count();
+            int intervalMs = static_cast<int>(damageInterval * 1000); //damageInterval es tiempos de disparos
+            
+            // Si no ha pasado suficiente tiempo, no aplicar daño
+            if (elapsed < intervalMs) {
+                return;
+            }
+            attacker.GetComponent<HealthComponent>().attackTimeoutDuration = now;
+            auto& ene = registry->GetSystem<EnemySystem>();
+            std::tuple<int, int> playerPos = GetPlayerPosition();
+            glm::vec2 enemyPosition = attacker.GetComponent<TransformComponent>().position;
+
+            // Convertir posición del jugador a vec2
+            glm::vec2 playerPosition = glm::vec2(std::get<0>(playerPos), std::get<1>(playerPos));
+
+            // Calcular el vector dirección del enemigo hacia el jugador
+            glm::vec2 direction = playerPosition - enemyPosition;
+
+            // Normalizar la dirección para obtener el vector unitario
+            glm::vec2 normalizedDirection = glm::normalize(direction);
+
+            // Definir la velocidad del proyectil (ajusta este valor según tu juego)
+            float projectileSpeed = 30.0f; // pixels per second, por ejemplo
+
+            // Calcular la velocidad final
+            glm::vec2 velocity = normalizedDirection * projectileSpeed;
+
+            // Calcular la rotación en radianes usando atan2
+            double arrowRotation = atan2(direction.y, direction.x);
+
+            // Si necesitas la rotación en grados en lugar de radianes:
+            double arrowRotationDegrees = glm::degrees(arrowRotation);
+            ene.CreateEnemyProjectile(registry, velocity, enemyPosition, arrowRotationDegrees, attacker.GetComponent<HealthComponent>().damage);
+        }
+    }
+}
 
 
 
@@ -143,7 +196,7 @@ void GoToScene(const std::string& sceneName) {
 void PushDrawPoint(Entity entity, int index, int x, int y) {
     auto& draw = entity.GetComponent<DrawableComponent>();
     if (index >= 0 && index < (int)draw.colorPoints.size() && Game::GetInstance().registry->GetSystem<ChargeManageSystem>().HasSufficientCharge(index) == true) {
-        // Añadimos el punto con el timestamp
+        // TODO: aunque no se dibujen igual se cuentan (hacer chequeo de la posicion (menor a 70/75 en Y))
         draw.colorPoints[index].emplace_back(glm::vec2(x, y), std::chrono::steady_clock::now());
         Game::GetInstance().registry->GetSystem<ChargeManageSystem>().ConsumeChargeForDrawing(index);
     }

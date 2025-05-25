@@ -5,7 +5,7 @@ CFLAGS=-Wall
 INC_PATH=-I"./libs/"
 SRC=$(shell find src -name "*.cpp")
 LFLAGS=-L/usr/local/lib -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -llua5.3
-EXEC=game_engine.out
+EXEC=game_engine.exe
 
 # Regla para compilar el proyecto sin ASan o MSan
 build:

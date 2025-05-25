@@ -3,6 +3,9 @@
 
 #include <memory>
 #include "../Components/CircleColliderComponent.hpp"
+#include "../Components/HealthComponent.hpp"
+#include "../Components/ProjectileComponent.hpp"
+
 #include "../ECS/ECS.hpp"
 #include "../EventManager/EventManager.hpp"
 #include "../Events/CollisionEvent.hpp"
@@ -16,9 +19,32 @@ class DamageSystem : public System {
         eventManager->SubscribeToEvent<DamageSystem, CollisionEvent>(this, &DamageSystem::OnCollision);
     }
 
+
     void OnCollision(CollisionEvent& event) {
 
+    if (event.entityA.HasComponent<HealthComponent>() && event.entityB.HasComponent<ProjectileComponent>()) {
+        auto& health = event.entityA.GetComponent<HealthComponent>();
+        auto& arrow = event.entityB.GetComponent<HealthComponent>();
+        
+
+        
+        if (health.isPlayer) {
+            health.health -= arrow.damage;
+            event.entityB.Kill();
+        }
+    } else if (event.entityB.HasComponent<HealthComponent>() && event.entityA.HasComponent<ProjectileComponent>()) {
+        auto& health = event.entityB.GetComponent<HealthComponent>();
+        auto& arrow = event.entityA.GetComponent<HealthComponent>();
+        
+        if (health.isPlayer) {
+            health.health -= arrow.damage;
+            event.entityA.Kill();
+        }
     }
+}
+    
+
+
 };
 
 #endif

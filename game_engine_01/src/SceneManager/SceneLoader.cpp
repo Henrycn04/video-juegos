@@ -15,6 +15,7 @@
 #include "../Components/DamageChargeComponent.hpp"
 #include "../Components/SprintChargeComponent.hpp"
 #include "../Components/SlowChargeComponent.hpp"
+#include "../Components/ProjectileComponent.hpp"
 #include "../Game/Game.hpp"
 SceneLoader::SceneLoader() {
     std::cout << "[SceneLoader] Se ejecuta constructor" << std::endl;
@@ -202,6 +203,13 @@ void SceneLoader::LoadEntities(sol::state& lua, const sol::table& entities, std:
                     components["health"]["attack_timeout"]
                 );
             }
+
+            sol::optional<sol::table> hasProjectile = components["projectile"];
+            if (hasProjectile != sol::nullopt) {
+                newEntity.AddComponent<ProjectileComponent>(
+                );
+            }
+            
             sol::optional<sol::table> hasEnemy = components["enemy"];
             if (hasEnemy != sol::nullopt) {
                 newEntity.AddComponent<EnemyComponent>(
@@ -313,7 +321,6 @@ void SceneLoader::LoadEntities(sol::state& lua, const sol::table& entities, std:
                 );
             }
 
-        
             
         }
         index++;

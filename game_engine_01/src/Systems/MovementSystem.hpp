@@ -3,6 +3,8 @@
 #include "../Components/RigidBodyComponent.hpp"
 #include "../Components/TransformComponent.hpp"
 #include "../Components/SpriteComponent.hpp"
+#include "../Components/ProjectileComponent.hpp"
+
 #include "../ECS/ECS.hpp"
 #include "../Game/Game.hpp"
 class MovementSystem : public System {
@@ -43,9 +45,13 @@ class MovementSystem : public System {
                     transform.position.y = game.windowHeight - (sprite.height * transform.scale.y);
                 }
                 // Ajustar orientación horizontal del sprite según velocidad
+                
                 if (rigidBody.velocity.x < 0) {
                     sprite.flip = SDL_FLIP_HORIZONTAL;
                 } else if (rigidBody.velocity.x > 0) {
+                    sprite.flip = SDL_FLIP_NONE;
+                }
+                if (entity.HasComponent<ProjectileComponent>()) {
                     sprite.flip = SDL_FLIP_NONE;
                 }
 
