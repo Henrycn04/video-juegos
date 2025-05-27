@@ -100,6 +100,7 @@ void Registry::ClearAllEntities(){
     for (int i = 0; i < numEntity; i++) {
         RemoveEntityFromSystems(Entity(i));
         entityComponentSignatures[i].reset();
-        freeIds.push_back(i);
     }
+    numEntity = 0;
+    freeIds.clear();
 }

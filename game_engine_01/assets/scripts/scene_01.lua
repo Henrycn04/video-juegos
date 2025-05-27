@@ -1,7 +1,7 @@
 
 scene = {
     background = {
-        [0] = {assetId = "background1", file_path = "./assets/images/background1.jpg"},
+        [0] = {assetId = "background03", file_path = "./assets/images/background03.jpeg"},
     },
     -- Tabla de imagenes
     sprites = {
@@ -46,7 +46,7 @@ scene = {
             {
             components = {
                 sprite = {
-                    assetId = "background1",
+                    assetId = "background03",
                     width = 800,
                     height = 600,
                     src_rect = {
@@ -82,10 +82,10 @@ scene = {
             components = { -- sonido
                 sound = {
                     soundId = "vvv",
-                    volume = 60,
+                    volume = 20,
                     loops = -1,
                     autoPlay = true,
-                    active = true,
+                    active = false,
                 },
             }
 
@@ -103,15 +103,15 @@ scene = {
                     height = 20
                 },
                 health = {
-                    health = 60,
-                    maxHealth = 60,
+                    health = 30,
+                    maxHealth = 30,
                     isPlayer = false,
                     damage = 20,
                     attack_timeout = 1.0,
                 },
                 enemy = {
-                    amountToSpawn = 0,
-                    totalAmount = 0,
+                    amountToSpawn = 3,
+                    totalAmount = 5,
                     points = 20
                 },
                 rigidbody = {
@@ -171,15 +171,15 @@ scene = {
                     height = 29
                 },
                 health = {
-                    health = 80,
-                    maxHealth = 80,
+                    health = 40,
+                    maxHealth = 40,
                     isPlayer = false,
                     damage = 15,
                     attack_timeout = 1.0,
                 },
                 enemy = {
-                    amountToSpawn = 1,
-                    totalAmount = 1,
+                    amountToSpawn = 4,
+                    totalAmount = 8,
                     points = 15
                 },
                 rigidbody = {
@@ -239,15 +239,15 @@ scene = {
                     height = 30
                 },
                 health = {
-                    health = 120,
-                    maxHealth = 120,
+                    health = 80,
+                    maxHealth = 80,
                     isPlayer = false,
                     damage = 10,
                     attack_timeout = 1.0,
                 },
                 enemy = {
-                    amountToSpawn = 1,
-                    totalAmount = 1,
+                    amountToSpawn = 2,
+                    totalAmount = 6,
                     points = 10
                 },
                 rigidbody = {

@@ -28,15 +28,18 @@ void Update(SDL_Renderer* renderer) {
             SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
             
             // Eliminar puntos que tengan más de 4 segundos de haber sido dibujados
-            auto now = std::chrono::steady_clock::now();
-            for (auto it = drawable.colorPoints[i].begin(); it != drawable.colorPoints[i].end(); ) {
-                auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - it->second);
-                if (duration.count() > 4) {
-                    it = drawable.colorPoints[i].erase(it); // Elimina el punto
-                } else {
-                    ++it;
+            if (!Game::GetInstance().isPaused) {
+                auto now = std::chrono::steady_clock::now();
+                for (auto it = drawable.colorPoints[i].begin(); it != drawable.colorPoints[i].end(); ) {
+                    auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - it->second);
+                    if (duration.count() > 4) {
+                        it = drawable.colorPoints[i].erase(it); // Elimina el punto
+                    } else {
+                        ++it;
+                    }
                 }
             }
+
 
             // Dibuja los puntos restantes
             for (const auto& point : drawable.colorPoints[i]) {

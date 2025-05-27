@@ -30,7 +30,6 @@ private:
     int millisecsPreviousFrame = 0;
     bool isRunning = false;
 
-    bool isPaused = false;
     int mPreviousFrame = 0;
 public:
     SDL_Renderer* renderer = nullptr;
@@ -45,9 +44,11 @@ public:
     int enemiesLeftToSpawn = 0;
     int enemiesLeft = 0;
     int totalPoints = 0;
+    int totalPointsPrev = 0;
     bool finDelNivel = false;
     bool win = false;
-    
+    bool isPaused = false;
+
 private:
     void Setup();
     void RunScene();

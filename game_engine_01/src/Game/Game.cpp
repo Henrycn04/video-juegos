@@ -144,7 +144,6 @@ void Game::processInput() {
             controllerManager->SetMousePosition(sdlEvent.button.x, sdlEvent.button.y);
             controllerManager->MouseButtonDown(static_cast<int>(sdlEvent.button.button));
             eventManager->EmitEvent<ClickEvent>(static_cast<int>(sdlEvent.button.button), sdlEvent.button.x, sdlEvent.button.y);
-            std::cout << "[GAME] Click en la posicion: " << sdlEvent.button.x << ", " << sdlEvent.button.y << std::endl;
             break;
         case SDL_MOUSEBUTTONUP:
             controllerManager->SetMousePosition(sdlEvent.button.x, sdlEvent.button.y);
@@ -187,11 +186,14 @@ void Game::update() {
             Game::GetInstance().sceneManager->StopScene();
             win = false;
             finDelNivel = false;
+            std::cout << "[GAME] Se cambio a la escena de win" << std::endl;
         } else if (finDelNivel && !win) {
             Game::GetInstance().sceneManager->SetNextScene("lose_scene");
             Game::GetInstance().sceneManager->StopScene();
             finDelNivel = false;
             win = false;
+            std::cout << "[GAME] Se cambio a la escena de lose" << std::endl;
+
         }
     }
     
