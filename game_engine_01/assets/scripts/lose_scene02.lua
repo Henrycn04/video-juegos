@@ -1,7 +1,7 @@
 
 scene = {
     background = {
-        [0] = {assetId = "background1", file_path = "./assets/images/background1.jpg"},
+        [0] = {assetId = "background07", file_path = "./assets/images/background07.png"},
 
     },
     -- Tabla de imagenes
@@ -11,6 +11,7 @@ scene = {
     fonts = {
         [0] = {fontId = "press_start_24", filePath = "./assets/fonts/press_start_2p.ttf", fontSize = 24},
         {fontId = "press_start_32", filePath = "./assets/fonts/press_start_2p.ttf", fontSize = 32},
+        {fontId = "press_start_50", filePath = "./assets/fonts/press_start_2p.ttf", fontSize = 50},
 
     },
         sounds = {
@@ -35,7 +36,7 @@ scene = {
                 {
             components = {
                 sprite = {
-                    assetId = "background1",
+                    assetId = "background07",
                     width = 800,
                     height = 600,
                     src_rect = {
@@ -69,6 +70,33 @@ scene = {
             }
 
         },
+{
+            components = {
+                clickable = {
+
+                },
+                text = {
+                    text = "Crimson",
+                    fontId = "press_start_50",
+                    r = 0,
+                    g = 0,
+                    b = 0,
+                    a = 255,
+
+                },
+                transform = {
+                    position = {
+                        x = 221,
+                        y = 90
+                    },
+                    scale = {
+                        x = 1.2,
+                        y = 1.2
+                    },
+                    rotation = 0.0
+                },
+            }
+        },
         -- Player
         {
             components = {
@@ -76,18 +104,18 @@ scene = {
 
                 },
                 text = {
-                    text = "Crimson Engine",
-                    fontId = "press_start_32",
-                    r = 50,
-                    g = 255,
-                    b = 50,
+                    text = "Crimson",
+                    fontId = "press_start_50",
+                    r = 242,
+                    g = 118,
+                    b = 118,
                     a = 255,
 
                 },
                 transform = {
                     position = {
-                        x = 50,
-                        y = 50
+                        x = 225,
+                        y = 90
                     },
                     scale = {
                         x = 1.0,
@@ -97,7 +125,32 @@ scene = {
                 },
             }
         },
-{
+        {
+            components = {
+
+                text = {
+                    text = "Perdiste",
+                    fontId = "press_start_24",
+                    r = 150,
+                    g = 255,
+                    b = 0,
+                    a = 255,
+
+                },
+                transform = {
+                    position = {
+                        x = 305,
+                        y = 285
+                    },
+                    scale = {
+                        x = 1.0,
+                        y = 1.0
+                    },
+                    rotation = 0.0
+                },
+            }
+        },
+        {
             components = {
                 clickable = {
 
@@ -118,8 +171,8 @@ scene = {
                 },
                 transform = {
                     position = {
-                        x = 50,
-                        y = 150
+                        x = 350,
+                        y = 375
                     },
                     scale = {
                         x = 1.0,
@@ -136,7 +189,7 @@ scene = {
                 },
                 script = {
                     
-                    path = "./assets/scripts/menu_button_01.lua"
+                    path = "./assets/scripts/menu_button_02.lua"
                     
                 },
                 text = {
@@ -150,8 +203,8 @@ scene = {
                 },
                 transform = {
                     position = {
-                        x = 50,
-                        y = 250
+                        x = 270,
+                        y = 465
                     },
                     scale = {
                         x = 1.0,
@@ -161,30 +214,6 @@ scene = {
                 },
             }
         },
-        {
-            components = {
-
-                text = {
-                    text = "Ganaste",
-                    fontId = "press_start_24",
-                    r = 150,
-                    g = 255,
-                    b = 0,
-                    a = 255,
-
-                },
-                transform = {
-                    position = {
-                        x = 50,
-                        y = 350
-                    },
-                    scale = {
-                        x = 1.0,
-                        y = 1.0
-                    },
-                    rotation = 0.0
-                },
-            }
-        },
+        
     }
 }

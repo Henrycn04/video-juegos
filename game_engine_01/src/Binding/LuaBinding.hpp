@@ -9,10 +9,13 @@
 #include "../Components/HealthComponent.hpp"
 #include "../Components/TransformComponent.hpp"
 #include "../Components/ProjectileComponent.hpp"
+#include "../Components/SpriteComponent.hpp"
 #include "../Systems/EnemySystem.hpp"
 #include "../Systems/HealthSystem.hpp"
 #include "../Systems/EnemySystem.hpp"
 #include "../Systems/ChargeManageSystem.hpp"
+#include "../Systems/DrawingEffectSystem.hpp"
+#include "../Systems/RenderTextSystem.hpp"
 #include <chrono>
 bool IsActionActivated(const std::string& action) {
     return Game::GetInstance().controllerManager->IsActionActivated(action);
@@ -177,6 +180,55 @@ void AttackRanger(Entity attacker) {
     }
 }
 
+void SetLevel(int level) {
+    Game::GetInstance().currentLevel = level;
+}
+void CurrentDrawIndex(Entity entity, int index) {
+
+    if (Game::GetInstance().drawIndex == -1) {
+        Game::GetInstance().drawIndex = index;
+        auto& registry = Game::GetInstance().registry;
+        for (auto entity : registry->GetSystem<RenderTextSystem>().GetSystemEntities()) {
+            if (entity.HasComponent<DamageChargeComponent>() || entity.HasComponent<SprintChargeComponent>() || entity.HasComponent<SlowChargeComponent>() ) {
+                if (entity.HasComponent<DamageChargeComponent>() && index == 0) {
+                    entity.GetComponent<SpriteComponent>().active = true;
+                } else if (entity.HasComponent<SprintChargeComponent>() && index == 1) {
+                    entity.GetComponent<SpriteComponent>().active = true;
+                } else if (entity.HasComponent<SlowChargeComponent>() && index == 2) {
+                    entity.GetComponent<SpriteComponent>().active = true;
+                }
+                
+            }
+        }
+    } else {
+        int prevIndex = Game::GetInstance().drawIndex;
+        Game::GetInstance().drawIndex = index;
+        auto& registry = Game::GetInstance().registry;
+
+        for (auto entity : registry->GetSystem<RenderTextSystem>().GetSystemEntities()) {
+            if (entity.HasComponent<DamageChargeComponent>() || entity.HasComponent<SprintChargeComponent>() || entity.HasComponent<SlowChargeComponent>() ) {
+                if (entity.HasComponent<DamageChargeComponent>() && index == 0) {
+
+                    entity.GetComponent<SpriteComponent>().active = true;
+                } else if (entity.HasComponent<SprintChargeComponent>() && index == 1) {
+                    entity.GetComponent<SpriteComponent>().active = true;
+                } else if (entity.HasComponent<SlowChargeComponent>() && index == 2) {
+                    entity.GetComponent<SpriteComponent>().active = true;
+                } else if (entity.HasComponent<DamageChargeComponent>() && prevIndex == 0) {
+
+                    entity.GetComponent<SpriteComponent>().active = false;
+                } else if (entity.HasComponent<SprintChargeComponent>() && prevIndex == 1) {
+                    entity.GetComponent<SpriteComponent>().active = false;
+                } else if (entity.HasComponent<SlowChargeComponent>() && prevIndex == 2) {
+                    entity.GetComponent<SpriteComponent>().active = false;
+                }
+                
+            }
+        }
+    }
+    
+
+}
 
 
 

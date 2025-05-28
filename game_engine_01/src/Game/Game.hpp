@@ -48,6 +48,8 @@ public:
     bool finDelNivel = false;
     bool win = false;
     bool isPaused = false;
+    int drawIndex = -1;
+    int currentLevel = 0;
 
 private:
     void Setup();

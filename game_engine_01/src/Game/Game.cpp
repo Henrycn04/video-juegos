@@ -181,19 +181,24 @@ void Game::update() {
         this->registry->GetSystem<HealthSystem>().Update();
         this->registry->GetSystem<MovementSystem>().Update(dt);
         this->registry->GetSystem<ChargeManageSystem>().Update();
-        if (finDelNivel && win) {
-            Game::GetInstance().sceneManager->SetNextScene("win_scene");
-            Game::GetInstance().sceneManager->StopScene();
-            win = false;
-            finDelNivel = false;
-            std::cout << "[GAME] Se cambio a la escena de win" << std::endl;
-        } else if (finDelNivel && !win) {
-            Game::GetInstance().sceneManager->SetNextScene("lose_scene");
-            Game::GetInstance().sceneManager->StopScene();
-            finDelNivel = false;
-            win = false;
-            std::cout << "[GAME] Se cambio a la escena de lose" << std::endl;
+        if (finDelNivel && win && currentLevel != 0) {
+                    std::cout << "[GAME] NIVEEEEEEEEL: " << Game::GetInstance().currentLevel << std::endl;
 
+            std::string sceneName = "win_scene" + std::to_string(currentLevel);
+            Game::GetInstance().sceneManager->SetNextScene(sceneName);
+            Game::GetInstance().sceneManager->StopScene();
+            win = false;
+            finDelNivel = false;
+            std::cout << "[GAME] Se cambio a la escena de win: " << sceneName << std::endl;
+        } else if (finDelNivel && !win && currentLevel != 0) {
+                    std::cout << "[GAME] NIVEEEEEEEEL: " << Game::GetInstance().currentLevel << std::endl;
+
+            std::string sceneName = "lose_scene" + std::to_string(currentLevel);
+            Game::GetInstance().sceneManager->SetNextScene(sceneName);
+            Game::GetInstance().sceneManager->StopScene();
+            finDelNivel = false;
+            win = false;
+            std::cout << "[GAME] Se cambio a la escena de lose: " << sceneName << std::endl;
         }
     }
     

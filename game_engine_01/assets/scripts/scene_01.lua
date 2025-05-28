@@ -11,6 +11,12 @@ scene = {
         {assetId = "ranger01", file_path = "./assets/images/ranger01.png"},
         {assetId = "melee02", file_path = "./assets/images/melee02.png"},
         {assetId = "arrow01", file_path = "./assets/images/arrow01.png"},
+        {assetId = "pow01", file_path = "./assets/images/pow01.png"},
+        {assetId = "pow02", file_path = "./assets/images/pow02.png"},
+        {assetId = "pow03", file_path = "./assets/images/pow03.png"},
+        {assetId = "pow04", file_path = "./assets/images/pow04.png"},
+        {assetId = "pow05", file_path = "./assets/images/pow05.png"},
+        {assetId = "pow06", file_path = "./assets/images/pow06.png"},
 
     },
     -- Tabla de fuentes
@@ -407,14 +413,53 @@ scene = {
                 },
             }
         },
-        { -- Carga de danno
+        { -- Carga de danno off
             components = {
+                sprite = {
+                    assetId = "pow02",
+                    width = 75,
+                    height = 135,
+                    src_rect = {
+                        x = 0,
+                        y = 0,
+                    },
+                    active = true,
+                },
+                transform = {
+                    position = {
+                        x = 50,
+                        y = 40
+                    },
+                    scale = {
+                        x = 1,
+                        y = 1
+                    },
+                    rotation = 0.0
+                },
+            }
+        },
+        { -- Carga de danno on
+            components = {
+                identifier = {
+                    id = 0,
+                    name = "pow01"
+                },
+                sprite = {
+                    assetId = "pow01",
+                    width = 75,
+                    height = 135,
+                    src_rect = {
+                        x = 0,
+                        y = 0,
+                    },
+                    active = false,
+                },
                 damageCharge = {
                     totalCharge = 100,
                     initialCharge = 100,
                 },
                 text = {
-                    text = "D",
+                    text = "",
                     fontId = "press_start_32",
                     r = 255,
                     g = 0,
@@ -425,18 +470,58 @@ scene = {
                 transform = {
                     position = {
                         x = 50,
-                        y = 50
+                        y = 40
                     },
                     scale = {
-                        x = 1.5,
-                        y = 2
+                        x = 1,
+                        y = 1
                     },
                     rotation = 0.0
                 },
             }
         },
-                { -- Carga de rapidez
+        { -- Carga de rapidez off
             components = {
+                sprite = {
+                    assetId = "pow04",
+                    width = 75,
+                    height = 135,
+                    src_rect = {
+                        x = 0,
+                        y = 0,
+                    },
+                    active = true,
+                },
+
+                transform = {
+                    position = {
+                        x = 175,
+                        y = 40
+                    },
+                    scale = {
+                        x = 1,
+                        y = 1
+                    },
+                    rotation = 0.0
+                },
+            }
+        },
+        { -- Carga de rapidez on
+            components = {
+                identifier = {
+                    id = 0,
+                    name = "pow03"
+                },
+                sprite = {
+                    assetId = "pow03",
+                    width = 75,
+                    height = 135,
+                    src_rect = {
+                        x = 0,
+                        y = 0,
+                    },
+                    active = false,
+                },
                 sprintCharge = {
                     totalCharge = 100,
                     initialCharge = 100,
@@ -453,18 +538,58 @@ scene = {
                 transform = {
                     position = {
                         x = 175,
-                        y = 50
+                        y = 40
                     },
                     scale = {
-                        x = 1.5,
-                        y = 2
+                        x = 1,
+                        y = 1
                     },
                     rotation = 0.0
                 },
             }
         },
-        { -- Carga de slow
+        { -- Carga de slow off
             components = {
+                sprite = {
+                    assetId = "pow06",
+                    width = 75,
+                    height = 135,
+                    src_rect = {
+                        x = 0,
+                        y = 0,
+                    },
+                    active = true,
+                },
+
+                transform = {
+                    position = {
+                        x = 300,
+                        y = 40
+                    },
+                    scale = {
+                        x = 1,
+                        y = 1
+                    },
+                    rotation = 0.0
+                },
+            }
+        },
+        { -- Carga de slow on
+            components = {
+                identifier = {
+                    id = 0,
+                    name = "pow05"
+                },
+                sprite = {
+                    assetId = "pow05",
+                    width = 75,
+                    height = 135,
+                    src_rect = {
+                        x = 0,
+                        y = 0,
+                    },
+                    active = false,
+                },
                 slowCharge = {
                     totalCharge = 100,
                     initialCharge = 100,
@@ -481,11 +606,11 @@ scene = {
                 transform = {
                     position = {
                         x = 300,
-                        y = 50
+                        y = 40
                     },
                     scale = {
-                        x = 1.5,
-                        y = 2
+                        x = 1,
+                        y = 1
                     },
                     rotation = 0.0
                 },

@@ -42,11 +42,11 @@ class MovementSystem : public System {
 
                 }
 
-                if (transform.position.y < 75) {
-                    transform.position.y = 75;
+                if (transform.position.y < 175) {
+                    transform.position.y = 175;
                     crash = true;
-                } else if (transform.position.y > game.windowHeight - (sprite.height * transform.scale.y)) {
-                    transform.position.y = game.windowHeight - (sprite.height * transform.scale.y);
+                } else if (transform.position.y > game.windowHeight - (sprite.height * transform.scale.y) - 25) {
+                    transform.position.y = game.windowHeight - (sprite.height * transform.scale.y) - 25;
                     crash = true;
                 }
                 // Ajustar orientación horizontal del sprite según velocidad

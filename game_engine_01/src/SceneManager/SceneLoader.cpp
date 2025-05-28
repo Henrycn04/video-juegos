@@ -42,6 +42,7 @@ void SceneLoader::LoadScene(const std::string& scenePath, sol::state& lua,
 
     Game::GetInstance().enemiesLeft = 0;
     Game::GetInstance().enemiesLeftToSpawn = 0;
+    Game::GetInstance().drawIndex = -1;
     Game::GetInstance().win = false;
     Game::GetInstance().finDelNivel = false;
     Game::GetInstance().totalPointsPrev = Game::GetInstance().totalPoints;

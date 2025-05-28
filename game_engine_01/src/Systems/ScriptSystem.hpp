@@ -30,7 +30,8 @@ public:
         lua.set_function("get_all_enemies", GetAllEnemies);
         lua.set_function("get_enemy_position_by_id", GetEnemyPositionById);
         lua.set_function("attack_ranger", AttackRanger);
-
+        lua.set_function("set_draw_index", CurrentDrawIndex);
+        lua.set_function("set_level", SetLevel);
     }
     void Update(sol::state& lua) {
         for (auto entity : GetSystemEntities()) {
