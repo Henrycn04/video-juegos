@@ -195,7 +195,7 @@ scene = {
                 },
                 script = {
                     
-                    path = "./assets/scripts/menu_button_01.lua"
+                    path = "./assets/scripts/menu_button_02.lua"
                     
                 },
                 text = {
@@ -227,7 +227,7 @@ scene = {
                 },
                 script = {
                     
-                    path = "./assets/scripts/menu_button_01.lua"
+                    path = "./assets/scripts/menu_button_02.lua"
                     
                 },
                 text = {
@@ -258,7 +258,7 @@ scene = {
                 },
                 script = {
                     
-                    path = "./assets/scripts/menu_button_01.lua"
+                    path = "./assets/scripts/menu_button_03.lua"
                     
                 },
                 text = {
@@ -290,7 +290,7 @@ scene = {
                 },
                 script = {
                     
-                    path = "./assets/scripts/menu_button_01.lua"
+                    path = "./assets/scripts/menu_button_03.lua"
                     
                 },
                 text = {

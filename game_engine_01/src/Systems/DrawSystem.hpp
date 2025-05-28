@@ -43,7 +43,7 @@ void Update(SDL_Renderer* renderer) {
 
             // Dibuja los puntos restantes
             for (const auto& point : drawable.colorPoints[i]) {
-                if (point.first.y > 75) {
+                if (point.first.y > 175) {
                     int size = 10; // Tamaño del trazo
                     SDL_Rect drawRect = {
                         static_cast<int>(point.first.x) - size / 2,

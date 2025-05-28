@@ -1,7 +1,7 @@
 
 scene = {
     background = {
-        [0] = {assetId = "background04", file_path = "./assets/images/background04.png"},
+        [0] = {assetId = "background06", file_path = "./assets/images/background06.png"},
     },
     -- Tabla de imagenes
     sprites = {
@@ -11,6 +11,7 @@ scene = {
         {assetId = "ranger01", file_path = "./assets/images/ranger01.png"},
         {assetId = "melee02", file_path = "./assets/images/melee02.png"},
         {assetId = "arrow01", file_path = "./assets/images/arrow01.png"},
+                {assetId = "final_boss", file_path = "./assets/images/final_boss.png"},
 
     },
     -- Tabla de fuentes
@@ -48,7 +49,7 @@ scene = {
             {
             components = {
                 sprite = {
-                    assetId = "background04",
+                    assetId = "background06",
                     width = 800,
                     height = 600,
                     src_rect = {
@@ -112,8 +113,8 @@ scene = {
                     attack_timeout = 1.0,
                 },
                 enemy = {
-                    amountToSpawn = 3,
-                    totalAmount = 5,
+                    amountToSpawn = 10,
+                    totalAmount = 90,
                     points = 20
                 },
                 rigidbody = {
@@ -249,7 +250,7 @@ scene = {
                 },
                 enemy = {
                     amountToSpawn = 2,
-                    totalAmount = 6,
+                    totalAmount = 4,
                     points = 10
                 },
                 rigidbody = {
@@ -287,6 +288,74 @@ scene = {
                 text = {
                     text = "",
                     fontId = "press_start_24",
+                    r = 50,
+                    g = 255,
+                    b = 50,
+                    a = 255,
+                },
+            },
+
+
+        },
+        {
+        components = { -- FINAL BOSS
+                animation = {
+                    num_frames = 8,
+                    frame_speed_rate = 10,
+                    loop = true,
+                },
+                circle_collider = {
+                    radius = 23,
+                    width = 45,
+                    height = 65
+                },
+                health = {
+                    health = 500,
+                    maxHealth = 500,
+                    isPlayer = false,
+                    damage = 15,
+                    attack_timeout = 1.0,
+                },
+                enemy = {
+                    amountToSpawn = 1,
+                    totalAmount = 1,
+                    points = 1000
+                },
+                rigidbody = {
+                    velocity = {
+                        x = 0,
+                        y = 0
+                    },
+                },
+                script = {
+                    path = "./assets/scripts/tank_movement.lua"
+                },
+                sprite = {
+                    assetId = "final_boss",
+                    width = 45,
+                    height = 65,
+                    src_rect = {
+                        x = 0,
+                        y = 0,
+                    },
+                    active = false,
+                },
+                transform = { -- Generar en 0, luego se crean
+                    position = {
+                        x = 0.0,
+                        y = 0.0
+                    },
+                    scale = {
+                        x = 1,
+                        y = 1
+                    },
+                    rotation = 0.0
+                },
+                effect_receiver = {
+                },
+                text = {
+                    text = "",
+                    fontId = "press_start_32",
                     r = 50,
                     g = 255,
                     b = 50,
