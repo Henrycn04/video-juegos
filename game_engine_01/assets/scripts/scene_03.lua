@@ -187,8 +187,8 @@ scene = {
                     attack_timeout = 1.0,
                 },
                 enemy = {
-                    amountToSpawn = 4,
-                    totalAmount = 8,
+                    amountToSpawn = 0,
+                    totalAmount = 0,
                     points = 15
                 },
                 rigidbody = {
@@ -255,8 +255,8 @@ scene = {
                     attack_timeout = 1.0,
                 },
                 enemy = {
-                    amountToSpawn = 2,
-                    totalAmount = 4,
+                    amountToSpawn = 0,
+                    totalAmount = 0,
                     points = 10
                 },
                 rigidbody = {

@@ -16,7 +16,7 @@ void Update(SDL_Renderer* renderer) {
     for (auto entity : GetSystemEntities()) {
         auto& drawable = entity.GetComponent<DrawableComponent>();
         
-        for (int i = 0; i < drawable.colorPoints.size(); ++i) {
+        for (size_t i = 0; i < drawable.colorPoints.size(); ++i) {
             SDL_Color color;
             switch (i) {
                 case 0: color = {255, 0, 0, 255}; break;

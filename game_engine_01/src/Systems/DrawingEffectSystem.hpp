@@ -32,7 +32,7 @@ public:
             }
             
             // Procesar otros colores si necesitas
-            for (int colorIndex = 1; colorIndex < drawable.colorPoints.size(); ++colorIndex) {
+            for (size_t colorIndex = 1; colorIndex < drawable.colorPoints.size(); ++colorIndex) {
                 ProcessOtherEffects(drawable.colorPoints[colorIndex], colorIndex);
             }
         }

@@ -1,31 +1,52 @@
 #ifndef DAMAGECHARGECOMPONENT_HPP
 #define DAMAGECHARGECOMPONENT_HPP
+
 #include <string>
 
+/**
+ * @struct DamageChargeComponent
+ * @brief Component for managing a charge-based damage system in the ECS.
+ */
 struct DamageChargeComponent {
+    /** @brief Total charge capacity. */
     int totalCharge;
-    int currentCharge;
-    std::string chargeDisplay; // String para mostrar "currentCharge/totalCharge"
 
-    // Constructor
+    /** @brief Current charge level. */
+    int currentCharge;
+
+    /** @brief String representation of the charge level in the format "currentCharge/totalCharge". */
+    std::string chargeDisplay;
+
+    /**
+     * @brief Constructs a DamageChargeComponent with specified total and initial charge.
+     * @param total The total charge capacity (default: 100).
+     * @param initialCharge The initial charge level (default: 100).
+     */
     DamageChargeComponent(int total = 100, int initialCharge = 100) {
         totalCharge = total;
         currentCharge = initialCharge;
         updateChargeDisplay();
     }
-    
-    // Actualiza el string de visualización
+
+    /**
+     * @brief Updates the charge display string to reflect current and total charge.
+     */
     void updateChargeDisplay() {
         chargeDisplay = std::to_string(currentCharge) + "/" + std::to_string(totalCharge);
     }
-    
-    // Recargar completamente
+
+    /**
+     * @brief Fully recharges the component to its total capacity.
+     */
     void Recharge() {
         currentCharge = totalCharge;
         updateChargeDisplay();
     }
-    
-    // Cargar una cantidad específica
+
+    /**
+     * @brief Adds a specified amount to the current charge, capped at total capacity.
+     * @param amount The amount of charge to add.
+     */
     void Charge(int amount) {
         currentCharge += amount;
         if (currentCharge > totalCharge) {
@@ -33,8 +54,11 @@ struct DamageChargeComponent {
         }
         updateChargeDisplay();
     }
-    
-    // Descargar una cantidad específica
+
+    /**
+     * @brief Removes a specified amount from the current charge, preventing negative values.
+     * @param amount The amount of charge to remove.
+     */
     void Discharge(int amount) {
         currentCharge -= amount;
         if (currentCharge < 0) {
@@ -42,19 +66,28 @@ struct DamageChargeComponent {
         }
         updateChargeDisplay();
     }
-    
-    // Obtener porcentaje de carga actual
+
+    /**
+     * @brief Calculates the current charge as a percentage of the total capacity.
+     * @return The percentage of charge remaining (0.0f if totalCharge is 0).
+     */
     float GetPercentage() const {
         if (totalCharge == 0) return 0.0f;
         return (static_cast<float>(currentCharge) / static_cast<float>(totalCharge)) * 100.0f;
     }
-    
-    // Verificar si está completamente cargado
+
+    /**
+     * @brief Checks if the charge is at full capacity.
+     * @return True if current charge equals total charge, false otherwise.
+     */
     bool IsFullyCharged() const {
         return currentCharge == totalCharge;
     }
-    
-    // Verificar si está vacío
+
+    /**
+     * @brief Checks if the charge is depleted.
+     * @return True if current charge is 0, false otherwise.
+     */
     bool IsEmpty() const {
         return currentCharge == 0;
     }
