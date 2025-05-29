@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['radius_0',['radius',['../structCircleColliderComponent.html#a12a63f8eb12b071bfece0bb9bd38683a',1,'CircleColliderComponent']]],
+  ['recharge_1',['recharge',['../structDamageChargeComponent.html#af9d65dc8885815c06d76e552a9fc0004',1,'DamageChargeComponent::Recharge()'],['../structSlowChargeComponent.html#a34de79ba58ea960fbc0df935d96c387f',1,'SlowChargeComponent::Recharge()'],['../structSprintChargeComponent.html#ac50128fd422cccd4ff028a09d0499ef4',1,'SprintChargeComponent::Recharge()']]],
+  ['reducehp_2',['ReduceHP',['../classHealthSystem.html#aa286921ea370318d19b1f6bd03c4093d',1,'HealthSystem']]],
+  ['registry_3',['registry',['../classRegistry.html',1,'Registry'],['../classRegistry.html#acb15d8aa051bf36ea92a86ee6c00bc3c',1,'Registry::Registry()'],['../classGame.html#ab9ec8204418df1ecb54b9522fc7fac0a',1,'Game::registry'],['../classEntity.html#a80cc8ec12331e7aaec78d2b6cae9a6a7',1,'Entity::registry']]],
+  ['removecomponent_4',['removecomponent',['../classEntity.html#ae0a4dce2a3d4a1d8025b6ae037a6624f',1,'Entity::RemoveComponent()'],['../classRegistry.html#a983d52e579dde04607b487ed3dc800ee',1,'Registry::RemoveComponent()']]],
+  ['removeentityfromsystem_5',['RemoveEntityFromSystem',['../classSystem.html#a05a2e9d96800e05c3d4c8d7ebfd9903b',1,'System']]],
+  ['removeentityfromsystems_6',['RemoveEntityFromSystems',['../classRegistry.html#af148a233165c929304b3ac1b55a03b41',1,'Registry']]],
+  ['removesystem_7',['RemoveSystem',['../classRegistry.html#a8dba180c0abfb4fde4dc0e8e02b92c98',1,'Registry']]],
+  ['renderer_8',['renderer',['../classGame.html#ae5164c37c0dc74cfb56041174017bf57',1,'Game']]],
+  ['rendersystem_9',['rendersystem',['../classRenderSystem.html#a20496a8f52c4eb755d4bfcaba2e98e1c',1,'RenderSystem::RenderSystem()'],['../classRenderSystem.html',1,'RenderSystem']]],
+  ['rendertextsystem_10',['rendertextsystem',['../classRenderTextSystem.html',1,'RenderTextSystem'],['../classRenderTextSystem.html#a2ae7b1c0766f9ed916503c8b0e647d5c',1,'RenderTextSystem::RenderTextSystem()']]],
+  ['requirecomponent_11',['RequireComponent',['../classSystem.html#ac15b3d09b3f3c485af1364255f21dbd5',1,'System']]],
+  ['resize_12',['Resize',['../classPool.html#a0ebc69a33156ac04d9d9fe3e594d74d5',1,'Pool']]],
+  ['restart_13',['Restart',['../classEventManager.html#a6fdcd54b9a2e77fd17a56fb4d0989f42',1,'EventManager']]],
+  ['resumesound_14',['ResumeSound',['../classSoundSystem.html#ad4426cd220ca325bb4a6fb3a7022f0f6',1,'SoundSystem']]],
+  ['rigidbodycomponent_15',['rigidbodycomponent',['../structRigidBodyComponent.html',1,'RigidBodyComponent'],['../structRigidBodyComponent.html#aac2c377b56e3a8bc9028b0141fc5fb30',1,'RigidBodyComponent::RigidBodyComponent()']]],
+  ['rotation_16',['rotation',['../structProjectileComponent.html#aa566ed12696ad4676e3046814530fecc',1,'ProjectileComponent::rotation'],['../structTransformComponent.html#a29681e7acef575a6992f697a10c12f77',1,'TransformComponent::rotation']]],
+  ['run_17',['run',['../classGame.html#a1ab78f5ed0d5ea879157357cf2fb2afa',1,'Game']]]
+];

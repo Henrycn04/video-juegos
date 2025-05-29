@@ -1,0 +1,69 @@
+\doxysubsection{Sound\+System.\+hpp}
+\hypertarget{SoundSystem_8hpp_source}{}\label{SoundSystem_8hpp_source}\index{Systems/SoundSystem.hpp@{Systems/SoundSystem.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SOUNDSYSTEM\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SOUNDSYSTEM\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_mixer.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}../AssetManager/AssetManager.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}../Components/SoundComponent.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}../ECS/ECS.hpp"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSoundSystem}{SoundSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classSystem}{System}}\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classSoundSystem_aa5bfc020c7c8b5643e353b9079d3883b}{SoundSystem}}()\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ RequireComponent<SoundComponent>();}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSoundSystem_aad3905d2ba56e120d44b15170bcafa79}{Update}}(std::unique\_ptr<AssetManager>\&\ assetManager)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ std::vector<Entity>\ entities\ =\ \mbox{\hyperlink{classSystem_aec0388b6db4900c4d4a9e1dea0f09205}{GetSystemEntities}}();}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ entity\ :\ entities)\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ sound\ =\ entity.GetComponent<\mbox{\hyperlink{structSoundComponent}{SoundComponent}}>();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!sound.active)\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Auto-\/reproducir\ sonidos\ marcados\ para\ autoPlay}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sound.autoPlay\ \&\&\ !sound.isPlaying)\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSoundSystem_a530f685a31585d770bfd6f12f97ae0ee}{PlaySound}}(assetManager,\ sound);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSoundSystem_a530f685a31585d770bfd6f12f97ae0ee}{PlaySound}}(std::unique\_ptr<AssetManager>\&\ assetManager,\ \mbox{\hyperlink{structSoundComponent}{SoundComponent}}\&\ sound)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sound.\mbox{\hyperlink{structSoundComponent_a8af764a20e5c24fc0927251080cd35c3}{soundId}}\ ==\ \textcolor{stringliteral}{"{}none"{}}\ ||\ !sound.\mbox{\hyperlink{structSoundComponent_a2755cf4db6361a04b5f21b9843c854c6}{active}})\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ Mix\_Chunk*\ chunk\ =\ assetManager-\/>GetSound(sound.\mbox{\hyperlink{structSoundComponent_a8af764a20e5c24fc0927251080cd35c3}{soundId}});}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (chunk\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ Mix\_VolumeChunk(chunk,\ sound.\mbox{\hyperlink{structSoundComponent_a8b46b3d641875c1e3d393a6367805a7e}{volume}});}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ channel\ =\ Mix\_PlayChannel(-\/1,\ chunk,\ sound.\mbox{\hyperlink{structSoundComponent_a58b41bd03bb0b86cc5c16440ffb1ded2}{loops}});}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ sound.\mbox{\hyperlink{structSoundComponent_accd10342d8dae8192cd86df398b56a9a}{isPlaying}}\ =\ (channel\ !=\ -\/1);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSoundSystem_a5d0ea1ec8d1e9d679221bc594bda241d}{StopSound}}(\mbox{\hyperlink{structSoundComponent}{SoundComponent}}\&\ sound)\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ sound.\mbox{\hyperlink{structSoundComponent_accd10342d8dae8192cd86df398b56a9a}{isPlaying}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nota:\ Para\ detener\ un\ sonido\ específico\ necesitarías\ trackear\ el\ canal}}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSoundSystem_a6570ec44ee50bb26fe5a37c06bae206b}{PauseSound}}(\mbox{\hyperlink{structSoundComponent}{SoundComponent}}\&\ sound)\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sound.\mbox{\hyperlink{structSoundComponent_accd10342d8dae8192cd86df398b56a9a}{isPlaying}})\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ Mix\_Pause(-\/1);\ \textcolor{comment}{//\ Pausa\ todos\ los\ canales,\ idealmente\ trackearias\ el\ canal\ específico}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSoundSystem_ad4426cd220ca325bb4a6fb3a7022f0f6}{ResumeSound}}(\mbox{\hyperlink{structSoundComponent}{SoundComponent}}\&\ sound)\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!sound.\mbox{\hyperlink{structSoundComponent_accd10342d8dae8192cd86df398b56a9a}{isPlaying}})\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ Mix\_Resume(-\/1);\ \textcolor{comment}{//\ Reanuda\ todos\ los\ canales}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

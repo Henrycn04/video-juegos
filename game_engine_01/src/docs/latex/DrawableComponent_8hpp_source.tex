@@ -1,0 +1,31 @@
+\doxysubsection{Drawable\+Component.\+hpp}
+\hypertarget{DrawableComponent_8hpp_source}{}\label{DrawableComponent_8hpp_source}\index{Components/DrawableComponent.hpp@{Components/DrawableComponent.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DRAWABLE\_COMPONENT\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DRAWABLE\_COMPONENT\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <SDL2/SDL.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <glm/vec2.hpp>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structDrawableComponent}{DrawableComponent}}\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ SDL\_Color\ \mbox{\hyperlink{structDrawableComponent_a10e3a18777d8ba75ed3faee0aef6ef37}{color}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00018\ \ \ \ \ std::vector<std::vector<std::pair<glm::vec2,\ std::chrono::steady\_clock::time\_point>>>\ \mbox{\hyperlink{structDrawableComponent_ada41b9e15c47ca75ae74ecbd4321e9ef}{colorPoints}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{structDrawableComponent_a65744606aaf5e1a7edea8d681aa37259}{DrawableComponent}}()\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structDrawableComponent_a10e3a18777d8ba75ed3faee0aef6ef37}{color}}\ =\ \{255,\ 255,\ 255,\ 255\};\ \textcolor{comment}{//\ White}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structDrawableComponent_ada41b9e15c47ca75ae74ecbd4321e9ef}{colorPoints}}.resize(3);\ \textcolor{comment}{//\ Red,\ blue,\ green}}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{structDrawableComponent_a0eea2b7bf10f2ca22ca5d18c08545979}{DrawableComponent}}(SDL\_Color\ col)\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structDrawableComponent_a10e3a18777d8ba75ed3faee0aef6ef37}{color}}\ =\ col;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structDrawableComponent_ada41b9e15c47ca75ae74ecbd4321e9ef}{colorPoints}}.resize(3);\ \textcolor{comment}{//\ Red,\ blue,\ green}}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ DRAWABLE\_COMPONENT\_HPP}}
+
+\end{DoxyCode}

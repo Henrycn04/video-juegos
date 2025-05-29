@@ -1,0 +1,33 @@
+\doxysubsection{Projectile\+Component.\+hpp}
+\hypertarget{ProjectileComponent_8hpp_source}{}\label{ProjectileComponent_8hpp_source}\index{Components/ProjectileComponent.hpp@{Components/ProjectileComponent.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PROJECTILECOMPONENT\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PROJECTILECOMPONENT\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <../libs/glm/glm.hpp>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structProjectileComponent}{ProjectileComponent}}\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ glm::vec2\ \mbox{\hyperlink{structProjectileComponent_a845a4b9ea2850c924a93594f1c106998}{velocity}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00015\ \ \ \ \ glm::vec2\ \mbox{\hyperlink{structProjectileComponent_ac82e742bdff996ca02c4ae99f74c5629}{position}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00018\ \ \ \ \ glm::vec2\ \mbox{\hyperlink{structProjectileComponent_af074576384946c5302582b055d116ebb}{scale}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structProjectileComponent_aa566ed12696ad4676e3046814530fecc}{rotation}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structProjectileComponent_acaed8c798f23140216745362ea9c07cc}{hasHit}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structProjectileComponent_a6c87c1af36e905d59e256f8cb86f62fe}{damage}};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{structProjectileComponent_aacb3a6ef246ca7a532e89c51f80c7650}{ProjectileComponent}}(glm::vec2\ \mbox{\hyperlink{structProjectileComponent_ac82e742bdff996ca02c4ae99f74c5629}{position}}\ =\ glm::vec2(0.0,\ 0.0),\ glm::vec2\ \mbox{\hyperlink{structProjectileComponent_af074576384946c5302582b055d116ebb}{scale}}\ =\ glm::vec2(1.0,\ 1.0),\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structProjectileComponent_aa566ed12696ad4676e3046814530fecc}{rotation}}\ =\ 0.0,\ \textcolor{keyword}{const}\ glm::vec2\&\ \mbox{\hyperlink{structProjectileComponent_a845a4b9ea2850c924a93594f1c106998}{velocity}}\ =\ glm::vec2(0.0f,\ 0.0f))\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ this-\/>velocity\ =\ \mbox{\hyperlink{structProjectileComponent_a845a4b9ea2850c924a93594f1c106998}{velocity}};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ this-\/>position\ =\ \mbox{\hyperlink{structProjectileComponent_ac82e742bdff996ca02c4ae99f74c5629}{position}};}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ this-\/>scale\ =\ \mbox{\hyperlink{structProjectileComponent_af074576384946c5302582b055d116ebb}{scale}};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ this-\/>rotation\ =\ \mbox{\hyperlink{structProjectileComponent_aa566ed12696ad4676e3046814530fecc}{rotation}};}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

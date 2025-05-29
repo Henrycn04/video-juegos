@@ -1,0 +1,150 @@
+\doxysubsection{Sprint\+Charge\+Component Struct Reference}
+\hypertarget{structSprintChargeComponent}{}\label{structSprintChargeComponent}\index{SprintChargeComponent@{SprintChargeComponent}}
+
+
+\doxylink{classComponent}{Component} that manages sprint charge functionality.  
+
+
+
+
+{\ttfamily \#include $<$Sprint\+Charge\+Component.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structSprintChargeComponent_aee2d397dd8c0721a515dbda80861cef8}{Sprint\+Charge\+Component}} (int total=100, int initial\+Charge=100)
+\begin{DoxyCompactList}\small\item\em Construct a new Sprint Charge \doxylink{classComponent}{Component} object. \end{DoxyCompactList}\item 
+\Hypertarget{structSprintChargeComponent_ad631c983727a5c6b9aec929bed81b22b}\label{structSprintChargeComponent_ad631c983727a5c6b9aec929bed81b22b} 
+void {\bfseries update\+Charge\+Display} ()
+\begin{DoxyCompactList}\small\item\em Updates the display string to reflect current charge state. \end{DoxyCompactList}\item 
+\Hypertarget{structSprintChargeComponent_ac50128fd422cccd4ff028a09d0499ef4}\label{structSprintChargeComponent_ac50128fd422cccd4ff028a09d0499ef4} 
+void {\bfseries Recharge} ()
+\begin{DoxyCompactList}\small\item\em Fully recharge to maximum capacity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structSprintChargeComponent_a21f41de6e8f6c4d1673ca46557b16197}{Charge}} (int amount)
+\begin{DoxyCompactList}\small\item\em Add a specific amount of charge. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structSprintChargeComponent_a1fb0be8c4a9b086b9c620c47955b1a80}{Discharge}} (int amount)
+\begin{DoxyCompactList}\small\item\em Remove a specific amount of charge. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structSprintChargeComponent_aaa8c15af09d6e6b03305cc332fd34734}{Get\+Percentage}} () const
+\begin{DoxyCompactList}\small\item\em Get current charge percentage. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structSprintChargeComponent_a394ef87a55c5bc830a467f9619107cd8}{Is\+Fully\+Charged}} () const
+\begin{DoxyCompactList}\small\item\em Check if fully charged. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structSprintChargeComponent_ad549454cd22bee17060dd3f169abca4f}{Is\+Empty}} () const
+\begin{DoxyCompactList}\small\item\em Check if completely discharged. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structSprintChargeComponent_af3c59adab2aa801e45be37d9d9e74bdb}\label{structSprintChargeComponent_af3c59adab2aa801e45be37d9d9e74bdb} 
+int {\bfseries total\+Charge}
+\begin{DoxyCompactList}\small\item\em Maximum possible charge value. \end{DoxyCompactList}\item 
+\Hypertarget{structSprintChargeComponent_a6d7a9a38180ff915f0fa55270ed67688}\label{structSprintChargeComponent_a6d7a9a38180ff915f0fa55270ed67688} 
+int {\bfseries current\+Charge}
+\begin{DoxyCompactList}\small\item\em Current amount of charge available. \end{DoxyCompactList}\item 
+\Hypertarget{structSprintChargeComponent_a3c7618014a3700110814ad7a0be11189}\label{structSprintChargeComponent_a3c7618014a3700110814ad7a0be11189} 
+std\+::string {\bfseries charge\+Display}
+\begin{DoxyCompactList}\small\item\em String to display "{}current\+Charge/total\+Charge"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{classComponent}{Component} that manages sprint charge functionality. 
+
+Tracks current and total charge amounts and provides utility methods for charge management and display. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structSprintChargeComponent_aee2d397dd8c0721a515dbda80861cef8}\label{structSprintChargeComponent_aee2d397dd8c0721a515dbda80861cef8} 
+\index{SprintChargeComponent@{SprintChargeComponent}!SprintChargeComponent@{SprintChargeComponent}}
+\index{SprintChargeComponent@{SprintChargeComponent}!SprintChargeComponent@{SprintChargeComponent}}
+\doxyparagraph{\texorpdfstring{SprintChargeComponent()}{SprintChargeComponent()}}
+{\footnotesize\ttfamily Sprint\+Charge\+Component\+::\+Sprint\+Charge\+Component (\begin{DoxyParamCaption}\item[{int}]{total = {\ttfamily 100},  }\item[{int}]{initial\+Charge = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new Sprint Charge \doxylink{classComponent}{Component} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em total} & Maximum charge capacity (default\+: 100) \\
+\hline
+{\em initial\+Charge} & Starting charge amount (default\+: 100) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{structSprintChargeComponent_a21f41de6e8f6c4d1673ca46557b16197}\label{structSprintChargeComponent_a21f41de6e8f6c4d1673ca46557b16197} 
+\index{SprintChargeComponent@{SprintChargeComponent}!Charge@{Charge}}
+\index{Charge@{Charge}!SprintChargeComponent@{SprintChargeComponent}}
+\doxyparagraph{\texorpdfstring{Charge()}{Charge()}}
+{\footnotesize\ttfamily void Sprint\+Charge\+Component\+::\+Charge (\begin{DoxyParamCaption}\item[{int}]{amount }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add a specific amount of charge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & Quantity to charge (will not exceed total\+Charge) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structSprintChargeComponent_a1fb0be8c4a9b086b9c620c47955b1a80}\label{structSprintChargeComponent_a1fb0be8c4a9b086b9c620c47955b1a80} 
+\index{SprintChargeComponent@{SprintChargeComponent}!Discharge@{Discharge}}
+\index{Discharge@{Discharge}!SprintChargeComponent@{SprintChargeComponent}}
+\doxyparagraph{\texorpdfstring{Discharge()}{Discharge()}}
+{\footnotesize\ttfamily void Sprint\+Charge\+Component\+::\+Discharge (\begin{DoxyParamCaption}\item[{int}]{amount }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Remove a specific amount of charge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & Quantity to discharge (will not go below 0) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structSprintChargeComponent_aaa8c15af09d6e6b03305cc332fd34734}\label{structSprintChargeComponent_aaa8c15af09d6e6b03305cc332fd34734} 
+\index{SprintChargeComponent@{SprintChargeComponent}!GetPercentage@{GetPercentage}}
+\index{GetPercentage@{GetPercentage}!SprintChargeComponent@{SprintChargeComponent}}
+\doxyparagraph{\texorpdfstring{GetPercentage()}{GetPercentage()}}
+{\footnotesize\ttfamily float Sprint\+Charge\+Component\+::\+Get\+Percentage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get current charge percentage. 
+
+\begin{DoxyReturn}{Returns}
+float Percentage of current charge relative to total (0.\+0-\/100.\+0) 
+\end{DoxyReturn}
+\Hypertarget{structSprintChargeComponent_ad549454cd22bee17060dd3f169abca4f}\label{structSprintChargeComponent_ad549454cd22bee17060dd3f169abca4f} 
+\index{SprintChargeComponent@{SprintChargeComponent}!IsEmpty@{IsEmpty}}
+\index{IsEmpty@{IsEmpty}!SprintChargeComponent@{SprintChargeComponent}}
+\doxyparagraph{\texorpdfstring{IsEmpty()}{IsEmpty()}}
+{\footnotesize\ttfamily bool Sprint\+Charge\+Component\+::\+Is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if completely discharged. 
+
+\begin{DoxyReturn}{Returns}
+true When current\+Charge equals 0 
+
+false Otherwise 
+\end{DoxyReturn}
+\Hypertarget{structSprintChargeComponent_a394ef87a55c5bc830a467f9619107cd8}\label{structSprintChargeComponent_a394ef87a55c5bc830a467f9619107cd8} 
+\index{SprintChargeComponent@{SprintChargeComponent}!IsFullyCharged@{IsFullyCharged}}
+\index{IsFullyCharged@{IsFullyCharged}!SprintChargeComponent@{SprintChargeComponent}}
+\doxyparagraph{\texorpdfstring{IsFullyCharged()}{IsFullyCharged()}}
+{\footnotesize\ttfamily bool Sprint\+Charge\+Component\+::\+Is\+Fully\+Charged (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if fully charged. 
+
+\begin{DoxyReturn}{Returns}
+true When current\+Charge equals total\+Charge 
+
+false Otherwise 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Components/Sprint\+Charge\+Component.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,116 @@
+\doxysubsection{System Class Reference}
+\hypertarget{classSystem}{}\label{classSystem}\index{System@{System}}
+
+
+Represents a system in the ECS that operates on entities with specific components.  
+
+
+
+
+{\ttfamily \#include $<$ECS.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSystem_a7ffb94a5a2db03014de0a8440f0cee3a}\label{classSystem_a7ffb94a5a2db03014de0a8440f0cee3a} 
+{\bfseries System} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor for the system. \end{DoxyCompactList}\item 
+\Hypertarget{classSystem_abca337cbfb742e1abea5624d9b36f7e5}\label{classSystem_abca337cbfb742e1abea5624d9b36f7e5} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+System} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor for the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSystem_a36b3396cdb8fa107bd4515382fbb8847}{Add\+Entity\+To\+System}} (\mbox{\hyperlink{classEntity}{Entity}} entity)
+\begin{DoxyCompactList}\small\item\em Adds an entity to the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSystem_a05a2e9d96800e05c3d4c8d7ebfd9903b}{Remove\+Entity\+From\+System}} (\mbox{\hyperlink{classEntity}{Entity}} entity)
+\begin{DoxyCompactList}\small\item\em Removes an entity from the system. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} $>$ \mbox{\hyperlink{classSystem_aec0388b6db4900c4d4a9e1dea0f09205}{Get\+System\+Entities}} () const
+\begin{DoxyCompactList}\small\item\em Gets the list of entities managed by this system. \end{DoxyCompactList}\item 
+const Signature \& \mbox{\hyperlink{classSystem_af97298c27dfe2231ab21bdb1a0316dc4}{Get\+Component\+Signature}} () const
+\begin{DoxyCompactList}\small\item\em Gets the component signature of the system. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename TComponent $>$ }\\void \mbox{\hyperlink{classSystem_ac15b3d09b3f3c485af1364255f21dbd5}{Require\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Specifies a required component for the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Represents a system in the ECS that operates on entities with specific components. 
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classSystem_a36b3396cdb8fa107bd4515382fbb8847}\label{classSystem_a36b3396cdb8fa107bd4515382fbb8847} 
+\index{System@{System}!AddEntityToSystem@{AddEntityToSystem}}
+\index{AddEntityToSystem@{AddEntityToSystem}!System@{System}}
+\doxyparagraph{\texorpdfstring{AddEntityToSystem()}{AddEntityToSystem()}}
+{\footnotesize\ttfamily void System\+::\+Add\+Entity\+To\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}}}]{entity }\end{DoxyParamCaption})}
+
+
+
+Adds an entity to the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & The entity to add. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classSystem_af97298c27dfe2231ab21bdb1a0316dc4}\label{classSystem_af97298c27dfe2231ab21bdb1a0316dc4} 
+\index{System@{System}!GetComponentSignature@{GetComponentSignature}}
+\index{GetComponentSignature@{GetComponentSignature}!System@{System}}
+\doxyparagraph{\texorpdfstring{GetComponentSignature()}{GetComponentSignature()}}
+{\footnotesize\ttfamily const Signature \& System\+::\+Get\+Component\+Signature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the component signature of the system. 
+
+\begin{DoxyReturn}{Returns}
+The system\textquotesingle{}s component signature. 
+\end{DoxyReturn}
+\Hypertarget{classSystem_aec0388b6db4900c4d4a9e1dea0f09205}\label{classSystem_aec0388b6db4900c4d4a9e1dea0f09205} 
+\index{System@{System}!GetSystemEntities@{GetSystemEntities}}
+\index{GetSystemEntities@{GetSystemEntities}!System@{System}}
+\doxyparagraph{\texorpdfstring{GetSystemEntities()}{GetSystemEntities()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} $>$ System\+::\+Get\+System\+Entities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the list of entities managed by this system. 
+
+\begin{DoxyReturn}{Returns}
+A vector of entities. 
+\end{DoxyReturn}
+\Hypertarget{classSystem_a05a2e9d96800e05c3d4c8d7ebfd9903b}\label{classSystem_a05a2e9d96800e05c3d4c8d7ebfd9903b} 
+\index{System@{System}!RemoveEntityFromSystem@{RemoveEntityFromSystem}}
+\index{RemoveEntityFromSystem@{RemoveEntityFromSystem}!System@{System}}
+\doxyparagraph{\texorpdfstring{RemoveEntityFromSystem()}{RemoveEntityFromSystem()}}
+{\footnotesize\ttfamily void System\+::\+Remove\+Entity\+From\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}}}]{entity }\end{DoxyParamCaption})}
+
+
+
+Removes an entity from the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & The entity to remove. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classSystem_ac15b3d09b3f3c485af1364255f21dbd5}\label{classSystem_ac15b3d09b3f3c485af1364255f21dbd5} 
+\index{System@{System}!RequireComponent@{RequireComponent}}
+\index{RequireComponent@{RequireComponent}!System@{System}}
+\doxyparagraph{\texorpdfstring{RequireComponent()}{RequireComponent()}}
+{\footnotesize\ttfamily template$<$typename TComponent $>$ \\
+void System\+::\+Require\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Specifies a required component for the system. 
+
+Specifies a required component for a system.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em TComponent} & The type of component required. \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+ECS/ECS.\+hpp\item 
+ECS/ECS.\+cpp\end{DoxyCompactItemize}

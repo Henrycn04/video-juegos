@@ -1,0 +1,63 @@
+\doxysubsection{Damage\+System.\+hpp}
+\hypertarget{DamageSystem_8hpp_source}{}\label{DamageSystem_8hpp_source}\index{Systems/DamageSystem.hpp@{Systems/DamageSystem.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DAMAGESYSTEM\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DAMAGESYSTEM\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}../Components/CircleColliderComponent.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}../Components/HealthComponent.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}../Components/ProjectileComponent.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}../ECS/ECS.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}../EventManager/EventManager.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}../Events/CollisionEvent.hpp"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDamageSystem}{DamageSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classSystem}{System}}\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classDamageSystem_aa7beb30dc530f19dd3dcef56c2941a3b}{DamageSystem}}()\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ RequireComponent<CircleColliderComponent>();}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDamageSystem_a791a630be7d9ec4a6d1d38509460a5ce}{SubscribeToCollisionEvent}}(std::unique\_ptr<EventManager>\&\ eventManager)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ eventManager-\/>SubscribeToEvent<\mbox{\hyperlink{classDamageSystem_aa7beb30dc530f19dd3dcef56c2941a3b}{DamageSystem}},\ \mbox{\hyperlink{classCollisionEvent}{CollisionEvent}}>(\textcolor{keyword}{this},\ \&\mbox{\hyperlink{classDamageSystem_a772af6c53b32ed15690f70441e7cf8f9}{DamageSystem::OnCollision}});}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDamageSystem_a772af6c53b32ed15690f70441e7cf8f9}{OnCollision}}(\mbox{\hyperlink{classCollisionEvent}{CollisionEvent}}\&\ event)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (event.\mbox{\hyperlink{classCollisionEvent_a4887b3b77aa99e85bc9fd6ace1c7ff10}{entityA}}.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>()\ \&\&\ event.\mbox{\hyperlink{classCollisionEvent_a130cff18b26abdde0596e87ab4349877}{entityB}}.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structProjectileComponent}{ProjectileComponent}}>())\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ health\ =\ \textcolor{keyword}{event}.entityA.GetComponent<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>();}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ arrow\ =\ \textcolor{keyword}{event}.entityB.GetComponent<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>();}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (health.isPlayer)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ health.\mbox{\hyperlink{structHealthComponent_a44675c84af2972a0cee11b9fff5880b5}{health}}\ -\/=\ arrow.\mbox{\hyperlink{structHealthComponent_a05616acca2fa59e639e80e4b798329ee}{damage}};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (health.health\ <=\ 0)\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ health.health\ =\ 0;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGame_a689dc1143da4a51248eb9feeed5b2aba}{Game::GetInstance}}().\mbox{\hyperlink{classGame_a70eff9268a8c52281347fe13871c0072}{finDelNivel}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGame_a689dc1143da4a51248eb9feeed5b2aba}{Game::GetInstance}}().\mbox{\hyperlink{classGame_a0f9c877a1b34d307bfbcb0d759a2bc3b}{win}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{event}.entityB.Kill();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (event.\mbox{\hyperlink{classCollisionEvent_a130cff18b26abdde0596e87ab4349877}{entityB}}.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>()\ \&\&\ event.\mbox{\hyperlink{classCollisionEvent_a4887b3b77aa99e85bc9fd6ace1c7ff10}{entityA}}.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structProjectileComponent}{ProjectileComponent}}>())\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ health\ =\ \textcolor{keyword}{event}.entityB.GetComponent<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>();}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ arrow\ =\ \textcolor{keyword}{event}.entityA.GetComponent<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>();}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (health.isPlayer)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ health.\mbox{\hyperlink{structHealthComponent_a44675c84af2972a0cee11b9fff5880b5}{health}}\ -\/=\ arrow.\mbox{\hyperlink{structHealthComponent_a05616acca2fa59e639e80e4b798329ee}{damage}};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (health.health\ <=\ 0)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ health.health\ =\ 0;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGame_a689dc1143da4a51248eb9feeed5b2aba}{Game::GetInstance}}().\mbox{\hyperlink{classGame_a70eff9268a8c52281347fe13871c0072}{finDelNivel}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGame_a689dc1143da4a51248eb9feeed5b2aba}{Game::GetInstance}}().\mbox{\hyperlink{classGame_a0f9c877a1b34d307bfbcb0d759a2bc3b}{win}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{event}.entityA.Kill();}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ }
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

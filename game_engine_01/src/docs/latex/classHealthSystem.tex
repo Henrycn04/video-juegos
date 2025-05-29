@@ -1,0 +1,130 @@
+\doxysubsection{Health\+System Class Reference}
+\hypertarget{classHealthSystem}{}\label{classHealthSystem}\index{HealthSystem@{HealthSystem}}
+
+
+\doxylink{classSystem}{System} that manages health and damage effects for entities.  
+
+
+
+
+{\ttfamily \#include $<$Health\+System.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classHealthSystem_ad4b2afe5e05ad190a6bbe02ecff34198}{Health\+System}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new Health \doxylink{classSystem}{System} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHealthSystem_a22cb5820405890824f610fe25d074472}{Update}} ()
+\begin{DoxyCompactList}\small\item\em Update health status and process effects. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHealthSystem_aa286921ea370318d19b1f6bd03c4093d}{Reduce\+HP}} (\mbox{\hyperlink{classEntity}{Entity}} entity, int damage, \mbox{\hyperlink{classEntity}{Entity}} attacker)
+\begin{DoxyCompactList}\small\item\em Apply direct damage from an attacker. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHealthSystem_ac843d364922d776dbefe8186e12cf770}{Set\+Health}} (\mbox{\hyperlink{classEntity}{Entity}} entity, int value)
+\begin{DoxyCompactList}\small\item\em Set entity\textquotesingle{}s health to specific value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHealthSystem_aee75d48364c8d95d3686d7fdcf529594}{Heal}} (\mbox{\hyperlink{classEntity}{Entity}} entity, int amount)
+\begin{DoxyCompactList}\small\item\em Heal entity by specified amount. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{classSystem}{System}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries System} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor for the system. \end{DoxyCompactList}\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+System} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor for the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSystem_a36b3396cdb8fa107bd4515382fbb8847}{Add\+Entity\+To\+System}} (\mbox{\hyperlink{classEntity}{Entity}} entity)
+\begin{DoxyCompactList}\small\item\em Adds an entity to the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSystem_a05a2e9d96800e05c3d4c8d7ebfd9903b}{Remove\+Entity\+From\+System}} (\mbox{\hyperlink{classEntity}{Entity}} entity)
+\begin{DoxyCompactList}\small\item\em Removes an entity from the system. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} $>$ \mbox{\hyperlink{classSystem_aec0388b6db4900c4d4a9e1dea0f09205}{Get\+System\+Entities}} () const
+\begin{DoxyCompactList}\small\item\em Gets the list of entities managed by this system. \end{DoxyCompactList}\item 
+const Signature \& \mbox{\hyperlink{classSystem_af97298c27dfe2231ab21bdb1a0316dc4}{Get\+Component\+Signature}} () const
+\begin{DoxyCompactList}\small\item\em Gets the component signature of the system. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename TComponent $>$ }\\void \mbox{\hyperlink{classSystem_ac15b3d09b3f3c485af1364255f21dbd5}{Require\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Specifies a required component for the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{classSystem}{System} that manages health and damage effects for entities. 
+
+Handles health management, damage application, healing, and status effects including damage zones, speed boosts, and slowdown effects. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classHealthSystem_ad4b2afe5e05ad190a6bbe02ecff34198}\label{classHealthSystem_ad4b2afe5e05ad190a6bbe02ecff34198} 
+\index{HealthSystem@{HealthSystem}!HealthSystem@{HealthSystem}}
+\index{HealthSystem@{HealthSystem}!HealthSystem@{HealthSystem}}
+\doxyparagraph{\texorpdfstring{HealthSystem()}{HealthSystem()}}
+{\footnotesize\ttfamily Health\+System\+::\+Health\+System (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new Health \doxylink{classSystem}{System} object. 
+
+Requires entities to have \doxylink{structHealthComponent}{Health\+Component} 
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classHealthSystem_aee75d48364c8d95d3686d7fdcf529594}\label{classHealthSystem_aee75d48364c8d95d3686d7fdcf529594} 
+\index{HealthSystem@{HealthSystem}!Heal@{Heal}}
+\index{Heal@{Heal}!HealthSystem@{HealthSystem}}
+\doxyparagraph{\texorpdfstring{Heal()}{Heal()}}
+{\footnotesize\ttfamily void Health\+System\+::\+Heal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}}}]{entity,  }\item[{int}]{amount }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Heal entity by specified amount. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & Target entity \\
+\hline
+{\em amount} & Healing amount \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classHealthSystem_aa286921ea370318d19b1f6bd03c4093d}\label{classHealthSystem_aa286921ea370318d19b1f6bd03c4093d} 
+\index{HealthSystem@{HealthSystem}!ReduceHP@{ReduceHP}}
+\index{ReduceHP@{ReduceHP}!HealthSystem@{HealthSystem}}
+\doxyparagraph{\texorpdfstring{ReduceHP()}{ReduceHP()}}
+{\footnotesize\ttfamily void Health\+System\+::\+Reduce\+HP (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}}}]{entity,  }\item[{int}]{damage,  }\item[{\mbox{\hyperlink{classEntity}{Entity}}}]{attacker }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Apply direct damage from an attacker. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & Target entity \\
+\hline
+{\em damage} & Damage amount \\
+\hline
+{\em attacker} & Attacking entity \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classHealthSystem_ac843d364922d776dbefe8186e12cf770}\label{classHealthSystem_ac843d364922d776dbefe8186e12cf770} 
+\index{HealthSystem@{HealthSystem}!SetHealth@{SetHealth}}
+\index{SetHealth@{SetHealth}!HealthSystem@{HealthSystem}}
+\doxyparagraph{\texorpdfstring{SetHealth()}{SetHealth()}}
+{\footnotesize\ttfamily void Health\+System\+::\+Set\+Health (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}}}]{entity,  }\item[{int}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set entity\textquotesingle{}s health to specific value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & Target entity \\
+\hline
+{\em value} & New health value \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classHealthSystem_a22cb5820405890824f610fe25d074472}\label{classHealthSystem_a22cb5820405890824f610fe25d074472} 
+\index{HealthSystem@{HealthSystem}!Update@{Update}}
+\index{Update@{Update}!HealthSystem@{HealthSystem}}
+\doxyparagraph{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Health\+System\+::\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Update health status and process effects. 
+
+Processes zone damage, speed effects, and other status effects for all entities with health components. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Systems/Health\+System.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,53 @@
+\doxysubsection{Script\+Component Struct Reference}
+\hypertarget{structScriptComponent}{}\label{structScriptComponent}\index{ScriptComponent@{ScriptComponent}}
+
+
+\doxylink{classComponent}{Component} for attaching Lua script functions to an entity in the ECS.  
+
+
+
+
+{\ttfamily \#include $<$Script\+Component.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structScriptComponent_a23111ade2de71657e55946034fdacd80}{Script\+Component}} (sol\+::function \mbox{\hyperlink{structScriptComponent_a58f093616a61d9c23e4d5cf7d58a1cb8}{update}}=sol\+::lua\+\_\+nil, sol\+::function \mbox{\hyperlink{structScriptComponent_a784545648f6e4a0cdbb5902c0174c089}{on\+Click}}=sol\+::lua\+\_\+nil)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{structScriptComponent}{Script\+Component} with specified Lua functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structScriptComponent_a58f093616a61d9c23e4d5cf7d58a1cb8}\label{structScriptComponent_a58f093616a61d9c23e4d5cf7d58a1cb8} 
+sol\+::function {\bfseries update}
+\begin{DoxyCompactList}\small\item\em Lua function to be called during the update phase. \end{DoxyCompactList}\item 
+\Hypertarget{structScriptComponent_a784545648f6e4a0cdbb5902c0174c089}\label{structScriptComponent_a784545648f6e4a0cdbb5902c0174c089} 
+sol\+::function {\bfseries on\+Click}
+\begin{DoxyCompactList}\small\item\em Lua function to be called when the entity is clicked. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{classComponent}{Component} for attaching Lua script functions to an entity in the ECS. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structScriptComponent_a23111ade2de71657e55946034fdacd80}\label{structScriptComponent_a23111ade2de71657e55946034fdacd80} 
+\index{ScriptComponent@{ScriptComponent}!ScriptComponent@{ScriptComponent}}
+\index{ScriptComponent@{ScriptComponent}!ScriptComponent@{ScriptComponent}}
+\doxyparagraph{\texorpdfstring{ScriptComponent()}{ScriptComponent()}}
+{\footnotesize\ttfamily Script\+Component\+::\+Script\+Component (\begin{DoxyParamCaption}\item[{sol\+::function}]{update = {\ttfamily sol\+:\+:lua\+\_\+nil},  }\item[{sol\+::function}]{on\+Click = {\ttfamily sol\+:\+:lua\+\_\+nil} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{structScriptComponent}{Script\+Component} with specified Lua functions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em update} & Lua function for the update phase (default\+: nil). \\
+\hline
+{\em on\+Click} & Lua function for click events (default\+: nil). \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Components/Script\+Component.\+hpp\end{DoxyCompactItemize}

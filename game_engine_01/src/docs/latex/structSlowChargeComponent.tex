@@ -1,0 +1,144 @@
+\doxysubsection{Slow\+Charge\+Component Struct Reference}
+\hypertarget{structSlowChargeComponent}{}\label{structSlowChargeComponent}\index{SlowChargeComponent@{SlowChargeComponent}}
+
+
+\doxylink{classComponent}{Component} for managing a charge-\/based system for slowing effects in the ECS.  
+
+
+
+
+{\ttfamily \#include $<$Slow\+Charge\+Component.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structSlowChargeComponent_a96f06627e3844d5f3e664c9e1d78aa0e}{Slow\+Charge\+Component}} (int total=100, int initial\+Charge=100)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{structSlowChargeComponent}{Slow\+Charge\+Component} with specified total and initial charge. \end{DoxyCompactList}\item 
+\Hypertarget{structSlowChargeComponent_a6b276f223e402cf121a71cfed6a79682}\label{structSlowChargeComponent_a6b276f223e402cf121a71cfed6a79682} 
+void {\bfseries update\+Charge\+Display} ()
+\begin{DoxyCompactList}\small\item\em Updates the charge display string to reflect current and total charge. \end{DoxyCompactList}\item 
+\Hypertarget{structSlowChargeComponent_a34de79ba58ea960fbc0df935d96c387f}\label{structSlowChargeComponent_a34de79ba58ea960fbc0df935d96c387f} 
+void {\bfseries Recharge} ()
+\begin{DoxyCompactList}\small\item\em Fully recharges the component to its total capacity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structSlowChargeComponent_ac7a44da6b812c0a5d347a042b889b790}{Charge}} (int amount)
+\begin{DoxyCompactList}\small\item\em Adds a specified amount to the current charge, capped at total capacity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structSlowChargeComponent_a618d139077019b8487d0520063d15e52}{Discharge}} (int amount)
+\begin{DoxyCompactList}\small\item\em Removes a specified amount from the current charge, preventing negative values. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structSlowChargeComponent_a55621e4bb93043eb19667b08493d632a}{Get\+Percentage}} () const
+\begin{DoxyCompactList}\small\item\em Calculates the current charge as a percentage of the total capacity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structSlowChargeComponent_a0cd065b8e15f5c85e1357d28aeaeaa2f}{Is\+Fully\+Charged}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the charge is at full capacity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structSlowChargeComponent_a93e6933fe6b09b636a58456daad285d2}{Is\+Empty}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the charge is depleted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structSlowChargeComponent_ababa45da2ceba357abaf5521322bdee2}\label{structSlowChargeComponent_ababa45da2ceba357abaf5521322bdee2} 
+int {\bfseries total\+Charge}
+\begin{DoxyCompactList}\small\item\em Total charge capacity. \end{DoxyCompactList}\item 
+\Hypertarget{structSlowChargeComponent_a61e8f2172f26a3ae50760d4c15deea76}\label{structSlowChargeComponent_a61e8f2172f26a3ae50760d4c15deea76} 
+int {\bfseries current\+Charge}
+\begin{DoxyCompactList}\small\item\em Current charge level. \end{DoxyCompactList}\item 
+\Hypertarget{structSlowChargeComponent_ade619f63d28aa33b87c3dab853b76550}\label{structSlowChargeComponent_ade619f63d28aa33b87c3dab853b76550} 
+std\+::string {\bfseries charge\+Display}
+\begin{DoxyCompactList}\small\item\em String representation of the charge level in the format "{}current\+Charge/total\+Charge"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{classComponent}{Component} for managing a charge-\/based system for slowing effects in the ECS. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structSlowChargeComponent_a96f06627e3844d5f3e664c9e1d78aa0e}\label{structSlowChargeComponent_a96f06627e3844d5f3e664c9e1d78aa0e} 
+\index{SlowChargeComponent@{SlowChargeComponent}!SlowChargeComponent@{SlowChargeComponent}}
+\index{SlowChargeComponent@{SlowChargeComponent}!SlowChargeComponent@{SlowChargeComponent}}
+\doxyparagraph{\texorpdfstring{SlowChargeComponent()}{SlowChargeComponent()}}
+{\footnotesize\ttfamily Slow\+Charge\+Component\+::\+Slow\+Charge\+Component (\begin{DoxyParamCaption}\item[{int}]{total = {\ttfamily 100},  }\item[{int}]{initial\+Charge = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{structSlowChargeComponent}{Slow\+Charge\+Component} with specified total and initial charge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em total} & The total charge capacity (default\+: 100). \\
+\hline
+{\em initial\+Charge} & The initial charge level (default\+: 100). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{structSlowChargeComponent_ac7a44da6b812c0a5d347a042b889b790}\label{structSlowChargeComponent_ac7a44da6b812c0a5d347a042b889b790} 
+\index{SlowChargeComponent@{SlowChargeComponent}!Charge@{Charge}}
+\index{Charge@{Charge}!SlowChargeComponent@{SlowChargeComponent}}
+\doxyparagraph{\texorpdfstring{Charge()}{Charge()}}
+{\footnotesize\ttfamily void Slow\+Charge\+Component\+::\+Charge (\begin{DoxyParamCaption}\item[{int}]{amount }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a specified amount to the current charge, capped at total capacity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & The amount of charge to add. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structSlowChargeComponent_a618d139077019b8487d0520063d15e52}\label{structSlowChargeComponent_a618d139077019b8487d0520063d15e52} 
+\index{SlowChargeComponent@{SlowChargeComponent}!Discharge@{Discharge}}
+\index{Discharge@{Discharge}!SlowChargeComponent@{SlowChargeComponent}}
+\doxyparagraph{\texorpdfstring{Discharge()}{Discharge()}}
+{\footnotesize\ttfamily void Slow\+Charge\+Component\+::\+Discharge (\begin{DoxyParamCaption}\item[{int}]{amount }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Removes a specified amount from the current charge, preventing negative values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & The amount of charge to remove. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structSlowChargeComponent_a55621e4bb93043eb19667b08493d632a}\label{structSlowChargeComponent_a55621e4bb93043eb19667b08493d632a} 
+\index{SlowChargeComponent@{SlowChargeComponent}!GetPercentage@{GetPercentage}}
+\index{GetPercentage@{GetPercentage}!SlowChargeComponent@{SlowChargeComponent}}
+\doxyparagraph{\texorpdfstring{GetPercentage()}{GetPercentage()}}
+{\footnotesize\ttfamily float Slow\+Charge\+Component\+::\+Get\+Percentage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculates the current charge as a percentage of the total capacity. 
+
+\begin{DoxyReturn}{Returns}
+The percentage of charge remaining (0.\+0f if total\+Charge is 0). 
+\end{DoxyReturn}
+\Hypertarget{structSlowChargeComponent_a93e6933fe6b09b636a58456daad285d2}\label{structSlowChargeComponent_a93e6933fe6b09b636a58456daad285d2} 
+\index{SlowChargeComponent@{SlowChargeComponent}!IsEmpty@{IsEmpty}}
+\index{IsEmpty@{IsEmpty}!SlowChargeComponent@{SlowChargeComponent}}
+\doxyparagraph{\texorpdfstring{IsEmpty()}{IsEmpty()}}
+{\footnotesize\ttfamily bool Slow\+Charge\+Component\+::\+Is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the charge is depleted. 
+
+\begin{DoxyReturn}{Returns}
+True if current charge is 0, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{structSlowChargeComponent_a0cd065b8e15f5c85e1357d28aeaeaa2f}\label{structSlowChargeComponent_a0cd065b8e15f5c85e1357d28aeaeaa2f} 
+\index{SlowChargeComponent@{SlowChargeComponent}!IsFullyCharged@{IsFullyCharged}}
+\index{IsFullyCharged@{IsFullyCharged}!SlowChargeComponent@{SlowChargeComponent}}
+\doxyparagraph{\texorpdfstring{IsFullyCharged()}{IsFullyCharged()}}
+{\footnotesize\ttfamily bool Slow\+Charge\+Component\+::\+Is\+Fully\+Charged (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the charge is at full capacity. 
+
+\begin{DoxyReturn}{Returns}
+True if current charge equals total charge, false otherwise. 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Components/Slow\+Charge\+Component.\+hpp\end{DoxyCompactItemize}

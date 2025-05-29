@@ -1,0 +1,84 @@
+\doxysubsection{Render\+Text\+System Class Reference}
+\hypertarget{classRenderTextSystem}{}\label{classRenderTextSystem}\index{RenderTextSystem@{RenderTextSystem}}
+
+
+\doxylink{classSystem}{System} responsible for rendering text components.  
+
+
+
+
+{\ttfamily \#include $<$Render\+Text\+System.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRenderTextSystem_a2ae7b1c0766f9ed916503c8b0e647d5c}{Render\+Text\+System}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new Render Text \doxylink{classSystem}{System} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRenderTextSystem_a9586dfda1b8b37552ce8936100f21181}{Update}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classAssetManager}{Asset\+Manager}} $>$ \&asset\+Manager)
+\begin{DoxyCompactList}\small\item\em Render all text components. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{classSystem}{System}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries System} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor for the system. \end{DoxyCompactList}\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+System} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor for the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSystem_a36b3396cdb8fa107bd4515382fbb8847}{Add\+Entity\+To\+System}} (\mbox{\hyperlink{classEntity}{Entity}} entity)
+\begin{DoxyCompactList}\small\item\em Adds an entity to the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSystem_a05a2e9d96800e05c3d4c8d7ebfd9903b}{Remove\+Entity\+From\+System}} (\mbox{\hyperlink{classEntity}{Entity}} entity)
+\begin{DoxyCompactList}\small\item\em Removes an entity from the system. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} $>$ \mbox{\hyperlink{classSystem_aec0388b6db4900c4d4a9e1dea0f09205}{Get\+System\+Entities}} () const
+\begin{DoxyCompactList}\small\item\em Gets the list of entities managed by this system. \end{DoxyCompactList}\item 
+const Signature \& \mbox{\hyperlink{classSystem_af97298c27dfe2231ab21bdb1a0316dc4}{Get\+Component\+Signature}} () const
+\begin{DoxyCompactList}\small\item\em Gets the component signature of the system. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename TComponent $>$ }\\void \mbox{\hyperlink{classSystem_ac15b3d09b3f3c485af1364255f21dbd5}{Require\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Specifies a required component for the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{classSystem}{System} responsible for rendering text components. 
+
+Handles text rendering for various game elements including\+:
+\begin{DoxyItemize}
+\item Health displays
+\item Charge indicators
+\item Score display
+\item General text rendering 
+\end{DoxyItemize}
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classRenderTextSystem_a2ae7b1c0766f9ed916503c8b0e647d5c}\label{classRenderTextSystem_a2ae7b1c0766f9ed916503c8b0e647d5c} 
+\index{RenderTextSystem@{RenderTextSystem}!RenderTextSystem@{RenderTextSystem}}
+\index{RenderTextSystem@{RenderTextSystem}!RenderTextSystem@{RenderTextSystem}}
+\doxyparagraph{\texorpdfstring{RenderTextSystem()}{RenderTextSystem()}}
+{\footnotesize\ttfamily Render\+Text\+System\+::\+Render\+Text\+System (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new Render Text \doxylink{classSystem}{System} object. 
+
+Requires entities to have both \doxylink{structTextComponent}{Text\+Component} and \doxylink{structTransformComponent}{Transform\+Component} 
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classRenderTextSystem_a9586dfda1b8b37552ce8936100f21181}\label{classRenderTextSystem_a9586dfda1b8b37552ce8936100f21181} 
+\index{RenderTextSystem@{RenderTextSystem}!Update@{Update}}
+\index{Update@{Update}!RenderTextSystem@{RenderTextSystem}}
+\doxyparagraph{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Render\+Text\+System\+::\+Update (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classAssetManager}{Asset\+Manager}} $>$ \&}]{asset\+Manager }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Render all text components. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em renderer} & SDL renderer to draw to \\
+\hline
+{\em asset\+Manager} & Asset manager for font access \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Systems/Render\+Text\+System.\+hpp\end{DoxyCompactItemize}

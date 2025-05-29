@@ -1,0 +1,111 @@
+\doxysubsection{Scene\+Manager Class Reference}
+\hypertarget{classSceneManager}{}\label{classSceneManager}\index{SceneManager@{SceneManager}}
+
+
+Manages game scenes and scene transitions.  
+
+
+
+
+{\ttfamily \#include $<$Scene\+Manager.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSceneManager_a52085e6737c23b491c228e86781af808}\label{classSceneManager_a52085e6737c23b491c228e86781af808} 
+{\bfseries Scene\+Manager} ()
+\begin{DoxyCompactList}\small\item\em Construct a new Scene Manager object. \end{DoxyCompactList}\item 
+\Hypertarget{classSceneManager_a2bb376a85d29e85f47753e26c7539229}\label{classSceneManager_a2bb376a85d29e85f47753e26c7539229} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Scene\+Manager} ()
+\begin{DoxyCompactList}\small\item\em Destroy the Scene Manager object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSceneManager_ab782eab7cc702612b0f27af9bf4817b2}{Load\+Scene\+From\+Script}} (const std\+::string \&scene\+Path, sol\+::state \&lua)
+\begin{DoxyCompactList}\small\item\em Load scene configuration from a Lua script. \end{DoxyCompactList}\item 
+\Hypertarget{classSceneManager_a504bbba1f30f04ae26dd929b673019c7}\label{classSceneManager_a504bbba1f30f04ae26dd929b673019c7} 
+void {\bfseries Load\+Scene} ()
+\begin{DoxyCompactList}\small\item\em Load the currently set next scene. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classSceneManager_a7b313acb80027734fe4df0fa990c8c01}{Get\+Next\+Scene}} () const
+\begin{DoxyCompactList}\small\item\em Get the name of the next scene to be loaded. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSceneManager_a20bad87a1ddbbc7cb3709f71417fb02c}{Set\+Next\+Scene}} (const std\+::string \&next\+Scene)
+\begin{DoxyCompactList}\small\item\em Set the next scene to be loaded. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSceneManager_ac6869e693c2e383aed952bc159bc5b55}{Is\+Scene\+Running}} () const
+\begin{DoxyCompactList}\small\item\em Check if a scene is currently running. \end{DoxyCompactList}\item 
+\Hypertarget{classSceneManager_a8e6dbe70e337c5481187a1ff6da72754}\label{classSceneManager_a8e6dbe70e337c5481187a1ff6da72754} 
+void {\bfseries Start\+Scene} ()
+\begin{DoxyCompactList}\small\item\em Mark the scene as started/running. \end{DoxyCompactList}\item 
+\Hypertarget{classSceneManager_ab0e565e74fa096ccba64a682eb037152}\label{classSceneManager_ab0e565e74fa096ccba64a682eb037152} 
+void {\bfseries Stop\+Scene} ()
+\begin{DoxyCompactList}\small\item\em Mark the scene as stopped. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Manages game scenes and scene transitions. 
+
+Handles loading, running, and switching between different game scenes. Maintains a collection of available scenes and manages scene lifecycle. 
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classSceneManager_a7b313acb80027734fe4df0fa990c8c01}\label{classSceneManager_a7b313acb80027734fe4df0fa990c8c01} 
+\index{SceneManager@{SceneManager}!GetNextScene@{GetNextScene}}
+\index{GetNextScene@{GetNextScene}!SceneManager@{SceneManager}}
+\doxyparagraph{\texorpdfstring{GetNextScene()}{GetNextScene()}}
+{\footnotesize\ttfamily std\+::string Scene\+Manager\+::\+Get\+Next\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the name of the next scene to be loaded. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string Name of the next scene 
+\end{DoxyReturn}
+\Hypertarget{classSceneManager_ac6869e693c2e383aed952bc159bc5b55}\label{classSceneManager_ac6869e693c2e383aed952bc159bc5b55} 
+\index{SceneManager@{SceneManager}!IsSceneRunning@{IsSceneRunning}}
+\index{IsSceneRunning@{IsSceneRunning}!SceneManager@{SceneManager}}
+\doxyparagraph{\texorpdfstring{IsSceneRunning()}{IsSceneRunning()}}
+{\footnotesize\ttfamily bool Scene\+Manager\+::\+Is\+Scene\+Running (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Check if a scene is currently running. 
+
+\begin{DoxyReturn}{Returns}
+true if a scene is active 
+
+false if no scene is active 
+\end{DoxyReturn}
+\Hypertarget{classSceneManager_ab782eab7cc702612b0f27af9bf4817b2}\label{classSceneManager_ab782eab7cc702612b0f27af9bf4817b2} 
+\index{SceneManager@{SceneManager}!LoadSceneFromScript@{LoadSceneFromScript}}
+\index{LoadSceneFromScript@{LoadSceneFromScript}!SceneManager@{SceneManager}}
+\doxyparagraph{\texorpdfstring{LoadSceneFromScript()}{LoadSceneFromScript()}}
+{\footnotesize\ttfamily void Scene\+Manager\+::\+Load\+Scene\+From\+Script (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{scene\+Path,  }\item[{sol\+::state \&}]{lua }\end{DoxyParamCaption})}
+
+
+
+Load scene configuration from a Lua script. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene\+Path} & Path to the scene configuration file \\
+\hline
+{\em lua} & Reference to the Lua state \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classSceneManager_a20bad87a1ddbbc7cb3709f71417fb02c}\label{classSceneManager_a20bad87a1ddbbc7cb3709f71417fb02c} 
+\index{SceneManager@{SceneManager}!SetNextScene@{SetNextScene}}
+\index{SetNextScene@{SetNextScene}!SceneManager@{SceneManager}}
+\doxyparagraph{\texorpdfstring{SetNextScene()}{SetNextScene()}}
+{\footnotesize\ttfamily void Scene\+Manager\+::\+Set\+Next\+Scene (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{next\+Scene }\end{DoxyParamCaption})}
+
+
+
+Set the next scene to be loaded. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em next\+Scene} & Name of the next scene \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Scene\+Manager/Scene\+Manager.\+hpp\item 
+Scene\+Manager/Scene\+Manager.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,88 @@
+\doxysubsection{Event\+Manager Class Reference}
+\hypertarget{classEventManager}{}\label{classEventManager}\index{EventManager@{EventManager}}
+
+
+Manages event subscriptions and dispatching.  
+
+
+
+
+{\ttfamily \#include $<$Event\+Manager.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEventManager_a89099b22114f158b5c530edfea52371d}\label{classEventManager_a89099b22114f158b5c530edfea52371d} 
+{\bfseries Event\+Manager} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{classEvent}{Event} Manager object. \end{DoxyCompactList}\item 
+\Hypertarget{classEventManager_a2e43e8b165b54f75e9c005cf5b04ade7}\label{classEventManager_a2e43e8b165b54f75e9c005cf5b04ade7} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Event\+Manager} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \doxylink{classEvent}{Event} Manager object. \end{DoxyCompactList}\item 
+\Hypertarget{classEventManager_a6fdcd54b9a2e77fd17a56fb4d0989f42}\label{classEventManager_a6fdcd54b9a2e77fd17a56fb4d0989f42} 
+void {\bfseries Restart} ()
+\begin{DoxyCompactList}\small\item\em Clears all event subscriptions. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename TOwner , typename TEvent $>$ }\\void \mbox{\hyperlink{classEventManager_a36a82687cab0b44d2ed93e97874d872f}{Subscribe\+To\+Event}} (TOwner \texorpdfstring{$\ast$}{*}owner, void(TOwner\+::\texorpdfstring{$\ast$}{*}callback)(TEvent \&))
+\begin{DoxyCompactList}\small\item\em Subscribe to an event type. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename TEvent , typename... TArgs$>$ }\\void \mbox{\hyperlink{classEventManager_aebd9000d757904b0ba36c206579f9ada}{Emit\+Event}} (TArgs \&\&... args)
+\begin{DoxyCompactList}\small\item\em Emit an event to all subscribers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Manages event subscriptions and dispatching. 
+
+Implements a publish-\/subscribe pattern with type-\/safe event handling. 
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classEventManager_aebd9000d757904b0ba36c206579f9ada}\label{classEventManager_aebd9000d757904b0ba36c206579f9ada} 
+\index{EventManager@{EventManager}!EmitEvent@{EmitEvent}}
+\index{EmitEvent@{EmitEvent}!EventManager@{EventManager}}
+\doxyparagraph{\texorpdfstring{EmitEvent()}{EmitEvent()}}
+{\footnotesize\ttfamily template$<$typename TEvent , typename... TArgs$>$ \\
+void Event\+Manager\+::\+Emit\+Event (\begin{DoxyParamCaption}\item[{TArgs \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Emit an event to all subscribers. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em TEvent} & Type of the event to emit \\
+\hline
+{\em TArgs} & Argument types for event construction \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Arguments to forward to event constructor \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEventManager_a36a82687cab0b44d2ed93e97874d872f}\label{classEventManager_a36a82687cab0b44d2ed93e97874d872f} 
+\index{EventManager@{EventManager}!SubscribeToEvent@{SubscribeToEvent}}
+\index{SubscribeToEvent@{SubscribeToEvent}!EventManager@{EventManager}}
+\doxyparagraph{\texorpdfstring{SubscribeToEvent()}{SubscribeToEvent()}}
+{\footnotesize\ttfamily template$<$typename TOwner , typename TEvent $>$ \\
+void Event\+Manager\+::\+Subscribe\+To\+Event (\begin{DoxyParamCaption}\item[{TOwner \texorpdfstring{$\ast$}{*}}]{owner,  }\item[{void(TOwner\+::\texorpdfstring{$\ast$}{*})(TEvent \&)}]{callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Subscribe to an event type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em TOwner} & Type of the owner class \\
+\hline
+{\em TEvent} & Type of the event to subscribe to \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em owner} & Pointer to the owner instance \\
+\hline
+{\em callback} & Member function to call when event occurs \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Event\+Manager/Event\+Manager.\+hpp\end{DoxyCompactItemize}

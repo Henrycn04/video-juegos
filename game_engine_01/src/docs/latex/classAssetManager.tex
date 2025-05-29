@@ -1,0 +1,156 @@
+\doxysubsection{Asset\+Manager Class Reference}
+\hypertarget{classAssetManager}{}\label{classAssetManager}\index{AssetManager@{AssetManager}}
+
+
+Manages game assets such as textures, fonts, and sounds.  
+
+
+
+
+{\ttfamily \#include $<$Asset\+Manager.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classAssetManager_a750ae7b39b633fbb6594443aa3ca704b}\label{classAssetManager_a750ae7b39b633fbb6594443aa3ca704b} 
+{\bfseries Asset\+Manager} ()
+\begin{DoxyCompactList}\small\item\em Constructs an \doxylink{classAssetManager}{Asset\+Manager} instance. \end{DoxyCompactList}\item 
+\Hypertarget{classAssetManager_a9c89817cbf3516f1451c116e89f47d30}\label{classAssetManager_a9c89817cbf3516f1451c116e89f47d30} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Asset\+Manager} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \doxylink{classAssetManager}{Asset\+Manager} and frees all loaded assets. \end{DoxyCompactList}\item 
+\Hypertarget{classAssetManager_a069acc7f6b59d27b5d7cac6aed4e71f0}\label{classAssetManager_a069acc7f6b59d27b5d7cac6aed4e71f0} 
+void {\bfseries Clear\+Assets} ()
+\begin{DoxyCompactList}\small\item\em Clears all loaded assets from memory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAssetManager_ad909ea7e8e389bfb69f1fc9878810555}{Add\+Texture}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, const std\+::string \&texture\+Id, const std\+::string \&file\+Path)
+\begin{DoxyCompactList}\small\item\em Loads and adds a texture to the manager. \end{DoxyCompactList}\item 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classAssetManager_a0a9408d3736292bdac9fa462e050f345}{Get\+Texture}} (const std\+::string \&texture\+Id)
+\begin{DoxyCompactList}\small\item\em Retrieves a texture by its ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAssetManager_ae694ffbdab1886410889911610c2270e}{Add\+Font}} (const std\+::string \&font\+Id, const std\+::string \&file\+Path, int font\+Size)
+\begin{DoxyCompactList}\small\item\em Loads and adds a font to the manager. \end{DoxyCompactList}\item 
+TTF\+\_\+\+Font \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classAssetManager_ac881286653fbb7dcf7b521ebdbb61e16}{Get\+Font}} (const std\+::string \&font\+Id)
+\begin{DoxyCompactList}\small\item\em Retrieves a font by its ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAssetManager_a856fb8d281fed06c94df29764e1377b1}{Add\+Sound}} (const std\+::string \&sound\+Id, const std\+::string \&file\+Path)
+\begin{DoxyCompactList}\small\item\em Loads and adds a sound effect to the manager. \end{DoxyCompactList}\item 
+Mix\+\_\+\+Chunk \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classAssetManager_a622540ef52c900d1e8ffaa4b359c8de5}{Get\+Sound}} (const std\+::string \&sound\+Id)
+\begin{DoxyCompactList}\small\item\em Retrieves a sound effect by its ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Manages game assets such as textures, fonts, and sounds. 
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classAssetManager_ae694ffbdab1886410889911610c2270e}\label{classAssetManager_ae694ffbdab1886410889911610c2270e} 
+\index{AssetManager@{AssetManager}!AddFont@{AddFont}}
+\index{AddFont@{AddFont}!AssetManager@{AssetManager}}
+\doxyparagraph{\texorpdfstring{AddFont()}{AddFont()}}
+{\footnotesize\ttfamily void Asset\+Manager\+::\+Add\+Font (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{font\+Id,  }\item[{const std\+::string \&}]{file\+Path,  }\item[{int}]{font\+Size }\end{DoxyParamCaption})}
+
+
+
+Loads and adds a font to the manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font\+Id} & The unique identifier for the font. \\
+\hline
+{\em file\+Path} & The file path to the font file. \\
+\hline
+{\em font\+Size} & The size of the font. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classAssetManager_a856fb8d281fed06c94df29764e1377b1}\label{classAssetManager_a856fb8d281fed06c94df29764e1377b1} 
+\index{AssetManager@{AssetManager}!AddSound@{AddSound}}
+\index{AddSound@{AddSound}!AssetManager@{AssetManager}}
+\doxyparagraph{\texorpdfstring{AddSound()}{AddSound()}}
+{\footnotesize\ttfamily void Asset\+Manager\+::\+Add\+Sound (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{sound\+Id,  }\item[{const std\+::string \&}]{file\+Path }\end{DoxyParamCaption})}
+
+
+
+Loads and adds a sound effect to the manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sound\+Id} & The unique identifier for the sound. \\
+\hline
+{\em file\+Path} & The file path to the sound file. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classAssetManager_ad909ea7e8e389bfb69f1fc9878810555}\label{classAssetManager_ad909ea7e8e389bfb69f1fc9878810555} 
+\index{AssetManager@{AssetManager}!AddTexture@{AddTexture}}
+\index{AddTexture@{AddTexture}!AssetManager@{AssetManager}}
+\doxyparagraph{\texorpdfstring{AddTexture()}{AddTexture()}}
+{\footnotesize\ttfamily void Asset\+Manager\+::\+Add\+Texture (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{const std\+::string \&}]{texture\+Id,  }\item[{const std\+::string \&}]{file\+Path }\end{DoxyParamCaption})}
+
+
+
+Loads and adds a texture to the manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em renderer} & The SDL renderer used to create the texture. \\
+\hline
+{\em texture\+Id} & The unique identifier for the texture. \\
+\hline
+{\em file\+Path} & The file path to the texture image. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classAssetManager_ac881286653fbb7dcf7b521ebdbb61e16}\label{classAssetManager_ac881286653fbb7dcf7b521ebdbb61e16} 
+\index{AssetManager@{AssetManager}!GetFont@{GetFont}}
+\index{GetFont@{GetFont}!AssetManager@{AssetManager}}
+\doxyparagraph{\texorpdfstring{GetFont()}{GetFont()}}
+{\footnotesize\ttfamily TTF\+\_\+\+Font \texorpdfstring{$\ast$}{*} Asset\+Manager\+::\+Get\+Font (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{font\+Id }\end{DoxyParamCaption})}
+
+
+
+Retrieves a font by its ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em font\+Id} & The unique identifier of the font. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the TTF\+\_\+\+Font, or nullptr if not found. 
+\end{DoxyReturn}
+\Hypertarget{classAssetManager_a622540ef52c900d1e8ffaa4b359c8de5}\label{classAssetManager_a622540ef52c900d1e8ffaa4b359c8de5} 
+\index{AssetManager@{AssetManager}!GetSound@{GetSound}}
+\index{GetSound@{GetSound}!AssetManager@{AssetManager}}
+\doxyparagraph{\texorpdfstring{GetSound()}{GetSound()}}
+{\footnotesize\ttfamily Mix\+\_\+\+Chunk \texorpdfstring{$\ast$}{*} Asset\+Manager\+::\+Get\+Sound (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{sound\+Id }\end{DoxyParamCaption})}
+
+
+
+Retrieves a sound effect by its ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sound\+Id} & The unique identifier of the sound. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the Mix\+\_\+\+Chunk, or nullptr if not found. 
+\end{DoxyReturn}
+\Hypertarget{classAssetManager_a0a9408d3736292bdac9fa462e050f345}\label{classAssetManager_a0a9408d3736292bdac9fa462e050f345} 
+\index{AssetManager@{AssetManager}!GetTexture@{GetTexture}}
+\index{GetTexture@{GetTexture}!AssetManager@{AssetManager}}
+\doxyparagraph{\texorpdfstring{GetTexture()}{GetTexture()}}
+{\footnotesize\ttfamily SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} Asset\+Manager\+::\+Get\+Texture (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{texture\+Id }\end{DoxyParamCaption})}
+
+
+
+Retrieves a texture by its ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture\+Id} & The unique identifier of the texture. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the SDL\+\_\+\+Texture, or nullptr if not found. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Asset\+Manager/Asset\+Manager.\+hpp\item 
+Asset\+Manager/Asset\+Manager.\+cpp\end{DoxyCompactItemize}

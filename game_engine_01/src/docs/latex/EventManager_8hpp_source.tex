@@ -1,0 +1,89 @@
+\doxysubsection{Event\+Manager.\+hpp}
+\hypertarget{EventManager_8hpp_source}{}\label{EventManager_8hpp_source}\index{EventManager/EventManager.hpp@{EventManager/EventManager.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ EVENTMANAGER\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ EVENTMANAGER\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Event.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <typeindex>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classIEventCallback}{IEventCallback}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classIEventCallback}{\string~IEventCallback}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classIEventCallback_a66888da12e55fe75610a9d9d2109aff8}{Excute}}(\mbox{\hyperlink{classEvent}{Event}}\&\ event)\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ Call(event);}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Call(\mbox{\hyperlink{classEvent}{Event}}\&\ event)\ =\ 0;}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TOwner,\ \textcolor{keyword}{typename}\ TEvent>}
+\DoxyCodeLine{00043\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEventCallback}{EventCallback}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classIEventCallback}{IEventCallback}}\ \{}
+\DoxyCodeLine{00044\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (TOwner::*CallbackFunction)(TEvent\&);}
+\DoxyCodeLine{00046\ \ \ \ \ TOwner*\ ownerInstance;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ CallbackFunction\ callbackFunction;\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Call(\mbox{\hyperlink{classEvent}{Event}}\&\ event)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ std::invoke(callbackFunction,\ ownerInstance,\ \textcolor{keyword}{static\_cast<}TEvent\&\textcolor{keyword}{>}(event));}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{classEventCallback_ae0f8a82bf1c9f78c465024e67069e1fc}{EventCallback}}(TOwner*\ owner,\ CallbackFunction\ callback)\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ this-\/>ownerInstance\ =\ owner;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ this-\/>callbackFunction\ =\ callback;}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{typedef}\ std::list<std::unique\_ptr<IEventCallback>>\ HandlerList;\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEventManager}{EventManager}}\ \{}
+\DoxyCodeLine{00077\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00078\ \ \ \ \ std::map<std::type\_index,\ std::unique\_ptr<HandlerList>>\ subscribers;\ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classEventManager_a89099b22114f158b5c530edfea52371d}{EventManager}}()\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}[EventManager]\ Se\ ejecuta\ constructor"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00086\ \ \ \ \ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{classEventManager_a2e43e8b165b54f75e9c005cf5b04ade7}{\string~EventManager}}()\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}[EventManager]\ Se\ ejecuta\ destructor"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00093\ \ \ \ \ \};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEventManager_a6fdcd54b9a2e77fd17a56fb4d0989f42}{Restart}}()\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ subscribers.clear();}
+\DoxyCodeLine{00100\ \ \ \ \ \};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TOwner,\ \textcolor{keyword}{typename}\ TEvent>}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEventManager_a36a82687cab0b44d2ed93e97874d872f}{SubscribeToEvent}}(TOwner*\ owner,\ \textcolor{keywordtype}{void}\ (TOwner::*callback)(TEvent\&))\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!subscribers[\textcolor{keyword}{typeid}(TEvent)].get())\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ subscribers[\textcolor{keyword}{typeid}(TEvent)]\ =\ std::make\_unique<HandlerList>();}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ subscriber\ =\ std::make\_unique<EventCallback<TOwner,\ TEvent>>(owner,\ callback);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ subscribers[\textcolor{keyword}{typeid}(TEvent)]-\/>push\_back(std::move(subscriber));}
+\DoxyCodeLine{00116\ \ \ \ \ \};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ TEvent,\ \textcolor{keyword}{typename}...\ TArgs>}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEventManager_aebd9000d757904b0ba36c206579f9ada}{EmitEvent}}(TArgs\&\&...\ args)\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ handlers\ =\ subscribers[\textcolor{keyword}{typeid}(TEvent)].get();}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (handlers)\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ it\ =\ handlers-\/>begin();\ it\ !=\ handlers-\/>end();\ ++it)\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ handler\ =\ it-\/>get();}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TEvent\ event(std::forward<TArgs>(args)...);}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handler-\/>Excute(event);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \};}
+\DoxyCodeLine{00135\ \};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EVENTMANAGER\_HPP}}
+
+\end{DoxyCode}

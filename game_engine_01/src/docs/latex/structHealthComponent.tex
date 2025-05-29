@@ -1,0 +1,74 @@
+\doxysubsection{Health\+Component Struct Reference}
+\hypertarget{structHealthComponent}{}\label{structHealthComponent}\index{HealthComponent@{HealthComponent}}
+
+
+\doxylink{classComponent}{Component} for managing health-\/related data for entities in the ECS.  
+
+
+
+
+{\ttfamily \#include $<$Health\+Component.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structHealthComponent_afc629e4cff26c8a60a4f034b25e62874}{Health\+Component}} (int \mbox{\hyperlink{structHealthComponent_a44675c84af2972a0cee11b9fff5880b5}{health}}=100, int \mbox{\hyperlink{structHealthComponent_aad78b9cdd3084d212c2d30b6d329dd64}{max\+Health}}=100, bool \mbox{\hyperlink{structHealthComponent_a9c1cb5fbc84c8499b91a8b6c04707fbc}{is\+Player}}=false, int \mbox{\hyperlink{structHealthComponent_a05616acca2fa59e639e80e4b798329ee}{damage}}=0, float \mbox{\hyperlink{structHealthComponent_a659b14d1de10af35232b174aff2dc95a}{attack\+Timeout}}=0.\+0f)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{structHealthComponent}{Health\+Component} with specified parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structHealthComponent_a44675c84af2972a0cee11b9fff5880b5}\label{structHealthComponent_a44675c84af2972a0cee11b9fff5880b5} 
+int {\bfseries health}
+\begin{DoxyCompactList}\small\item\em Current health of the entity. \end{DoxyCompactList}\item 
+\Hypertarget{structHealthComponent_aad78b9cdd3084d212c2d30b6d329dd64}\label{structHealthComponent_aad78b9cdd3084d212c2d30b6d329dd64} 
+int {\bfseries max\+Health}
+\begin{DoxyCompactList}\small\item\em Maximum health capacity of the entity. \end{DoxyCompactList}\item 
+\Hypertarget{structHealthComponent_a9c1cb5fbc84c8499b91a8b6c04707fbc}\label{structHealthComponent_a9c1cb5fbc84c8499b91a8b6c04707fbc} 
+bool {\bfseries is\+Player}
+\begin{DoxyCompactList}\small\item\em Indicates whether the entity is the player. \end{DoxyCompactList}\item 
+\Hypertarget{structHealthComponent_a05616acca2fa59e639e80e4b798329ee}\label{structHealthComponent_a05616acca2fa59e639e80e4b798329ee} 
+int {\bfseries damage}
+\begin{DoxyCompactList}\small\item\em Damage dealt by the entity\textquotesingle{}s attacks. \end{DoxyCompactList}\item 
+\Hypertarget{structHealthComponent_a659b14d1de10af35232b174aff2dc95a}\label{structHealthComponent_a659b14d1de10af35232b174aff2dc95a} 
+float {\bfseries attack\+Timeout}
+\begin{DoxyCompactList}\small\item\em Time interval (in seconds) between consecutive attacks. \end{DoxyCompactList}\item 
+\Hypertarget{structHealthComponent_a943dac7dcd5fbf13c3792782e55eea07}\label{structHealthComponent_a943dac7dcd5fbf13c3792782e55eea07} 
+std\+::chrono\+::steady\+\_\+clock\+::time\+\_\+point {\bfseries attack\+Timeout\+Duration}
+\begin{DoxyCompactList}\small\item\em Timestamp of the last attack performed by the entity. \end{DoxyCompactList}\item 
+\Hypertarget{structHealthComponent_a7ed0826f912b0fdeb22e1f9e792b167a}\label{structHealthComponent_a7ed0826f912b0fdeb22e1f9e792b167a} 
+std\+::chrono\+::steady\+\_\+clock\+::time\+\_\+point {\bfseries last\+Damage\+Received}
+\begin{DoxyCompactList}\small\item\em Timestamp of the last time the entity received damage. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{classComponent}{Component} for managing health-\/related data for entities in the ECS. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structHealthComponent_afc629e4cff26c8a60a4f034b25e62874}\label{structHealthComponent_afc629e4cff26c8a60a4f034b25e62874} 
+\index{HealthComponent@{HealthComponent}!HealthComponent@{HealthComponent}}
+\index{HealthComponent@{HealthComponent}!HealthComponent@{HealthComponent}}
+\doxyparagraph{\texorpdfstring{HealthComponent()}{HealthComponent()}}
+{\footnotesize\ttfamily Health\+Component\+::\+Health\+Component (\begin{DoxyParamCaption}\item[{int}]{health = {\ttfamily 100},  }\item[{int}]{max\+Health = {\ttfamily 100},  }\item[{bool}]{is\+Player = {\ttfamily false},  }\item[{int}]{damage = {\ttfamily 0},  }\item[{float}]{attack\+Timeout = {\ttfamily 0.0f} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{structHealthComponent}{Health\+Component} with specified parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em health} & Current health of the entity (default\+: 100). \\
+\hline
+{\em max\+Health} & Maximum health capacity (default\+: 100). \\
+\hline
+{\em is\+Player} & Whether the entity is the player (default\+: false). \\
+\hline
+{\em damage} & Damage dealt by the entity\textquotesingle{}s attacks (default\+: 0). \\
+\hline
+{\em attack\+Timeout} & Time interval between attacks in seconds (default\+: 0.\+0f). \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Components/Health\+Component.\+hpp\end{DoxyCompactItemize}

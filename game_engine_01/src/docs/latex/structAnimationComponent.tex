@@ -1,0 +1,64 @@
+\doxysubsection{Animation\+Component Struct Reference}
+\hypertarget{structAnimationComponent}{}\label{structAnimationComponent}\index{AnimationComponent@{AnimationComponent}}
+
+
+\doxylink{classComponent}{Component} for handling sprite animations in the ECS.  
+
+
+
+
+{\ttfamily \#include $<$Animation\+Component.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structAnimationComponent_a9dbe4e13af4b9aa24adb651460794957}{Animation\+Component}} (int \mbox{\hyperlink{structAnimationComponent_a394dfc0c2357a82810b49dbae9c2b952}{num\+Frames}}=1, int \mbox{\hyperlink{structAnimationComponent_aef8a8dcea961c0db6601e43a3a7d31c5}{frame\+Speed\+Rate}}=1, bool \mbox{\hyperlink{structAnimationComponent_a9fb3175c7a43b6cf55c0a5a78d594b36}{is\+Loop}}=true)
+\begin{DoxyCompactList}\small\item\em Constructs an \doxylink{structAnimationComponent}{Animation\+Component} with specified parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structAnimationComponent_a394dfc0c2357a82810b49dbae9c2b952}\label{structAnimationComponent_a394dfc0c2357a82810b49dbae9c2b952} 
+int {\bfseries num\+Frames}
+\begin{DoxyCompactList}\small\item\em Total number of frames in the animation. \end{DoxyCompactList}\item 
+\Hypertarget{structAnimationComponent_a307af1a2894a53cf6322d0c5429bb0fb}\label{structAnimationComponent_a307af1a2894a53cf6322d0c5429bb0fb} 
+int {\bfseries current\+Frame}
+\begin{DoxyCompactList}\small\item\em Current frame of the animation. \end{DoxyCompactList}\item 
+\Hypertarget{structAnimationComponent_aef8a8dcea961c0db6601e43a3a7d31c5}\label{structAnimationComponent_aef8a8dcea961c0db6601e43a3a7d31c5} 
+int {\bfseries frame\+Speed\+Rate}
+\begin{DoxyCompactList}\small\item\em Speed at which frames are updated (in milliseconds). \end{DoxyCompactList}\item 
+\Hypertarget{structAnimationComponent_a9fb3175c7a43b6cf55c0a5a78d594b36}\label{structAnimationComponent_a9fb3175c7a43b6cf55c0a5a78d594b36} 
+bool {\bfseries is\+Loop}
+\begin{DoxyCompactList}\small\item\em Indicates whether the animation should loop. \end{DoxyCompactList}\item 
+\Hypertarget{structAnimationComponent_a9f02559b240414bc4678cbc389fe37ac}\label{structAnimationComponent_a9f02559b240414bc4678cbc389fe37ac} 
+int {\bfseries start\+Time}
+\begin{DoxyCompactList}\small\item\em Time when the animation started, in milliseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{classComponent}{Component} for handling sprite animations in the ECS. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structAnimationComponent_a9dbe4e13af4b9aa24adb651460794957}\label{structAnimationComponent_a9dbe4e13af4b9aa24adb651460794957} 
+\index{AnimationComponent@{AnimationComponent}!AnimationComponent@{AnimationComponent}}
+\index{AnimationComponent@{AnimationComponent}!AnimationComponent@{AnimationComponent}}
+\doxyparagraph{\texorpdfstring{AnimationComponent()}{AnimationComponent()}}
+{\footnotesize\ttfamily Animation\+Component\+::\+Animation\+Component (\begin{DoxyParamCaption}\item[{int}]{num\+Frames = {\ttfamily 1},  }\item[{int}]{frame\+Speed\+Rate = {\ttfamily 1},  }\item[{bool}]{is\+Loop = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs an \doxylink{structAnimationComponent}{Animation\+Component} with specified parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Frames} & Total number of frames in the animation (default\+: 1). \\
+\hline
+{\em frame\+Speed\+Rate} & Speed of frame updates in milliseconds (default\+: 1). \\
+\hline
+{\em is\+Loop} & Whether the animation should loop (default\+: true). \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Components/Animation\+Component.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,54 @@
+\doxysubsection{Drawable\+Component Struct Reference}
+\hypertarget{structDrawableComponent}{}\label{structDrawableComponent}\index{DrawableComponent@{DrawableComponent}}
+
+
+\doxylink{classComponent}{Component} for managing drawable elements with colored points and timestamps in the ECS.  
+
+
+
+
+{\ttfamily \#include $<$Drawable\+Component.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structDrawableComponent_a65744606aaf5e1a7edea8d681aa37259}\label{structDrawableComponent_a65744606aaf5e1a7edea8d681aa37259} 
+{\bfseries Drawable\+Component} ()
+\begin{DoxyCompactList}\small\item\em Default constructor initializing with white color and three empty point lists. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structDrawableComponent_a0eea2b7bf10f2ca22ca5d18c08545979}{Drawable\+Component}} (SDL\+\_\+\+Color col)
+\begin{DoxyCompactList}\small\item\em Constructor initializing with a specified color and three empty point lists. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structDrawableComponent_a10e3a18777d8ba75ed3faee0aef6ef37}\label{structDrawableComponent_a10e3a18777d8ba75ed3faee0aef6ef37} 
+SDL\+\_\+\+Color {\bfseries color}
+\begin{DoxyCompactList}\small\item\em Color used for rendering the drawable element. \end{DoxyCompactList}\item 
+\Hypertarget{structDrawableComponent_ada41b9e15c47ca75ae74ecbd4321e9ef}\label{structDrawableComponent_ada41b9e15c47ca75ae74ecbd4321e9ef} 
+std\+::vector$<$ std\+::vector$<$ std\+::pair$<$ glm\+::vec2, std\+::chrono\+::steady\+\_\+clock\+::time\+\_\+point $>$ $>$ $>$ {\bfseries color\+Points}
+\begin{DoxyCompactList}\small\item\em Vector of point lists for different colors (red, blue, green), each with position and timestamp. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{classComponent}{Component} for managing drawable elements with colored points and timestamps in the ECS. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structDrawableComponent_a0eea2b7bf10f2ca22ca5d18c08545979}\label{structDrawableComponent_a0eea2b7bf10f2ca22ca5d18c08545979} 
+\index{DrawableComponent@{DrawableComponent}!DrawableComponent@{DrawableComponent}}
+\index{DrawableComponent@{DrawableComponent}!DrawableComponent@{DrawableComponent}}
+\doxyparagraph{\texorpdfstring{DrawableComponent()}{DrawableComponent()}}
+{\footnotesize\ttfamily Drawable\+Component\+::\+Drawable\+Component (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Color}]{col }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor initializing with a specified color and three empty point lists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col} & The SDL\+\_\+\+Color to set for the component. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Components/Drawable\+Component.\+hpp\end{DoxyCompactItemize}

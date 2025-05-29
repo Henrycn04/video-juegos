@@ -1,0 +1,101 @@
+\doxysubsection{Enemy\+System Class Reference}
+\hypertarget{classEnemySystem}{}\label{classEnemySystem}\index{EnemySystem@{EnemySystem}}
+
+
+\doxylink{classSystem}{System} that manages enemy spawning and behavior.  
+
+
+
+
+{\ttfamily \#include $<$Enemy\+System.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEnemySystem_a067ca0906266b484525e8511edfb2c31}{Enemy\+System}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new Enemy \doxylink{classSystem}{System} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEnemySystem_ae945d6adc3509aa025c04585c2857a65}{Update}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classRegistry}{Registry}} $>$ \&registry)
+\begin{DoxyCompactList}\small\item\em Update enemy spawners and spawn new enemies. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEnemySystem_a3ac8adabc5fef1f93c8b94451b40abf5}{Create\+Enemy\+Projectile}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classRegistry}{Registry}} $>$ \&registry, glm\+::vec2 velocity, glm\+::vec2 position, double rotation, int damage)
+\begin{DoxyCompactList}\small\item\em Create an enemy projectile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{classSystem}{System}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries System} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor for the system. \end{DoxyCompactList}\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+System} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor for the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSystem_a36b3396cdb8fa107bd4515382fbb8847}{Add\+Entity\+To\+System}} (\mbox{\hyperlink{classEntity}{Entity}} entity)
+\begin{DoxyCompactList}\small\item\em Adds an entity to the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSystem_a05a2e9d96800e05c3d4c8d7ebfd9903b}{Remove\+Entity\+From\+System}} (\mbox{\hyperlink{classEntity}{Entity}} entity)
+\begin{DoxyCompactList}\small\item\em Removes an entity from the system. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} $>$ \mbox{\hyperlink{classSystem_aec0388b6db4900c4d4a9e1dea0f09205}{Get\+System\+Entities}} () const
+\begin{DoxyCompactList}\small\item\em Gets the list of entities managed by this system. \end{DoxyCompactList}\item 
+const Signature \& \mbox{\hyperlink{classSystem_af97298c27dfe2231ab21bdb1a0316dc4}{Get\+Component\+Signature}} () const
+\begin{DoxyCompactList}\small\item\em Gets the component signature of the system. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename TComponent $>$ }\\void \mbox{\hyperlink{classSystem_ac15b3d09b3f3c485af1364255f21dbd5}{Require\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Specifies a required component for the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{classSystem}{System} that manages enemy spawning and behavior. 
+
+Handles enemy spawning from spawner entities, projectile creation, and cloning of enemy templates with random positions. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEnemySystem_a067ca0906266b484525e8511edfb2c31}\label{classEnemySystem_a067ca0906266b484525e8511edfb2c31} 
+\index{EnemySystem@{EnemySystem}!EnemySystem@{EnemySystem}}
+\index{EnemySystem@{EnemySystem}!EnemySystem@{EnemySystem}}
+\doxyparagraph{\texorpdfstring{EnemySystem()}{EnemySystem()}}
+{\footnotesize\ttfamily Enemy\+System\+::\+Enemy\+System (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new Enemy \doxylink{classSystem}{System} object. 
+
+Requires entities to have \doxylink{structEnemyComponent}{Enemy\+Component} 
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classEnemySystem_a3ac8adabc5fef1f93c8b94451b40abf5}\label{classEnemySystem_a3ac8adabc5fef1f93c8b94451b40abf5} 
+\index{EnemySystem@{EnemySystem}!CreateEnemyProjectile@{CreateEnemyProjectile}}
+\index{CreateEnemyProjectile@{CreateEnemyProjectile}!EnemySystem@{EnemySystem}}
+\doxyparagraph{\texorpdfstring{CreateEnemyProjectile()}{CreateEnemyProjectile()}}
+{\footnotesize\ttfamily void Enemy\+System\+::\+Create\+Enemy\+Projectile (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classRegistry}{Registry}} $>$ \&}]{registry,  }\item[{glm\+::vec2}]{velocity,  }\item[{glm\+::vec2}]{position,  }\item[{double}]{rotation,  }\item[{int}]{damage }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Create an enemy projectile. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em registry} & Reference to the ECS registry \\
+\hline
+{\em velocity} & Projectile velocity vector \\
+\hline
+{\em position} & Starting position \\
+\hline
+{\em rotation} & Initial rotation \\
+\hline
+{\em damage} & Damage value of the projectile \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEnemySystem_ae945d6adc3509aa025c04585c2857a65}\label{classEnemySystem_ae945d6adc3509aa025c04585c2857a65} 
+\index{EnemySystem@{EnemySystem}!Update@{Update}}
+\index{Update@{Update}!EnemySystem@{EnemySystem}}
+\doxyparagraph{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void Enemy\+System\+::\+Update (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classRegistry}{Registry}} $>$ \&}]{registry }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Update enemy spawners and spawn new enemies. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em registry} & Reference to the ECS registry \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Systems/Enemy\+System.\+hpp\end{DoxyCompactItemize}

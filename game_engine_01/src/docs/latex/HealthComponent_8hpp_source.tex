@@ -1,0 +1,40 @@
+\doxysubsection{Health\+Component.\+hpp}
+\hypertarget{HealthComponent_8hpp_source}{}\label{HealthComponent_8hpp_source}\index{Components/HealthComponent.hpp@{Components/HealthComponent.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ HEALTHCOMPONENT\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ HEALTHCOMPONENT\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structHealthComponent}{HealthComponent}}\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structHealthComponent_a44675c84af2972a0cee11b9fff5880b5}{health}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structHealthComponent_aad78b9cdd3084d212c2d30b6d329dd64}{maxHealth}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structHealthComponent_a9c1cb5fbc84c8499b91a8b6c04707fbc}{isPlayer}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structHealthComponent_a05616acca2fa59e639e80e4b798329ee}{damage}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structHealthComponent_a659b14d1de10af35232b174aff2dc95a}{attackTimeout}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00027\ \ \ \ \ std::chrono::steady\_clock::time\_point\ \mbox{\hyperlink{structHealthComponent_a943dac7dcd5fbf13c3792782e55eea07}{attackTimeoutDuration}};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00030\ \ \ \ \ std::chrono::steady\_clock::time\_point\ \mbox{\hyperlink{structHealthComponent_a7ed0826f912b0fdeb22e1f9e792b167a}{lastDamageReceived}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{structHealthComponent_afc629e4cff26c8a60a4f034b25e62874}{HealthComponent}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{structHealthComponent_a44675c84af2972a0cee11b9fff5880b5}{health}}\ =\ 100,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structHealthComponent_aad78b9cdd3084d212c2d30b6d329dd64}{maxHealth}}\ =\ 100,\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structHealthComponent_a9c1cb5fbc84c8499b91a8b6c04707fbc}{isPlayer}}\ =\ \textcolor{keyword}{false},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structHealthComponent_a05616acca2fa59e639e80e4b798329ee}{damage}}\ =\ 0,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structHealthComponent_a659b14d1de10af35232b174aff2dc95a}{attackTimeout}}\ =\ 0.0f)}
+\DoxyCodeLine{00041\ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ this-\/>health\ =\ \mbox{\hyperlink{structHealthComponent_a44675c84af2972a0cee11b9fff5880b5}{health}};}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ this-\/>maxHealth\ =\ \mbox{\hyperlink{structHealthComponent_aad78b9cdd3084d212c2d30b6d329dd64}{maxHealth}};}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ this-\/>isPlayer\ =\ \mbox{\hyperlink{structHealthComponent_a9c1cb5fbc84c8499b91a8b6c04707fbc}{isPlayer}};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ this-\/>damage\ =\ \mbox{\hyperlink{structHealthComponent_a05616acca2fa59e639e80e4b798329ee}{damage}};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ this-\/>attackTimeout\ =\ \mbox{\hyperlink{structHealthComponent_a659b14d1de10af35232b174aff2dc95a}{attackTimeout}};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ timestamps\ to\ allow\ immediate\ damage\ or\ attack}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ this-\/>attackTimeoutDuration\ =\ std::chrono::steady\_clock::now()\ -\/\ std::chrono::seconds(1);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ this-\/>lastDamageReceived\ =\ std::chrono::steady\_clock::now()\ -\/\ std::chrono::seconds(-\/1);}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

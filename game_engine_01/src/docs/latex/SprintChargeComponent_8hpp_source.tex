@@ -1,0 +1,60 @@
+\doxysubsection{Sprint\+Charge\+Component.\+hpp}
+\hypertarget{SprintChargeComponent_8hpp_source}{}\label{SprintChargeComponent_8hpp_source}\index{Components/SprintChargeComponent.hpp@{Components/SprintChargeComponent.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SPRINTCHARGECOMPONENT\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SPRINTCHARGECOMPONENT\_HPP}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structSprintChargeComponent}{SprintChargeComponent}}\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structSprintChargeComponent_af3c59adab2aa801e45be37d9d9e74bdb}{totalCharge}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structSprintChargeComponent_a6d7a9a38180ff915f0fa55270ed67688}{currentCharge}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00014\ \ \ \ \ std::string\ \mbox{\hyperlink{structSprintChargeComponent_a3c7618014a3700110814ad7a0be11189}{chargeDisplay}};\ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{structSprintChargeComponent_aee2d397dd8c0721a515dbda80861cef8}{SprintChargeComponent}}(\textcolor{keywordtype}{int}\ total\ =\ 100,\ \textcolor{keywordtype}{int}\ initialCharge\ =\ 100)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSprintChargeComponent_af3c59adab2aa801e45be37d9d9e74bdb}{totalCharge}}\ =\ total;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSprintChargeComponent_a6d7a9a38180ff915f0fa55270ed67688}{currentCharge}}\ =\ initialCharge;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSprintChargeComponent_ad631c983727a5c6b9aec929bed81b22b}{updateChargeDisplay}}();}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structSprintChargeComponent_ad631c983727a5c6b9aec929bed81b22b}{updateChargeDisplay}}()\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSprintChargeComponent_a3c7618014a3700110814ad7a0be11189}{chargeDisplay}}\ =\ std::to\_string(\mbox{\hyperlink{structSprintChargeComponent_a6d7a9a38180ff915f0fa55270ed67688}{currentCharge}})\ +\ \textcolor{stringliteral}{"{}/"{}}\ +\ std::to\_string(\mbox{\hyperlink{structSprintChargeComponent_af3c59adab2aa801e45be37d9d9e74bdb}{totalCharge}});}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structSprintChargeComponent_ac50128fd422cccd4ff028a09d0499ef4}{Recharge}}()\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSprintChargeComponent_a6d7a9a38180ff915f0fa55270ed67688}{currentCharge}}\ =\ \mbox{\hyperlink{structSprintChargeComponent_af3c59adab2aa801e45be37d9d9e74bdb}{totalCharge}};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSprintChargeComponent_ad631c983727a5c6b9aec929bed81b22b}{updateChargeDisplay}}();}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structSprintChargeComponent_a21f41de6e8f6c4d1673ca46557b16197}{Charge}}(\textcolor{keywordtype}{int}\ amount)\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSprintChargeComponent_a6d7a9a38180ff915f0fa55270ed67688}{currentCharge}}\ +=\ amount;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{structSprintChargeComponent_a6d7a9a38180ff915f0fa55270ed67688}{currentCharge}}\ >\ \mbox{\hyperlink{structSprintChargeComponent_af3c59adab2aa801e45be37d9d9e74bdb}{totalCharge}})\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSprintChargeComponent_a6d7a9a38180ff915f0fa55270ed67688}{currentCharge}}\ =\ \mbox{\hyperlink{structSprintChargeComponent_af3c59adab2aa801e45be37d9d9e74bdb}{totalCharge}};}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSprintChargeComponent_ad631c983727a5c6b9aec929bed81b22b}{updateChargeDisplay}}();}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structSprintChargeComponent_a1fb0be8c4a9b086b9c620c47955b1a80}{Discharge}}(\textcolor{keywordtype}{int}\ amount)\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSprintChargeComponent_a6d7a9a38180ff915f0fa55270ed67688}{currentCharge}}\ -\/=\ amount;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{structSprintChargeComponent_a6d7a9a38180ff915f0fa55270ed67688}{currentCharge}}\ <\ 0)\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSprintChargeComponent_a6d7a9a38180ff915f0fa55270ed67688}{currentCharge}}\ =\ 0;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSprintChargeComponent_ad631c983727a5c6b9aec929bed81b22b}{updateChargeDisplay}}();}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structSprintChargeComponent_aaa8c15af09d6e6b03305cc332fd34734}{GetPercentage}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{structSprintChargeComponent_af3c59adab2aa801e45be37d9d9e74bdb}{totalCharge}}\ ==\ 0)\ \textcolor{keywordflow}{return}\ 0.0f;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(\mbox{\hyperlink{structSprintChargeComponent_a6d7a9a38180ff915f0fa55270ed67688}{currentCharge}})\ /\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(\mbox{\hyperlink{structSprintChargeComponent_af3c59adab2aa801e45be37d9d9e74bdb}{totalCharge}}))\ *\ 100.0f;}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structSprintChargeComponent_a394ef87a55c5bc830a467f9619107cd8}{IsFullyCharged}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structSprintChargeComponent_a6d7a9a38180ff915f0fa55270ed67688}{currentCharge}}\ ==\ \mbox{\hyperlink{structSprintChargeComponent_af3c59adab2aa801e45be37d9d9e74bdb}{totalCharge}};}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structSprintChargeComponent_ad549454cd22bee17060dd3f169abca4f}{IsEmpty}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structSprintChargeComponent_a6d7a9a38180ff915f0fa55270ed67688}{currentCharge}}\ ==\ 0;}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \};}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SPRINTCHARGECOMPONENT\_HPP}}
+
+\end{DoxyCode}

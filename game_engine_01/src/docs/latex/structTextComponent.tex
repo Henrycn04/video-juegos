@@ -1,0 +1,72 @@
+\doxysubsection{Text\+Component Struct Reference}
+\hypertarget{structTextComponent}{}\label{structTextComponent}\index{TextComponent@{TextComponent}}
+
+
+\doxylink{classComponent}{Component} that handles text rendering properties.  
+
+
+
+
+{\ttfamily \#include $<$Text\+Component.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structTextComponent_acacc03d64bb40de7297b8ea0db7c9cb4}{Text\+Component}} (const std\+::string \&\mbox{\hyperlink{structTextComponent_a27e11647d96a9dc3c5a90fea62bfc5c1}{text}}="{}"{}, const std\+::string \&\mbox{\hyperlink{structTextComponent_a430b39c0862cf885617b47e0a86f0cf3}{font\+Id}}="{}"{}, u\+\_\+char r=0, u\+\_\+char g=0, u\+\_\+char b=0, u\+\_\+char a=0)
+\begin{DoxyCompactList}\small\item\em Construct a new Text \doxylink{classComponent}{Component} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structTextComponent_a27e11647d96a9dc3c5a90fea62bfc5c1}\label{structTextComponent_a27e11647d96a9dc3c5a90fea62bfc5c1} 
+std\+::string {\bfseries text}
+\begin{DoxyCompactList}\small\item\em The text string to be displayed. \end{DoxyCompactList}\item 
+\Hypertarget{structTextComponent_a430b39c0862cf885617b47e0a86f0cf3}\label{structTextComponent_a430b39c0862cf885617b47e0a86f0cf3} 
+std\+::string {\bfseries font\+Id}
+\begin{DoxyCompactList}\small\item\em ID of the font resource to use. \end{DoxyCompactList}\item 
+\Hypertarget{structTextComponent_a3acca29df5ccb812d7b65b2f5710f005}\label{structTextComponent_a3acca29df5ccb812d7b65b2f5710f005} 
+SDL\+\_\+\+Color {\bfseries color}
+\begin{DoxyCompactList}\small\item\em Color of the text (RGBA) \end{DoxyCompactList}\item 
+\Hypertarget{structTextComponent_af6827a596eef0dcb4170fc4c118bac23}\label{structTextComponent_af6827a596eef0dcb4170fc4c118bac23} 
+int {\bfseries width}
+\begin{DoxyCompactList}\small\item\em Width of the rendered text in pixels. \end{DoxyCompactList}\item 
+\Hypertarget{structTextComponent_af40b90b566daa4dfb563be18677cf8d2}\label{structTextComponent_af40b90b566daa4dfb563be18677cf8d2} 
+int {\bfseries height}
+\begin{DoxyCompactList}\small\item\em Height of the rendered text in pixels. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{classComponent}{Component} that handles text rendering properties. 
+
+Stores text content, font information, and rendering properties for text display. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structTextComponent_acacc03d64bb40de7297b8ea0db7c9cb4}\label{structTextComponent_acacc03d64bb40de7297b8ea0db7c9cb4} 
+\index{TextComponent@{TextComponent}!TextComponent@{TextComponent}}
+\index{TextComponent@{TextComponent}!TextComponent@{TextComponent}}
+\doxyparagraph{\texorpdfstring{TextComponent()}{TextComponent()}}
+{\footnotesize\ttfamily Text\+Component\+::\+Text\+Component (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{text = {\ttfamily "{}"{}},  }\item[{const std\+::string \&}]{font\+Id = {\ttfamily "{}"{}},  }\item[{u\+\_\+char}]{r = {\ttfamily 0},  }\item[{u\+\_\+char}]{g = {\ttfamily 0},  }\item[{u\+\_\+char}]{b = {\ttfamily 0},  }\item[{u\+\_\+char}]{a = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new Text \doxylink{classComponent}{Component} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & The text content (default\+: "{}"{}) \\
+\hline
+{\em font\+Id} & ID of the font to use (default\+: "{}"{}) \\
+\hline
+{\em r} & Red component (0-\/255) (default\+: 0) \\
+\hline
+{\em g} & Green component (0-\/255) (default\+: 0) \\
+\hline
+{\em b} & Blue component (0-\/255) (default\+: 0) \\
+\hline
+{\em a} & Alpha (transparency) component (0-\/255) (default\+: 0) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Components/Text\+Component.\+hpp\end{DoxyCompactItemize}

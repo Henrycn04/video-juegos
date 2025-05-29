@@ -1,0 +1,144 @@
+\doxysubsection{Damage\+Charge\+Component Struct Reference}
+\hypertarget{structDamageChargeComponent}{}\label{structDamageChargeComponent}\index{DamageChargeComponent@{DamageChargeComponent}}
+
+
+\doxylink{classComponent}{Component} for managing a charge-\/based damage system in the ECS.  
+
+
+
+
+{\ttfamily \#include $<$Damage\+Charge\+Component.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structDamageChargeComponent_a0c77cdb068bc7ab408d15bb294beabf6}{Damage\+Charge\+Component}} (int total=100, int initial\+Charge=100)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{structDamageChargeComponent}{Damage\+Charge\+Component} with specified total and initial charge. \end{DoxyCompactList}\item 
+\Hypertarget{structDamageChargeComponent_a51e82ee828f0f42a0c1eaa0a540b04a9}\label{structDamageChargeComponent_a51e82ee828f0f42a0c1eaa0a540b04a9} 
+void {\bfseries update\+Charge\+Display} ()
+\begin{DoxyCompactList}\small\item\em Updates the charge display string to reflect current and total charge. \end{DoxyCompactList}\item 
+\Hypertarget{structDamageChargeComponent_af9d65dc8885815c06d76e552a9fc0004}\label{structDamageChargeComponent_af9d65dc8885815c06d76e552a9fc0004} 
+void {\bfseries Recharge} ()
+\begin{DoxyCompactList}\small\item\em Fully recharges the component to its total capacity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structDamageChargeComponent_ac3343b6c2820c1349e4e07a7684c8363}{Charge}} (int amount)
+\begin{DoxyCompactList}\small\item\em Adds a specified amount to the current charge, capped at total capacity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structDamageChargeComponent_afcb2bd6aa5cb2b8c1e91db6786e05d78}{Discharge}} (int amount)
+\begin{DoxyCompactList}\small\item\em Removes a specified amount from the current charge, preventing negative values. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structDamageChargeComponent_ac235c508902add6de8bf5ab0f024ec86}{Get\+Percentage}} () const
+\begin{DoxyCompactList}\small\item\em Calculates the current charge as a percentage of the total capacity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structDamageChargeComponent_a2eef7515e3e461d0cc425db17c70d421}{Is\+Fully\+Charged}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the charge is at full capacity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structDamageChargeComponent_a6cc70531f504cd7ee03cdd02ab8a1fb2}{Is\+Empty}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the charge is depleted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structDamageChargeComponent_ac0899f76ebbe8f23c784b1694ca0542e}\label{structDamageChargeComponent_ac0899f76ebbe8f23c784b1694ca0542e} 
+int {\bfseries total\+Charge}
+\begin{DoxyCompactList}\small\item\em Total charge capacity. \end{DoxyCompactList}\item 
+\Hypertarget{structDamageChargeComponent_aa4e8ae1ae21b88ad29f3ba6c1ba20883}\label{structDamageChargeComponent_aa4e8ae1ae21b88ad29f3ba6c1ba20883} 
+int {\bfseries current\+Charge}
+\begin{DoxyCompactList}\small\item\em Current charge level. \end{DoxyCompactList}\item 
+\Hypertarget{structDamageChargeComponent_a86bfb647bba6e1eb3806cf66b2e08853}\label{structDamageChargeComponent_a86bfb647bba6e1eb3806cf66b2e08853} 
+std\+::string {\bfseries charge\+Display}
+\begin{DoxyCompactList}\small\item\em String representation of the charge level in the format "{}current\+Charge/total\+Charge"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{classComponent}{Component} for managing a charge-\/based damage system in the ECS. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structDamageChargeComponent_a0c77cdb068bc7ab408d15bb294beabf6}\label{structDamageChargeComponent_a0c77cdb068bc7ab408d15bb294beabf6} 
+\index{DamageChargeComponent@{DamageChargeComponent}!DamageChargeComponent@{DamageChargeComponent}}
+\index{DamageChargeComponent@{DamageChargeComponent}!DamageChargeComponent@{DamageChargeComponent}}
+\doxyparagraph{\texorpdfstring{DamageChargeComponent()}{DamageChargeComponent()}}
+{\footnotesize\ttfamily Damage\+Charge\+Component\+::\+Damage\+Charge\+Component (\begin{DoxyParamCaption}\item[{int}]{total = {\ttfamily 100},  }\item[{int}]{initial\+Charge = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{structDamageChargeComponent}{Damage\+Charge\+Component} with specified total and initial charge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em total} & The total charge capacity (default\+: 100). \\
+\hline
+{\em initial\+Charge} & The initial charge level (default\+: 100). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{structDamageChargeComponent_ac3343b6c2820c1349e4e07a7684c8363}\label{structDamageChargeComponent_ac3343b6c2820c1349e4e07a7684c8363} 
+\index{DamageChargeComponent@{DamageChargeComponent}!Charge@{Charge}}
+\index{Charge@{Charge}!DamageChargeComponent@{DamageChargeComponent}}
+\doxyparagraph{\texorpdfstring{Charge()}{Charge()}}
+{\footnotesize\ttfamily void Damage\+Charge\+Component\+::\+Charge (\begin{DoxyParamCaption}\item[{int}]{amount }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a specified amount to the current charge, capped at total capacity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & The amount of charge to add. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structDamageChargeComponent_afcb2bd6aa5cb2b8c1e91db6786e05d78}\label{structDamageChargeComponent_afcb2bd6aa5cb2b8c1e91db6786e05d78} 
+\index{DamageChargeComponent@{DamageChargeComponent}!Discharge@{Discharge}}
+\index{Discharge@{Discharge}!DamageChargeComponent@{DamageChargeComponent}}
+\doxyparagraph{\texorpdfstring{Discharge()}{Discharge()}}
+{\footnotesize\ttfamily void Damage\+Charge\+Component\+::\+Discharge (\begin{DoxyParamCaption}\item[{int}]{amount }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Removes a specified amount from the current charge, preventing negative values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & The amount of charge to remove. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structDamageChargeComponent_ac235c508902add6de8bf5ab0f024ec86}\label{structDamageChargeComponent_ac235c508902add6de8bf5ab0f024ec86} 
+\index{DamageChargeComponent@{DamageChargeComponent}!GetPercentage@{GetPercentage}}
+\index{GetPercentage@{GetPercentage}!DamageChargeComponent@{DamageChargeComponent}}
+\doxyparagraph{\texorpdfstring{GetPercentage()}{GetPercentage()}}
+{\footnotesize\ttfamily float Damage\+Charge\+Component\+::\+Get\+Percentage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculates the current charge as a percentage of the total capacity. 
+
+\begin{DoxyReturn}{Returns}
+The percentage of charge remaining (0.\+0f if total\+Charge is 0). 
+\end{DoxyReturn}
+\Hypertarget{structDamageChargeComponent_a6cc70531f504cd7ee03cdd02ab8a1fb2}\label{structDamageChargeComponent_a6cc70531f504cd7ee03cdd02ab8a1fb2} 
+\index{DamageChargeComponent@{DamageChargeComponent}!IsEmpty@{IsEmpty}}
+\index{IsEmpty@{IsEmpty}!DamageChargeComponent@{DamageChargeComponent}}
+\doxyparagraph{\texorpdfstring{IsEmpty()}{IsEmpty()}}
+{\footnotesize\ttfamily bool Damage\+Charge\+Component\+::\+Is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the charge is depleted. 
+
+\begin{DoxyReturn}{Returns}
+True if current charge is 0, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{structDamageChargeComponent_a2eef7515e3e461d0cc425db17c70d421}\label{structDamageChargeComponent_a2eef7515e3e461d0cc425db17c70d421} 
+\index{DamageChargeComponent@{DamageChargeComponent}!IsFullyCharged@{IsFullyCharged}}
+\index{IsFullyCharged@{IsFullyCharged}!DamageChargeComponent@{DamageChargeComponent}}
+\doxyparagraph{\texorpdfstring{IsFullyCharged()}{IsFullyCharged()}}
+{\footnotesize\ttfamily bool Damage\+Charge\+Component\+::\+Is\+Fully\+Charged (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the charge is at full capacity. 
+
+\begin{DoxyReturn}{Returns}
+True if current charge equals total charge, false otherwise. 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Components/Damage\+Charge\+Component.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,182 @@
+\doxysubsection{Health\+System.\+hpp}
+\hypertarget{HealthSystem_8hpp_source}{}\label{HealthSystem_8hpp_source}\index{Systems/HealthSystem.hpp@{Systems/HealthSystem.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ HEALTHSYSTEM\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ HEALTHSYSTEM\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}../Components/HealthComponent.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}../Components/EffectReceiverComponent.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}../Components/RigidBodyComponent.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}../ECS/ECS.hpp"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classHealthSystem}{HealthSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classSystem}{System}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classHealthSystem_ad4b2afe5e05ad190a6bbe02ecff34198}{HealthSystem}}()\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ RequireComponent<HealthComponent>();}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classHealthSystem_a22cb5820405890824f610fe25d074472}{Update}}()\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ registry\ =\ \mbox{\hyperlink{classGame_a689dc1143da4a51248eb9feeed5b2aba}{Game::GetInstance}}().\mbox{\hyperlink{classGame_ab9ec8204418df1ecb54b9522fc7fac0a}{registry}};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEntity}{Entity}}\ playerEntity(-\/1);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ foundPlayer\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ entities\ managed\ by\ HealthSystem}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ entities\ =\ registry-\/>GetEntitiesFromSystem<\mbox{\hyperlink{classHealthSystem}{HealthSystem}}>();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Find\ the\ player\ entity}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ entity\ :\ entities)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entity.HasComponent<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>())\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ health\ =\ entity.GetComponent<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>();}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (health.isPlayer)\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playerEntity\ =\ entity;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ foundPlayer\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (foundPlayer\ \&\&\ playerEntity.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>())\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ playerHealth\ =\ playerEntity.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>();}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ playerDamage\ =\ playerHealth.\mbox{\hyperlink{structHealthComponent_a05616acca2fa59e639e80e4b798329ee}{damage}};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ playerTimeout\ =\ playerHealth.attackTimeout;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ all\ effect-\/receiving\ entities}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ entity\ :\ entities)\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entity.HasComponent<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>()\ \&\&\ entity.HasComponent<\mbox{\hyperlink{structEffectReceiverComponent}{EffectReceiverComponent}}>())\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ effectReceiver\ =\ entity.GetComponent<\mbox{\hyperlink{structEffectReceiverComponent}{EffectReceiverComponent}}>();}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ entityHealth\ =\ entity.GetComponent<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ zone\ damage\ ONLY\ if\ entity\ is\ currently\ in\ damage\ zone}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (effectReceiver.takingDamage\ \&\&\ !entityHealth.isPlayer)\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ProcessZoneDamage(entity,\ playerDamage,\ playerTimeout);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ApplySpeedEffect(entity,\ effectReceiver,\ entityHealth);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ other\ effects}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (effectReceiver.slowed\ \&\&\ !entityHealth.isPlayer)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Apply\ slow\ logic}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::cout\ <<\ "{}Enemy\ slowed"{}\ <<\ std::endl;}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (effectReceiver.speedBoosted\ \&\&\ entityHealth.isPlayer)\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Apply\ speed\ boost\ logic}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::cout\ <<\ "{}Player\ speed\ boosted"{}\ <<\ std::endl;}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ ApplySpeedEffect(\mbox{\hyperlink{classEntity}{Entity}}\&\ entity,\ \mbox{\hyperlink{structEffectReceiverComponent}{EffectReceiverComponent}}\&\ effectReceiver,\ \mbox{\hyperlink{structHealthComponent}{HealthComponent}}\&\ entityHealth)\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isPlayer\ =\ entityHealth.\mbox{\hyperlink{structHealthComponent_a9c1cb5fbc84c8499b91a8b6c04707fbc}{isPlayer}};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isPlayer\ \&\&\ effectReceiver.\mbox{\hyperlink{structEffectReceiverComponent_a8909668b36a4275cd961156e659d6ddd}{speedBoosted}})\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ entity.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structRigidBodyComponent}{RigidBodyComponent}}>().velocity\ *=\ 1.5f;\ \textcolor{comment}{//\ Increase\ speed}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!isPlayer\ \&\&\ effectReceiver.\mbox{\hyperlink{structEffectReceiverComponent_a25db6e94a1669e4bebe9ea0e6ea17672}{slowed}})\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ entity.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structRigidBodyComponent}{RigidBodyComponent}}>().velocity\ *=\ 0.3f;\ \textcolor{comment}{//\ Reduce\ speed}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ ProcessZoneDamage(\mbox{\hyperlink{classEntity}{Entity}}\ entity,\ \textcolor{keywordtype}{int}\ damage,\ \textcolor{keywordtype}{float}\ damageInterval)\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!entity.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ targetHealth\ =\ entity.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>();}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ current\ time}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ now\ =\ std::chrono::steady\_clock::now();}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ time\ since\ last\ damage}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ elapsed\ =\ std::chrono::duration\_cast<std::chrono::milliseconds>(now\ -\/\ targetHealth.lastDamageReceived).count();}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ intervalMs\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(damageInterval\ *\ 1000);\ \textcolor{comment}{//\ seconds\ to\ ms}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Skip\ if\ not\ enough\ time\ passed}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (elapsed\ <\ intervalMs)\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verify\ entity\ is\ still\ taking\ damage}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!entity.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structEffectReceiverComponent}{EffectReceiverComponent}}>())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ effectReceiver\ =\ entity.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structEffectReceiverComponent}{EffectReceiverComponent}}>();}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!effectReceiver.\mbox{\hyperlink{structEffectReceiverComponent_a0cf019bf69d8d457ce7ecfbe6e6bf899}{takingDamage}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ last\ damage\ time}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ targetHealth.lastDamageReceived\ =\ now;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Apply\ damage}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ targetHealth.\mbox{\hyperlink{structHealthComponent_a44675c84af2972a0cee11b9fff5880b5}{health}}\ -\/=\ damage;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ for\ death}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (targetHealth.health\ <=\ 0)\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ targetHealth.health\ =\ 0;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!targetHealth.isPlayer)\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGame_a689dc1143da4a51248eb9feeed5b2aba}{Game::GetInstance}}().\mbox{\hyperlink{classGame_a152d8fe67f8a082d080e6722c23a22c2}{totalPoints}}\ +=\ entity.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structEnemyComponent}{EnemyComponent}}>().points;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGame_a689dc1143da4a51248eb9feeed5b2aba}{Game::GetInstance}}().\mbox{\hyperlink{classGame_aebffbb0eded014a48f514d87d03601b2}{enemiesLeft}}-\/-\/;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ entity.\mbox{\hyperlink{classEntity_ab0a890ba55c9bc5830c021ace6ac3908}{Kill}}();}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classGame_a689dc1143da4a51248eb9feeed5b2aba}{Game::GetInstance}}().enemiesLeft\ ==\ 0)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGame_a689dc1143da4a51248eb9feeed5b2aba}{Game::GetInstance}}().\mbox{\hyperlink{classGame_a70eff9268a8c52281347fe13871c0072}{finDelNivel}}\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGame_a689dc1143da4a51248eb9feeed5b2aba}{Game::GetInstance}}().\mbox{\hyperlink{classGame_a0f9c877a1b34d307bfbcb0d759a2bc3b}{win}}\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classHealthSystem_aa286921ea370318d19b1f6bd03c4093d}{ReduceHP}}(\mbox{\hyperlink{classEntity}{Entity}}\ entity,\ \textcolor{keywordtype}{int}\ damage,\ \mbox{\hyperlink{classEntity}{Entity}}\ attacker)\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!entity.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!attacker.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>())\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ attackerHealth\ =\ attacker.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>();}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ targetHealth\ =\ entity.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>();}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ current\ time}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ now\ =\ std::chrono::steady\_clock::now();}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ time\ since\ attacker's\ last\ attack}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ elapsed\ =\ std::chrono::duration\_cast<std::chrono::milliseconds>(now\ -\/\ attackerHealth.\mbox{\hyperlink{structHealthComponent_a943dac7dcd5fbf13c3792782e55eea07}{attackTimeoutDuration}}).count();}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ timeoutMs\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(attackerHealth.attackTimeout\ *\ 1000);}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (elapsed\ <\ timeoutMs)\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ attacker's\ last\ attack\ time}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ attackerHealth.attackTimeoutDuration\ =\ now;}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Apply\ damage}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ targetHealth.\mbox{\hyperlink{structHealthComponent_a44675c84af2972a0cee11b9fff5880b5}{health}}\ -\/=\ damage;}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (targetHealth.\mbox{\hyperlink{structHealthComponent_a44675c84af2972a0cee11b9fff5880b5}{health}}\ <=\ 0)\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ targetHealth.\mbox{\hyperlink{structHealthComponent_a44675c84af2972a0cee11b9fff5880b5}{health}}\ =\ 0;}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!targetHealth.\mbox{\hyperlink{structHealthComponent_a9c1cb5fbc84c8499b91a8b6c04707fbc}{isPlayer}})\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ entity.\mbox{\hyperlink{classEntity_ab0a890ba55c9bc5830c021ace6ac3908}{Kill}}();}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGame_a689dc1143da4a51248eb9feeed5b2aba}{Game::GetInstance}}().\mbox{\hyperlink{classGame_a70eff9268a8c52281347fe13871c0072}{finDelNivel}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGame_a689dc1143da4a51248eb9feeed5b2aba}{Game::GetInstance}}().\mbox{\hyperlink{classGame_a0f9c877a1b34d307bfbcb0d759a2bc3b}{win}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \ \ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classHealthSystem_ac843d364922d776dbefe8186e12cf770}{SetHealth}}(\mbox{\hyperlink{classEntity}{Entity}}\ entity,\ \textcolor{keywordtype}{int}\ value)\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entity.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>())\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ health\ =\ entity.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>();}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ health.\mbox{\hyperlink{structHealthComponent_a44675c84af2972a0cee11b9fff5880b5}{health}}\ =\ std::max(0,\ value);}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (health.health\ ==\ 0\ \&\&\ !health.isPlayer)\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ entity.\mbox{\hyperlink{classEntity_ab0a890ba55c9bc5830c021ace6ac3908}{Kill}}();}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00205\ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classHealthSystem_aee75d48364c8d95d3686d7fdcf529594}{Heal}}(\mbox{\hyperlink{classEntity}{Entity}}\ entity,\ \textcolor{keywordtype}{int}\ amount)\ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entity.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>())\ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ health\ =\ entity.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>();}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ health.\mbox{\hyperlink{structHealthComponent_a44675c84af2972a0cee11b9fff5880b5}{health}}\ +=\ amount;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ health.health\ =\ std::min(health.health,\ health.maxHealth);}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00218\ \ \ \ \ \}}
+\DoxyCodeLine{00219\ \};}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ HEALTHSYSTEM\_HPP}}
+
+\end{DoxyCode}

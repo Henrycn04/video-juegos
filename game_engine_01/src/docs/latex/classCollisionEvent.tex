@@ -1,0 +1,65 @@
+\doxysubsection{Collision\+Event Class Reference}
+\hypertarget{classCollisionEvent}{}\label{classCollisionEvent}\index{CollisionEvent@{CollisionEvent}}
+
+
+\doxylink{classEvent}{Event} representing a collision between two entities.  
+
+
+
+
+{\ttfamily \#include $<$Collision\+Event.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCollisionEvent_abeae4bd780fd03eca8b6d63bfc366c38}{Collision\+Event}} (\mbox{\hyperlink{classEntity}{Entity}} \mbox{\hyperlink{classCollisionEvent_a4887b3b77aa99e85bc9fd6ace1c7ff10}{entityA}}, \mbox{\hyperlink{classEntity}{Entity}} \mbox{\hyperlink{classCollisionEvent_a130cff18b26abdde0596e87ab4349877}{entityB}})
+\begin{DoxyCompactList}\small\item\em Construct a new Collision \doxylink{classEvent}{Event} object. \end{DoxyCompactList}\item 
+\Hypertarget{classCollisionEvent_a123a9d1c0d102be1761267f4764f2fb7}\label{classCollisionEvent_a123a9d1c0d102be1761267f4764f2fb7} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Collision\+Event} ()
+\begin{DoxyCompactList}\small\item\em Destroy the Collision \doxylink{classEvent}{Event} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{classEvent}{Event}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Event} ()=default
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{classEvent}{Event} object (default) \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Event} ()=default
+\begin{DoxyCompactList}\small\item\em Destroy the \doxylink{classEvent}{Event} object (virtual for proper inheritance) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCollisionEvent_a4887b3b77aa99e85bc9fd6ace1c7ff10}\label{classCollisionEvent_a4887b3b77aa99e85bc9fd6ace1c7ff10} 
+\mbox{\hyperlink{classEntity}{Entity}} {\bfseries entityA}
+\begin{DoxyCompactList}\small\item\em First entity involved in the collision. \end{DoxyCompactList}\item 
+\Hypertarget{classCollisionEvent_a130cff18b26abdde0596e87ab4349877}\label{classCollisionEvent_a130cff18b26abdde0596e87ab4349877} 
+\mbox{\hyperlink{classEntity}{Entity}} {\bfseries entityB}
+\begin{DoxyCompactList}\small\item\em Second entity involved in the collision. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{classEvent}{Event} representing a collision between two entities. 
+
+Contains references to both entities involved in the collision. Inherits from the base \doxylink{classEvent}{Event} class for use with the \doxylink{classEventManager}{Event\+Manager} system. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classCollisionEvent_abeae4bd780fd03eca8b6d63bfc366c38}\label{classCollisionEvent_abeae4bd780fd03eca8b6d63bfc366c38} 
+\index{CollisionEvent@{CollisionEvent}!CollisionEvent@{CollisionEvent}}
+\index{CollisionEvent@{CollisionEvent}!CollisionEvent@{CollisionEvent}}
+\doxyparagraph{\texorpdfstring{CollisionEvent()}{CollisionEvent()}}
+{\footnotesize\ttfamily Collision\+Event\+::\+Collision\+Event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEntity}{Entity}}}]{entityA,  }\item[{\mbox{\hyperlink{classEntity}{Entity}}}]{entityB }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new Collision \doxylink{classEvent}{Event} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entityA} & First entity in the collision \\
+\hline
+{\em entityB} & Second entity in the collision \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Events/Collision\+Event.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,465 @@
+\begin{theindex}
+
+  \item {Add}
+    \subitem {Pool$<$ TComponent $>$}, \hyperpage{47}
+  \item {AddActionKey}
+    \subitem {ControllerManager}, \hyperpage{16}
+  \item {AddComponent}
+    \subitem {Entity}, \hyperpage{31}
+    \subitem {Registry}, \hyperpage{53}
+  \item {AddEntityToSystem}
+    \subitem {System}, \hyperpage{77}
+  \item {AddEntityToSystems}
+    \subitem {Registry}, \hyperpage{53}
+  \item {AddFont}
+    \subitem {AssetManager}, \hyperpage{5}
+  \item {AddMouseButton}
+    \subitem {ControllerManager}, \hyperpage{17}
+  \item {AddSound}
+    \subitem {AssetManager}, \hyperpage{5}
+  \item {AddSystem}
+    \subitem {Registry}, \hyperpage{53}
+  \item {AddTexture}
+    \subitem {AssetManager}, \hyperpage{5}
+  \item {AnimationComponent}, \hyperpage{2}
+    \subitem {AnimationComponent}, \hyperpage{2}
+  \item {AnimationSystem}, \hyperpage{3}
+    \subitem {AnimationSystem}, \hyperpage{3}
+    \subitem {Update}, \hyperpage{4}
+  \item {AssetManager}, \hyperpage{4}
+    \subitem {AddFont}, \hyperpage{5}
+    \subitem {AddSound}, \hyperpage{5}
+    \subitem {AddTexture}, \hyperpage{5}
+    \subitem {GetFont}, \hyperpage{5}
+    \subitem {GetSound}, \hyperpage{6}
+    \subitem {GetTexture}, \hyperpage{6}
+  \item {AssetManager/AssetManager.hpp}, \hyperpage{82}
+
+  \indexspace
+
+  \item {Binding/LuaBinding.hpp}, \hyperpage{83}
+
+  \indexspace
+
+  \item {Charge}
+    \subitem {DamageChargeComponent}, \hyperpage{20}
+    \subitem {SlowChargeComponent}, \hyperpage{67}
+    \subitem {SprintChargeComponent}, \hyperpage{74}
+  \item {ChargeManageSystem}, \hyperpage{7}
+    \subitem {ChargeManageSystem}, \hyperpage{8}
+    \subitem {ConsumeChargeForDrawing}, \hyperpage{8}
+    \subitem {HasSufficientCharge}, \hyperpage{8}
+    \subitem {Update}, \hyperpage{8}
+  \item {CircleColliderComponent}, \hyperpage{9}
+    \subitem {CircleColliderComponent}, \hyperpage{9}
+  \item {ClickableComponent}, \hyperpage{10}
+  \item {ClickEvent}, \hyperpage{10}
+    \subitem {ClickEvent}, \hyperpage{11}
+  \item {CollisionEvent}, \hyperpage{11}
+    \subitem {CollisionEvent}, \hyperpage{12}
+  \item {CollisionSystem}, \hyperpage{12}
+    \subitem {CollisionSystem}, \hyperpage{13}
+    \subitem {Update}, \hyperpage{13}
+  \item {Component$<$ TComponent $>$}, \hyperpage{14}
+    \subitem {GetId}, \hyperpage{14}
+  \item {Components/AnimationComponent.hpp}, \hyperpage{86}
+  \item {Components/CircleColliderComponent.hpp}, \hyperpage{86}
+  \item {Components/ClickableComponent.hpp}, \hyperpage{87}
+  \item {Components/DamageChargeComponent.hpp}, \hyperpage{87}
+  \item {Components/DrawableComponent.hpp}, \hyperpage{88}
+  \item {Components/EffectReceiverComponent.hpp}, \hyperpage{88}
+  \item {Components/EnemyComponent.hpp}, \hyperpage{88}
+  \item {Components/HealthComponent.hpp}, \hyperpage{89}
+  \item {Components/IdentifierComponent.hpp}, \hyperpage{89}
+  \item {Components/ProjectileComponent.hpp}, \hyperpage{89}
+  \item {Components/RigidBodyComponent.hpp}, \hyperpage{90}
+  \item {Components/ScriptComponent.hpp}, \hyperpage{90}
+  \item {Components/SlowChargeComponent.hpp}, \hyperpage{90}
+  \item {Components/SoundComponent.hpp}, \hyperpage{91}
+  \item {Components/SprintChargeComponent.hpp}, \hyperpage{91}
+  \item {Components/SpriteComponent.hpp}, \hyperpage{92}
+  \item {Components/TextComponent.hpp}, \hyperpage{92}
+  \item {Components/TransformComponent.hpp}, \hyperpage{93}
+  \item {ConsumeChargeForDrawing}
+    \subitem {ChargeManageSystem}, \hyperpage{8}
+  \item {ControllerManager}, \hyperpage{15}
+    \subitem {AddActionKey}, \hyperpage{16}
+    \subitem {AddMouseButton}, \hyperpage{17}
+    \subitem {GetMousePosition}, \hyperpage{17}
+    \subitem {IsActionActivated}, \hyperpage{17}
+    \subitem {IsMouseButtonDown}, \hyperpage{17}
+    \subitem {KeyDown}, \hyperpage{18}
+    \subitem {KeyUp}, \hyperpage{18}
+    \subitem {MouseButtonDown}, \hyperpage{18}
+    \subitem {MouseButtonUp}, \hyperpage{19}
+    \subitem {SetMousePosition}, \hyperpage{19}
+  \item {ControllerManager/ControllerManager.hpp}, \hyperpage{93}
+  \item {CreateEnemyProjectile}
+    \subitem {EnemySystem}, \hyperpage{29}
+  \item {CreateEntity}
+    \subitem {Registry}, \hyperpage{54}
+  \item {CreateLuaBinding}
+    \subitem {ScriptSystem}, \hyperpage{65}
+
+  \indexspace
+
+  \item {DamageChargeComponent}, \hyperpage{19}
+    \subitem {Charge}, \hyperpage{20}
+    \subitem {DamageChargeComponent}, \hyperpage{20}
+    \subitem {Discharge}, \hyperpage{21}
+    \subitem {GetPercentage}, \hyperpage{21}
+    \subitem {IsEmpty}, \hyperpage{21}
+    \subitem {IsFullyCharged}, \hyperpage{21}
+  \item {DamageSystem}, \hyperpage{22}
+    \subitem {DamageSystem}, \hyperpage{22}
+    \subitem {OnCollision}, \hyperpage{23}
+    \subitem {SubscribeToCollisionEvent}, \hyperpage{23}
+  \item {Discharge}
+    \subitem {DamageChargeComponent}, \hyperpage{21}
+    \subitem {SlowChargeComponent}, \hyperpage{68}
+    \subitem {SprintChargeComponent}, \hyperpage{74}
+  \item {DrawableComponent}, \hyperpage{23}
+    \subitem {DrawableComponent}, \hyperpage{24}
+  \item {DrawingEffectSystem}, \hyperpage{24}
+    \subitem {DrawingEffectSystem}, \hyperpage{25}
+    \subitem {Update}, \hyperpage{25}
+  \item {DrawSystem}, \hyperpage{25}
+    \subitem {DrawSystem}, \hyperpage{26}
+    \subitem {Update}, \hyperpage{26}
+
+  \indexspace
+
+  \item {ECS/ECS.hpp}, \hyperpage{94}
+  \item {EffectReceiverComponent}, \hyperpage{27}
+  \item {EmitEvent}
+    \subitem {EventManager}, \hyperpage{36}
+  \item {EnemyComponent}, \hyperpage{27}
+    \subitem {EnemyComponent}, \hyperpage{28}
+  \item {EnemySystem}, \hyperpage{28}
+    \subitem {CreateEnemyProjectile}, \hyperpage{29}
+    \subitem {EnemySystem}, \hyperpage{29}
+    \subitem {Update}, \hyperpage{30}
+  \item {Entity}, \hyperpage{30}
+    \subitem {AddComponent}, \hyperpage{31}
+    \subitem {Entity}, \hyperpage{31}
+    \subitem {GetComponent}, \hyperpage{32}
+    \subitem {GetId}, \hyperpage{32}
+    \subitem {HasComponent}, \hyperpage{32}
+    \subitem {operator!=}, \hyperpage{33}
+    \subitem {operator$<$}, \hyperpage{33}
+    \subitem {operator$>$}, \hyperpage{34}
+    \subitem {operator==}, \hyperpage{33}
+    \subitem {RemoveComponent}, \hyperpage{34}
+  \item {Event}, \hyperpage{34}
+  \item {EventCallback}
+    \subitem {EventCallback$<$ TOwner, TEvent $>$}, \hyperpage{36}
+  \item {EventCallback$<$ TOwner, TEvent $>$}, \hyperpage{35}
+    \subitem {EventCallback}, \hyperpage{36}
+  \item {EventManager}, \hyperpage{36}
+    \subitem {EmitEvent}, \hyperpage{36}
+    \subitem {SubscribeToEvent}, \hyperpage{37}
+  \item {EventManager/Event.hpp}, \hyperpage{97}
+  \item {EventManager/EventManager.hpp}, \hyperpage{97}
+  \item {Events/ClickEvent.hpp}, \hyperpage{98}
+  \item {Events/CollisionEvent.hpp}, \hyperpage{98}
+  \item {Excute}
+    \subitem {IEventCallback}, \hyperpage{44}
+
+  \indexspace
+
+  \item {Game}, \hyperpage{37}
+    \subitem {GetInstance}, \hyperpage{39}
+  \item {Game/Game.hpp}, \hyperpage{99}
+  \item {Get}
+    \subitem {Pool$<$ TComponent $>$}, \hyperpage{49}
+  \item {GetComponent}
+    \subitem {Entity}, \hyperpage{32}
+    \subitem {Registry}, \hyperpage{54}
+  \item {GetComponentSignature}
+    \subitem {System}, \hyperpage{77}
+  \item {GetEntitiesFromSystem}
+    \subitem {Registry}, \hyperpage{54}
+  \item {GetFont}
+    \subitem {AssetManager}, \hyperpage{5}
+  \item {GetId}
+    \subitem {Component$<$ TComponent $>$}, \hyperpage{14}
+    \subitem {Entity}, \hyperpage{32}
+  \item {GetInstance}
+    \subitem {Game}, \hyperpage{39}
+  \item {GetMousePosition}
+    \subitem {ControllerManager}, \hyperpage{17}
+  \item {GetNextScene}
+    \subitem {SceneManager}, \hyperpage{63}
+  \item {GetPercentage}
+    \subitem {DamageChargeComponent}, \hyperpage{21}
+    \subitem {SlowChargeComponent}, \hyperpage{68}
+    \subitem {SprintChargeComponent}, \hyperpage{74}
+  \item {GetSize}
+    \subitem {Pool$<$ TComponent $>$}, \hyperpage{49}
+  \item {GetSound}
+    \subitem {AssetManager}, \hyperpage{6}
+  \item {GetSystem}
+    \subitem {Registry}, \hyperpage{55}
+  \item {GetSystemEntities}
+    \subitem {System}, \hyperpage{78}
+  \item {GetTexture}
+    \subitem {AssetManager}, \hyperpage{6}
+
+  \indexspace
+
+  \item {HasComponent}
+    \subitem {Entity}, \hyperpage{32}
+    \subitem {Registry}, \hyperpage{55}
+  \item {HasSufficientCharge}
+    \subitem {ChargeManageSystem}, \hyperpage{8}
+  \item {HasSystem}
+    \subitem {Registry}, \hyperpage{55}
+  \item {Heal}
+    \subitem {HealthSystem}, \hyperpage{41}
+  \item {HealthComponent}, \hyperpage{39}
+    \subitem {HealthComponent}, \hyperpage{40}
+  \item {HealthSystem}, \hyperpage{40}
+    \subitem {Heal}, \hyperpage{41}
+    \subitem {HealthSystem}, \hyperpage{41}
+    \subitem {ReduceHP}, \hyperpage{42}
+    \subitem {SetHealth}, \hyperpage{42}
+    \subitem {Update}, \hyperpage{42}
+
+  \indexspace
+
+  \item {IComponent}, \hyperpage{42}
+  \item {IdentifierComponent}, \hyperpage{43}
+    \subitem {IdentifierComponent}, \hyperpage{43}
+  \item {IEventCallback}, \hyperpage{44}
+    \subitem {Excute}, \hyperpage{44}
+  \item {IPool}, \hyperpage{44}
+  \item {IsActionActivated}
+    \subitem {ControllerManager}, \hyperpage{17}
+  \item {IsEmpty}
+    \subitem {DamageChargeComponent}, \hyperpage{21}
+    \subitem {Pool$<$ TComponent $>$}, \hyperpage{49}
+    \subitem {SlowChargeComponent}, \hyperpage{68}
+    \subitem {SprintChargeComponent}, \hyperpage{75}
+  \item {IsFullyCharged}
+    \subitem {DamageChargeComponent}, \hyperpage{21}
+    \subitem {SlowChargeComponent}, \hyperpage{68}
+    \subitem {SprintChargeComponent}, \hyperpage{75}
+  \item {IsMouseButtonDown}
+    \subitem {ControllerManager}, \hyperpage{17}
+  \item {IsSceneRunning}
+    \subitem {SceneManager}, \hyperpage{63}
+
+  \indexspace
+
+  \item {KeyDown}
+    \subitem {ControllerManager}, \hyperpage{18}
+  \item {KeyUp}
+    \subitem {ControllerManager}, \hyperpage{18}
+  \item {KillEntity}
+    \subitem {Registry}, \hyperpage{56}
+
+  \indexspace
+
+  \item {LoadScene}
+    \subitem {SceneLoader}, \hyperpage{62}
+  \item {LoadSceneFromScript}
+    \subitem {SceneManager}, \hyperpage{63}
+
+  \indexspace
+
+  \item {MouseButtonDown}
+    \subitem {ControllerManager}, \hyperpage{18}
+  \item {MouseButtonUp}
+    \subitem {ControllerManager}, \hyperpage{19}
+  \item {MovementSystem}, \hyperpage{45}
+    \subitem {MovementSystem}, \hyperpage{46}
+    \subitem {Update}, \hyperpage{46}
+
+  \indexspace
+
+  \item {OnClickEvent}
+    \subitem {UISystem}, \hyperpage{82}
+  \item {OnCollision}
+    \subitem {DamageSystem}, \hyperpage{23}
+  \item {operator!=}
+    \subitem {Entity}, \hyperpage{33}
+  \item {operator$<$}
+    \subitem {Entity}, \hyperpage{33}
+  \item {operator$>$}
+    \subitem {Entity}, \hyperpage{34}
+  \item {operator==}
+    \subitem {Entity}, \hyperpage{33}
+  \item {operator[]}
+    \subitem {Pool$<$ TComponent $>$}, \hyperpage{49}
+
+  \indexspace
+
+  \item {PauseSound}
+    \subitem {SoundSystem}, \hyperpage{71}
+  \item {PlaySound}
+    \subitem {SoundSystem}, \hyperpage{72}
+  \item {Pool}
+    \subitem {Pool$<$ TComponent $>$}, \hyperpage{47}
+  \item {Pool$<$ TComponent $>$}, \hyperpage{46}
+    \subitem {Add}, \hyperpage{47}
+    \subitem {Get}, \hyperpage{49}
+    \subitem {GetSize}, \hyperpage{49}
+    \subitem {IsEmpty}, \hyperpage{49}
+    \subitem {operator[]}, \hyperpage{49}
+    \subitem {Pool}, \hyperpage{47}
+    \subitem {Resize}, \hyperpage{50}
+    \subitem {Set}, \hyperpage{50}
+  \item {ProjectileComponent}, \hyperpage{50}
+    \subitem {ProjectileComponent}, \hyperpage{51}
+
+  \indexspace
+
+  \item {ReduceHP}
+    \subitem {HealthSystem}, \hyperpage{42}
+  \item {Registry}, \hyperpage{52}
+    \subitem {AddComponent}, \hyperpage{53}
+    \subitem {AddEntityToSystems}, \hyperpage{53}
+    \subitem {AddSystem}, \hyperpage{53}
+    \subitem {CreateEntity}, \hyperpage{54}
+    \subitem {GetComponent}, \hyperpage{54}
+    \subitem {GetEntitiesFromSystem}, \hyperpage{54}
+    \subitem {GetSystem}, \hyperpage{55}
+    \subitem {HasComponent}, \hyperpage{55}
+    \subitem {HasSystem}, \hyperpage{55}
+    \subitem {KillEntity}, \hyperpage{56}
+    \subitem {RemoveComponent}, \hyperpage{56}
+    \subitem {RemoveEntityFromSystems}, \hyperpage{56}
+    \subitem {RemoveSystem}, \hyperpage{57}
+  \item {RemoveComponent}
+    \subitem {Entity}, \hyperpage{34}
+    \subitem {Registry}, \hyperpage{56}
+  \item {RemoveEntityFromSystem}
+    \subitem {System}, \hyperpage{78}
+  \item {RemoveEntityFromSystems}
+    \subitem {Registry}, \hyperpage{56}
+  \item {RemoveSystem}
+    \subitem {Registry}, \hyperpage{57}
+  \item {RenderSystem}, \hyperpage{57}
+    \subitem {RenderSystem}, \hyperpage{58}
+    \subitem {Update}, \hyperpage{58}
+    \subitem {UpdateBackground}, \hyperpage{58}
+  \item {RenderTextSystem}, \hyperpage{59}
+    \subitem {RenderTextSystem}, \hyperpage{60}
+    \subitem {Update}, \hyperpage{60}
+  \item {RequireComponent}
+    \subitem {System}, \hyperpage{78}
+  \item {Resize}
+    \subitem {Pool$<$ TComponent $>$}, \hyperpage{50}
+  \item {ResumeSound}
+    \subitem {SoundSystem}, \hyperpage{72}
+  \item {RigidBodyComponent}, \hyperpage{60}
+    \subitem {RigidBodyComponent}, \hyperpage{61}
+
+  \indexspace
+
+  \item {SceneLoader}, \hyperpage{61}
+    \subitem {LoadScene}, \hyperpage{62}
+  \item {SceneManager}, \hyperpage{62}
+    \subitem {GetNextScene}, \hyperpage{63}
+    \subitem {IsSceneRunning}, \hyperpage{63}
+    \subitem {LoadSceneFromScript}, \hyperpage{63}
+    \subitem {SetNextScene}, \hyperpage{63}
+  \item {SceneManager/SceneLoader.hpp}, \hyperpage{100}
+  \item {SceneManager/SceneManager.hpp}, \hyperpage{100}
+  \item {ScriptComponent}, \hyperpage{64}
+    \subitem {ScriptComponent}, \hyperpage{64}
+  \item {ScriptSystem}, \hyperpage{65}
+    \subitem {CreateLuaBinding}, \hyperpage{65}
+    \subitem {Update}, \hyperpage{66}
+  \item {Set}
+    \subitem {Pool$<$ TComponent $>$}, \hyperpage{50}
+  \item {SetHealth}
+    \subitem {HealthSystem}, \hyperpage{42}
+  \item {SetMousePosition}
+    \subitem {ControllerManager}, \hyperpage{19}
+  \item {SetNextScene}
+    \subitem {SceneManager}, \hyperpage{63}
+  \item {SlowChargeComponent}, \hyperpage{66}
+    \subitem {Charge}, \hyperpage{67}
+    \subitem {Discharge}, \hyperpage{68}
+    \subitem {GetPercentage}, \hyperpage{68}
+    \subitem {IsEmpty}, \hyperpage{68}
+    \subitem {IsFullyCharged}, \hyperpage{68}
+    \subitem {SlowChargeComponent}, \hyperpage{67}
+  \item {SoundComponent}, \hyperpage{69}
+    \subitem {SoundComponent}, \hyperpage{69}
+  \item {SoundSystem}, \hyperpage{70}
+    \subitem {PauseSound}, \hyperpage{71}
+    \subitem {PlaySound}, \hyperpage{72}
+    \subitem {ResumeSound}, \hyperpage{72}
+    \subitem {StopSound}, \hyperpage{72}
+    \subitem {Update}, \hyperpage{72}
+  \item {SprintChargeComponent}, \hyperpage{73}
+    \subitem {Charge}, \hyperpage{74}
+    \subitem {Discharge}, \hyperpage{74}
+    \subitem {GetPercentage}, \hyperpage{74}
+    \subitem {IsEmpty}, \hyperpage{75}
+    \subitem {IsFullyCharged}, \hyperpage{75}
+    \subitem {SprintChargeComponent}, \hyperpage{74}
+  \item {SpriteComponent}, \hyperpage{75}
+    \subitem {SpriteComponent}, \hyperpage{76}
+  \item {StopSound}
+    \subitem {SoundSystem}, \hyperpage{72}
+  \item {SubscribeToClickEvent}
+    \subitem {UISystem}, \hyperpage{82}
+  \item {SubscribeToCollisionEvent}
+    \subitem {DamageSystem}, \hyperpage{23}
+  \item {SubscribeToEvent}
+    \subitem {EventManager}, \hyperpage{37}
+  \item {System}, \hyperpage{77}
+    \subitem {AddEntityToSystem}, \hyperpage{77}
+    \subitem {GetComponentSignature}, \hyperpage{77}
+    \subitem {GetSystemEntities}, \hyperpage{78}
+    \subitem {RemoveEntityFromSystem}, \hyperpage{78}
+    \subitem {RequireComponent}, \hyperpage{78}
+  \item {Systems/AnimationSystem.hpp}, \hyperpage{101}
+  \item {Systems/ChargeManageSystem.hpp}, \hyperpage{101}
+  \item {Systems/CollisionSystem.hpp}, \hyperpage{103}
+  \item {Systems/DamageSystem.hpp}, \hyperpage{104}
+  \item {Systems/DrawingEffectSystem.hpp}, \hyperpage{104}
+  \item {Systems/DrawSystem.hpp}, \hyperpage{106}
+  \item {Systems/EnemySystem.hpp}, \hyperpage{107}
+  \item {Systems/HealthSystem.hpp}, \hyperpage{109}
+  \item {Systems/MovementSystem.hpp}, \hyperpage{111}
+  \item {Systems/RenderSystem.hpp}, \hyperpage{112}
+  \item {Systems/RenderTextSystem.hpp}, \hyperpage{113}
+  \item {Systems/ScriptSystem.hpp}, \hyperpage{115}
+  \item {Systems/SoundSystem.hpp}, \hyperpage{116}
+  \item {Systems/UISystem.hpp}, \hyperpage{116}
+
+  \indexspace
+
+  \item {TextComponent}, \hyperpage{78}
+    \subitem {TextComponent}, \hyperpage{79}
+  \item {TransformComponent}, \hyperpage{80}
+    \subitem {TransformComponent}, \hyperpage{80}
+
+  \indexspace
+
+  \item {UISystem}, \hyperpage{81}
+    \subitem {OnClickEvent}, \hyperpage{82}
+    \subitem {SubscribeToClickEvent}, \hyperpage{82}
+    \subitem {UISystem}, \hyperpage{82}
+  \item {Update}
+    \subitem {AnimationSystem}, \hyperpage{4}
+    \subitem {ChargeManageSystem}, \hyperpage{8}
+    \subitem {CollisionSystem}, \hyperpage{13}
+    \subitem {DrawingEffectSystem}, \hyperpage{25}
+    \subitem {DrawSystem}, \hyperpage{26}
+    \subitem {EnemySystem}, \hyperpage{30}
+    \subitem {HealthSystem}, \hyperpage{42}
+    \subitem {MovementSystem}, \hyperpage{46}
+    \subitem {RenderSystem}, \hyperpage{58}
+    \subitem {RenderTextSystem}, \hyperpage{60}
+    \subitem {ScriptSystem}, \hyperpage{66}
+    \subitem {SoundSystem}, \hyperpage{72}
+  \item {UpdateBackground}
+    \subitem {RenderSystem}, \hyperpage{58}
+  \item {Utils/Pool.hpp}, \hyperpage{117}
+
+\end{theindex}

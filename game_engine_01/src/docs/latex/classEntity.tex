@@ -1,0 +1,243 @@
+\doxysubsection{Entity Class Reference}
+\hypertarget{classEntity}{}\label{classEntity}\index{Entity@{Entity}}
+
+
+Represents an entity in the ECS, identified by a unique ID.  
+
+
+
+
+{\ttfamily \#include $<$ECS.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEntity_ac98bd610e0299cc2aa0538fb2884ab69}{Entity}} (int id)
+\begin{DoxyCompactList}\small\item\em Constructs an entity with a given ID. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classEntity_a478be4b3bc1cc77e5fd92a7dda6689a4}{Get\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Gets the entity\textquotesingle{}s ID. \end{DoxyCompactList}\item 
+\Hypertarget{classEntity_ab0a890ba55c9bc5830c021ace6ac3908}\label{classEntity_ab0a890ba55c9bc5830c021ace6ac3908} 
+void {\bfseries Kill} ()
+\begin{DoxyCompactList}\small\item\em Marks the entity for deletion. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntity_abeedd2b9ad7b200acca5ac2522607fad}{operator==}} (const \mbox{\hyperlink{classEntity}{Entity}} \&other) const
+\begin{DoxyCompactList}\small\item\em Equality operator for comparing entities. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntity_ae2bb991352e76415d09f30aa69d6b9f4}{operator!=}} (const \mbox{\hyperlink{classEntity}{Entity}} \&other) const
+\begin{DoxyCompactList}\small\item\em Inequality operator for comparing entities. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntity_abd34ebda09449554a8be0aa19106c08e}{operator$>$}} (const \mbox{\hyperlink{classEntity}{Entity}} \&other) const
+\begin{DoxyCompactList}\small\item\em Greater-\/than operator for comparing entities. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEntity_ae1b49cec9466a32749a951c2ed864b7f}{operator$<$}} (const \mbox{\hyperlink{classEntity}{Entity}} \&other) const
+\begin{DoxyCompactList}\small\item\em Less-\/than operator for comparing entities. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename TComponent , typename... TArgs$>$ }\\void \mbox{\hyperlink{classEntity_a125342c7309de6be6e518da6bffb7452}{Add\+Component}} (TArgs \&\&... args)
+\begin{DoxyCompactList}\small\item\em Adds a component to the entity. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename TComponent $>$ }\\void \mbox{\hyperlink{classEntity_ae0a4dce2a3d4a1d8025b6ae037a6624f}{Remove\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Removes a component from the entity. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename TComponent $>$ }\\bool \mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{Has\+Component}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the entity has a specific component. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename TComponent $>$ }\\TComponent \& \mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{Get\+Component}} () const
+\begin{DoxyCompactList}\small\item\em Gets a reference to a specific component of the entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEntity_a80cc8ec12331e7aaec78d2b6cae9a6a7}\label{classEntity_a80cc8ec12331e7aaec78d2b6cae9a6a7} 
+class \mbox{\hyperlink{classRegistry}{Registry}} \texorpdfstring{$\ast$}{*} {\bfseries registry}
+\begin{DoxyCompactList}\small\item\em Pointer to the ECS registry managing this entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Represents an entity in the ECS, identified by a unique ID. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classEntity_ac98bd610e0299cc2aa0538fb2884ab69}\label{classEntity_ac98bd610e0299cc2aa0538fb2884ab69} 
+\index{Entity@{Entity}!Entity@{Entity}}
+\index{Entity@{Entity}!Entity@{Entity}}
+\doxyparagraph{\texorpdfstring{Entity()}{Entity()}}
+{\footnotesize\ttfamily Entity\+::\+Entity (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs an entity with a given ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The unique identifier for the entity. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classEntity_a125342c7309de6be6e518da6bffb7452}\label{classEntity_a125342c7309de6be6e518da6bffb7452} 
+\index{Entity@{Entity}!AddComponent@{AddComponent}}
+\index{AddComponent@{AddComponent}!Entity@{Entity}}
+\doxyparagraph{\texorpdfstring{AddComponent()}{AddComponent()}}
+{\footnotesize\ttfamily template$<$typename TComponent , typename... TArgs$>$ \\
+void Entity\+::\+Add\+Component (\begin{DoxyParamCaption}\item[{TArgs \&\&...}]{args }\end{DoxyParamCaption})}
+
+
+
+Adds a component to the entity. 
+
+Adds a component to an entity through the entity interface.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em TComponent} & The type of component to add. \\
+\hline
+{\em TArgs} & Parameter pack for component constructor arguments. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Arguments to forward to the component\textquotesingle{}s constructor. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classEntity_ac79960abe9d3005efc7ce39ebedc0776}\label{classEntity_ac79960abe9d3005efc7ce39ebedc0776} 
+\index{Entity@{Entity}!GetComponent@{GetComponent}}
+\index{GetComponent@{GetComponent}!Entity@{Entity}}
+\doxyparagraph{\texorpdfstring{GetComponent()}{GetComponent()}}
+{\footnotesize\ttfamily template$<$typename TComponent $>$ \\
+TComponent \& Entity\+::\+Get\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets a reference to a specific component of the entity. 
+
+Gets a reference to a specific component of an entity through the entity interface.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em TComponent} & The type of component to retrieve. \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+Reference to the component. 
+\end{DoxyReturn}
+\Hypertarget{classEntity_a478be4b3bc1cc77e5fd92a7dda6689a4}\label{classEntity_a478be4b3bc1cc77e5fd92a7dda6689a4} 
+\index{Entity@{Entity}!GetId@{GetId}}
+\index{GetId@{GetId}!Entity@{Entity}}
+\doxyparagraph{\texorpdfstring{GetId()}{GetId()}}
+{\footnotesize\ttfamily int Entity\+::\+Get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the entity\textquotesingle{}s ID. 
+
+\begin{DoxyReturn}{Returns}
+The entity\textquotesingle{}s unique ID. 
+\end{DoxyReturn}
+\Hypertarget{classEntity_a21a5c382bca76fadf22668d51439f3a6}\label{classEntity_a21a5c382bca76fadf22668d51439f3a6} 
+\index{Entity@{Entity}!HasComponent@{HasComponent}}
+\index{HasComponent@{HasComponent}!Entity@{Entity}}
+\doxyparagraph{\texorpdfstring{HasComponent()}{HasComponent()}}
+{\footnotesize\ttfamily template$<$typename TComponent $>$ \\
+bool Entity\+::\+Has\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Checks if the entity has a specific component. 
+
+Checks if an entity has a specific component through the entity interface.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em TComponent} & The type of component to check. \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+True if the entity has the component, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEntity_ae2bb991352e76415d09f30aa69d6b9f4}\label{classEntity_ae2bb991352e76415d09f30aa69d6b9f4} 
+\index{Entity@{Entity}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Entity@{Entity}}
+\doxyparagraph{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily bool Entity\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEntity}{Entity}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Inequality operator for comparing entities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other entity to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the entities have different IDs, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEntity_ae1b49cec9466a32749a951c2ed864b7f}\label{classEntity_ae1b49cec9466a32749a951c2ed864b7f} 
+\index{Entity@{Entity}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Entity@{Entity}}
+\doxyparagraph{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily bool Entity\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEntity}{Entity}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Less-\/than operator for comparing entities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other entity to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if this entity\textquotesingle{}s ID is less than the other\textquotesingle{}s, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEntity_abeedd2b9ad7b200acca5ac2522607fad}\label{classEntity_abeedd2b9ad7b200acca5ac2522607fad} 
+\index{Entity@{Entity}!operator==@{operator==}}
+\index{operator==@{operator==}!Entity@{Entity}}
+\doxyparagraph{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Entity\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEntity}{Entity}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Equality operator for comparing entities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other entity to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the entities have the same ID, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEntity_abd34ebda09449554a8be0aa19106c08e}\label{classEntity_abd34ebda09449554a8be0aa19106c08e} 
+\index{Entity@{Entity}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!Entity@{Entity}}
+\doxyparagraph{\texorpdfstring{operator$>$()}{operator>()}}
+{\footnotesize\ttfamily bool Entity\+::operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classEntity}{Entity}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Greater-\/than operator for comparing entities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other entity to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if this entity\textquotesingle{}s ID is greater than the other\textquotesingle{}s, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classEntity_ae0a4dce2a3d4a1d8025b6ae037a6624f}\label{classEntity_ae0a4dce2a3d4a1d8025b6ae037a6624f} 
+\index{Entity@{Entity}!RemoveComponent@{RemoveComponent}}
+\index{RemoveComponent@{RemoveComponent}!Entity@{Entity}}
+\doxyparagraph{\texorpdfstring{RemoveComponent()}{RemoveComponent()}}
+{\footnotesize\ttfamily template$<$typename TComponent $>$ \\
+void Entity\+::\+Remove\+Component (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Removes a component from the entity. 
+
+Removes a component from an entity through the entity interface.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em TComponent} & The type of component to remove. \\
+\hline
+\end{DoxyTemplParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+ECS/ECS.\+hpp\item 
+ECS/ECS.\+cpp\end{DoxyCompactItemize}

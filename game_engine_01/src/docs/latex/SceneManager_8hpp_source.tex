@@ -1,0 +1,43 @@
+\doxysubsection{Scene\+Manager.\+hpp}
+\hypertarget{SceneManager_8hpp_source}{}\label{SceneManager_8hpp_source}\index{SceneManager/SceneManager.hpp@{SceneManager/SceneManager.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SCENEMANAGER\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SCENEMANAGER\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <sol/sol.hpp>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}../SceneManager/SceneLoader.hpp"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSceneManager}{SceneManager}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00018\ \ \ \ \ std::map<std::string,\ std::string>\ scenes;\ \ }
+\DoxyCodeLine{00019\ \ \ \ \ std::string\ nextScene;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ isSceneRunning\ =\ \textcolor{keyword}{false};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ std::unique\_ptr<SceneLoader>\ sceneLoader;\ \ \ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classSceneManager_a52085e6737c23b491c228e86781af808}{SceneManager}}();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classSceneManager_a2bb376a85d29e85f47753e26c7539229}{\string~SceneManager}}();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSceneManager_ab782eab7cc702612b0f27af9bf4817b2}{LoadSceneFromScript}}(\textcolor{keyword}{const}\ std::string\&\ scenePath,\ sol::state\&\ lua);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSceneManager_a504bbba1f30f04ae26dd929b673019c7}{LoadScene}}();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00050\ \ \ \ \ std::string\ \mbox{\hyperlink{classSceneManager_a7b313acb80027734fe4df0fa990c8c01}{GetNextScene}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSceneManager_a20bad87a1ddbbc7cb3709f71417fb02c}{SetNextScene}}(\textcolor{keyword}{const}\ std::string\&\ nextScene);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classSceneManager_ac6869e693c2e383aed952bc159bc5b55}{IsSceneRunning}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSceneManager_a8e6dbe70e337c5481187a1ff6da72754}{StartScene}}();}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSceneManager_ab0e565e74fa096ccba64a682eb037152}{StopScene}}();}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SCENEMANAGER\_HPP}}
+
+\end{DoxyCode}

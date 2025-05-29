@@ -1,0 +1,37 @@
+\doxysubsection{Text\+Component.\+hpp}
+\hypertarget{TextComponent_8hpp_source}{}\label{TextComponent_8hpp_source}\index{Components/TextComponent.hpp@{Components/TextComponent.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TEXT\_COMPONENT\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TEXT\_COMPONENT\_HPP}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SDL2/SDL.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_ttf.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structTextComponent}{TextComponent}}\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ std::string\ \mbox{\hyperlink{structTextComponent_a27e11647d96a9dc3c5a90fea62bfc5c1}{text}};\ \ \ \ \ }
+\DoxyCodeLine{00014\ \ \ \ \ std::string\ \mbox{\hyperlink{structTextComponent_a430b39c0862cf885617b47e0a86f0cf3}{fontId}};\ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ SDL\_Color\ \mbox{\hyperlink{structTextComponent_a3acca29df5ccb812d7b65b2f5710f005}{color}};\ \ \ \ \ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structTextComponent_af6827a596eef0dcb4170fc4c118bac23}{width}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structTextComponent_af40b90b566daa4dfb563be18677cf8d2}{height}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{structTextComponent_acacc03d64bb40de7297b8ea0db7c9cb4}{TextComponent}}(\textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{structTextComponent_a27e11647d96a9dc3c5a90fea62bfc5c1}{text}}\ =\ \textcolor{stringliteral}{"{}"{}},\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{structTextComponent_a430b39c0862cf885617b47e0a86f0cf3}{fontId}}\ =\ \textcolor{stringliteral}{"{}"{}},\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ u\_char\ r\ =\ 0,\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ u\_char\ g\ =\ 0,\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ u\_char\ b\ =\ 0,\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ u\_char\ a\ =\ 0)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ this-\/>text\ =\ \mbox{\hyperlink{structTextComponent_a27e11647d96a9dc3c5a90fea62bfc5c1}{text}};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ this-\/>fontId\ =\ \mbox{\hyperlink{structTextComponent_a430b39c0862cf885617b47e0a86f0cf3}{fontId}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ this-\/>color.r\ =\ r;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ this-\/>color.g\ =\ g;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ this-\/>color.b\ =\ b;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ this-\/>color.a\ =\ a;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ this-\/>width\ =\ 0;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ this-\/>height\ =\ 0;}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TEXT\_COMPONENT\_HPP}}
+
+\end{DoxyCode}

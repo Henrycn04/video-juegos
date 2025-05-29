@@ -1,0 +1,67 @@
+\doxysubsection{Click\+Event Class Reference}
+\hypertarget{classClickEvent}{}\label{classClickEvent}\index{ClickEvent@{ClickEvent}}
+
+
+\doxylink{classEvent}{Event} representing a mouse click action.  
+
+
+
+
+{\ttfamily \#include $<$Click\+Event.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classClickEvent_ae2fd7a72ad87ab9e1d8bdebd7c827260}{Click\+Event}} (int \mbox{\hyperlink{classClickEvent_a85a71d6f084fcd2199e8ff48f5e76734}{button\+Code}}=0, int \mbox{\hyperlink{classClickEvent_a2a526cb9e4f063e4c80f9caa18de5ee4}{x}}=0, int \mbox{\hyperlink{classClickEvent_a720fd314af76e79a1749b5e05a10f5c8}{y}}=0)
+\begin{DoxyCompactList}\small\item\em Construct a new Click \doxylink{classEvent}{Event} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{classEvent}{Event}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Event} ()=default
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{classEvent}{Event} object (default) \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Event} ()=default
+\begin{DoxyCompactList}\small\item\em Destroy the \doxylink{classEvent}{Event} object (virtual for proper inheritance) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classClickEvent_a85a71d6f084fcd2199e8ff48f5e76734}\label{classClickEvent_a85a71d6f084fcd2199e8ff48f5e76734} 
+int {\bfseries button\+Code}
+\begin{DoxyCompactList}\small\item\em SDL button code of the mouse button clicked. \end{DoxyCompactList}\item 
+\Hypertarget{classClickEvent_a2a526cb9e4f063e4c80f9caa18de5ee4}\label{classClickEvent_a2a526cb9e4f063e4c80f9caa18de5ee4} 
+int {\bfseries x}
+\begin{DoxyCompactList}\small\item\em X-\/coordinate of the click position. \end{DoxyCompactList}\item 
+\Hypertarget{classClickEvent_a720fd314af76e79a1749b5e05a10f5c8}\label{classClickEvent_a720fd314af76e79a1749b5e05a10f5c8} 
+int {\bfseries y}
+\begin{DoxyCompactList}\small\item\em Y-\/coordinate of the click position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{classEvent}{Event} representing a mouse click action. 
+
+Contains information about the mouse button clicked and the screen coordinates where the click occurred. Inherits from the base \doxylink{classEvent}{Event} class for use with \doxylink{classEventManager}{Event\+Manager}. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classClickEvent_ae2fd7a72ad87ab9e1d8bdebd7c827260}\label{classClickEvent_ae2fd7a72ad87ab9e1d8bdebd7c827260} 
+\index{ClickEvent@{ClickEvent}!ClickEvent@{ClickEvent}}
+\index{ClickEvent@{ClickEvent}!ClickEvent@{ClickEvent}}
+\doxyparagraph{\texorpdfstring{ClickEvent()}{ClickEvent()}}
+{\footnotesize\ttfamily Click\+Event\+::\+Click\+Event (\begin{DoxyParamCaption}\item[{int}]{button\+Code = {\ttfamily 0},  }\item[{int}]{x = {\ttfamily 0},  }\item[{int}]{y = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new Click \doxylink{classEvent}{Event} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em button\+Code} & SDL button code (default\+: 0) \\
+\hline
+{\em x} & X-\/coordinate of click (default\+: 0) \\
+\hline
+{\em y} & Y-\/coordinate of click (default\+: 0) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Events/Click\+Event.\+hpp\end{DoxyCompactItemize}

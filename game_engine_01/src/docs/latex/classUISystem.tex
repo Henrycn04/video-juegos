@@ -1,0 +1,93 @@
+\doxysubsection{UISystem Class Reference}
+\hypertarget{classUISystem}{}\label{classUISystem}\index{UISystem@{UISystem}}
+
+
+\doxylink{classSystem}{System} for handling UI interactions in the ECS framework.  
+
+
+
+
+{\ttfamily \#include $<$UISystem.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUISystem_ac930744c42c305f09deacd176045392b}{UISystem}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classUISystem}{UISystem} and requires necessary components. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classUISystem_a48a6998f346dafe48df1a4a028947098}{Subscribe\+To\+Click\+Event}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classEventManager}{Event\+Manager}} $>$ \&event\+Manager)
+\begin{DoxyCompactList}\small\item\em Subscribes the system to click events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classUISystem_acb417d3dd7c5e3d27544dbb39eb41ac9}{On\+Click\+Event}} (\mbox{\hyperlink{classClickEvent}{Click\+Event}} \&e)
+\begin{DoxyCompactList}\small\item\em Handles click events on UI elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxyparagraph*{Public Member Functions inherited from \mbox{\hyperlink{classSystem}{System}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries System} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor for the system. \end{DoxyCompactList}\item 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+System} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor for the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSystem_a36b3396cdb8fa107bd4515382fbb8847}{Add\+Entity\+To\+System}} (\mbox{\hyperlink{classEntity}{Entity}} entity)
+\begin{DoxyCompactList}\small\item\em Adds an entity to the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSystem_a05a2e9d96800e05c3d4c8d7ebfd9903b}{Remove\+Entity\+From\+System}} (\mbox{\hyperlink{classEntity}{Entity}} entity)
+\begin{DoxyCompactList}\small\item\em Removes an entity from the system. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classEntity}{Entity}} $>$ \mbox{\hyperlink{classSystem_aec0388b6db4900c4d4a9e1dea0f09205}{Get\+System\+Entities}} () const
+\begin{DoxyCompactList}\small\item\em Gets the list of entities managed by this system. \end{DoxyCompactList}\item 
+const Signature \& \mbox{\hyperlink{classSystem_af97298c27dfe2231ab21bdb1a0316dc4}{Get\+Component\+Signature}} () const
+\begin{DoxyCompactList}\small\item\em Gets the component signature of the system. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename TComponent $>$ }\\void \mbox{\hyperlink{classSystem_ac15b3d09b3f3c485af1364255f21dbd5}{Require\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Specifies a required component for the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{classSystem}{System} for handling UI interactions in the ECS framework. 
+
+Manages clickable UI elements and handles click events by checking collision between click positions and UI elements. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classUISystem_ac930744c42c305f09deacd176045392b}\label{classUISystem_ac930744c42c305f09deacd176045392b} 
+\index{UISystem@{UISystem}!UISystem@{UISystem}}
+\index{UISystem@{UISystem}!UISystem@{UISystem}}
+\doxyparagraph{\texorpdfstring{UISystem()}{UISystem()}}
+{\footnotesize\ttfamily UISystem\+::\+UISystem (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{classUISystem}{UISystem} and requires necessary components. 
+
+Requires entities to have \doxylink{structClickableComponent}{Clickable\+Component}, \doxylink{structTransformComponent}{Transform\+Component}, and \doxylink{structTextComponent}{Text\+Component} to be processed by this system. 
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classUISystem_acb417d3dd7c5e3d27544dbb39eb41ac9}\label{classUISystem_acb417d3dd7c5e3d27544dbb39eb41ac9} 
+\index{UISystem@{UISystem}!OnClickEvent@{OnClickEvent}}
+\index{OnClickEvent@{OnClickEvent}!UISystem@{UISystem}}
+\doxyparagraph{\texorpdfstring{OnClickEvent()}{OnClickEvent()}}
+{\footnotesize\ttfamily void UISystem\+::\+On\+Click\+Event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classClickEvent}{Click\+Event}} \&}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Handles click events on UI elements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Reference to the \doxylink{classClickEvent}{Click\+Event} containing click coordinates.\\
+\hline
+\end{DoxyParams}
+Checks if click coordinates are within any UI element\textquotesingle{}s bounds and triggers the associated on\+Click Lua callback if it exists. \Hypertarget{classUISystem_a48a6998f346dafe48df1a4a028947098}\label{classUISystem_a48a6998f346dafe48df1a4a028947098} 
+\index{UISystem@{UISystem}!SubscribeToClickEvent@{SubscribeToClickEvent}}
+\index{SubscribeToClickEvent@{SubscribeToClickEvent}!UISystem@{UISystem}}
+\doxyparagraph{\texorpdfstring{SubscribeToClickEvent()}{SubscribeToClickEvent()}}
+{\footnotesize\ttfamily void UISystem\+::\+Subscribe\+To\+Click\+Event (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classEventManager}{Event\+Manager}} $>$ \&}]{event\+Manager }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Subscribes the system to click events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event\+Manager} & Reference to the \doxylink{classEventManager}{Event\+Manager} for event subscription.\\
+\hline
+\end{DoxyParams}
+Registers the On\+Click\+Event method as a callback for Click\+Events. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Systems/UISystem.\+hpp\end{DoxyCompactItemize}

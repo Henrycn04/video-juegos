@@ -11,27 +11,42 @@
 #include <glm/vec2.hpp>
 #include "../Game/Game.hpp"
 
+/**
+ * @brief System that handles drawing-based effects on game entities
+ * 
+ * Processes drawing traces to apply various effects:
+ * - Red traces damage enemies
+ * - Blue traces boost player speed
+ * - Green traces slow enemies
+ * Uses collision detection between drawing points and entities.
+ */
 class DrawingEffectSystem : public System {
 private:
     const int EFFECT_RADIUS = 15; // Radio de detección aumentado para mejor cobertura
     const float DAMAGE_INTERVAL = 1.0f; // Intervalo de daño en segundos
     
 public:
+/**
+     * @brief Construct a new Drawing Effect System object
+     * 
+     * Requires entities to have DrawableComponent
+     */
     DrawingEffectSystem() {
         RequireComponent<DrawableComponent>();
     }
-    
+    /**
+     * @brief Update drawing effects for all drawing entities
+     * 
+     * Processes each color channel separately to apply different effects
+     */
     void Update() {
-        // Procesar efectos para cada entidad que dibuja
         for (auto drawingEntity : GetSystemEntities()) {
             auto& drawable = drawingEntity.GetComponent<DrawableComponent>();
             
-            // Solo procesar color rojo (índice 0) para daño
             if (!drawable.colorPoints.empty() && !drawable.colorPoints[0].empty()) {
                 ProcessDamageEffect(drawable.colorPoints[0]);
             }
             
-            // Procesar otros colores si necesitas
             for (size_t colorIndex = 1; colorIndex < drawable.colorPoints.size(); ++colorIndex) {
                 ProcessOtherEffects(drawable.colorPoints[colorIndex], colorIndex);
             }
@@ -39,12 +54,15 @@ public:
     }
 
 private:
+/**
+     * @brief Process red traces to apply damage effects
+     * @param points Vector of red drawing points with timestamps
+     */
     void ProcessDamageEffect(const std::vector<std::pair<glm::vec2, std::chrono::steady_clock::time_point>>& points) {
         auto now = std::chrono::steady_clock::now();
         auto& registry = Game::GetInstance().registry;
         auto entitiesWithCollider = registry->GetEntitiesFromSystem<CollisionSystem>();
         
-        // Contar puntos válidos para debugging
         int validPointsCount = 0;
         for (const auto& point : points) {
             auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - point.second);
@@ -53,7 +71,6 @@ private:
             }
         }
         
-        // Para cada entidad que puede recibir efectos
         for (auto entity : entitiesWithCollider) {
             if (!entity.HasComponent<EffectReceiverComponent>() || 
                 !entity.HasComponent<TransformComponent>() ||
@@ -77,14 +94,11 @@ private:
             int collisionCount = 0;
             
             for (const auto& point : points) {
-                // Verificar si el punto no ha expirado
                 auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - point.second);
                 if (duration.count() > 4) continue;
                 
-                // Solo procesar puntos que están en el área de juego
                 if (point.first.y <= 75) continue;
                 
-                // Verificar colisión con radio expandido para mejor detección
                 if (CheckPointToCircleCollision(point.first, entityCenter, entityRadius + EFFECT_RADIUS)) {
                     isOnDamageTrace = true;
                     collisionCount++;
@@ -95,7 +109,11 @@ private:
             
         }
     }
-    
+    /**
+     * @brief Process other color effects (blue/green)
+     * @param points Vector of drawing points with timestamps
+     * @param colorIndex Color channel index (1=blue, 2=green)
+     */
     void ProcessOtherEffects(const std::vector<std::pair<glm::vec2, std::chrono::steady_clock::time_point>>& points, int colorIndex) {
         auto now = std::chrono::steady_clock::now();
         auto& registry = Game::GetInstance().registry;
@@ -151,7 +169,13 @@ private:
             }
         }
     }
-    
+    /**
+     * @brief Check collision between point and circle
+     * @param point The drawing point position
+     * @param circleCenter Center of the entity's collider
+     * @param radius Radius of the entity's collider
+     * @return true if point is inside the circle
+     */
     bool CheckPointToCircleCollision(const glm::vec2& point, const glm::vec2& circleCenter, int radius) {
         glm::vec2 diff = point - circleCenter;
         double distance = glm::sqrt((diff.x * diff.x) + (diff.y * diff.y));

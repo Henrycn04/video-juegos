@@ -1,0 +1,75 @@
+\doxysubsection{Sprite\+Component Struct Reference}
+\hypertarget{structSpriteComponent}{}\label{structSpriteComponent}\index{SpriteComponent@{SpriteComponent}}
+
+
+\doxylink{classComponent}{Component} that handles sprite rendering properties.  
+
+
+
+
+{\ttfamily \#include $<$Sprite\+Component.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structSpriteComponent_a6d8c68264f8f24865f333105f96804c5}{Sprite\+Component}} (const std\+::string \&\mbox{\hyperlink{structSpriteComponent_a97360f64023d12b805147a080b7cb815}{texture\+Id}}="{}none"{}, int \mbox{\hyperlink{structSpriteComponent_adc5b11a14b6698556822757f6c4a5376}{width}}=0, int \mbox{\hyperlink{structSpriteComponent_a62ae7c4b06bd296958b8311c48e93138}{height}}=0, int src\+RectX=0, int src\+RectY=0, bool \mbox{\hyperlink{structSpriteComponent_a2e4c4a07652ec4f7ade2610c28b56cdb}{active}}=true)
+\begin{DoxyCompactList}\small\item\em Construct a new Sprite \doxylink{classComponent}{Component} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structSpriteComponent_acd23cc7dacc7291e2412b5bb2937feff}\label{structSpriteComponent_acd23cc7dacc7291e2412b5bb2937feff} 
+SDL\+\_\+\+Rect {\bfseries src\+Rect}
+\begin{DoxyCompactList}\small\item\em Source rectangle for sprite sheet cropping. \end{DoxyCompactList}\item 
+\Hypertarget{structSpriteComponent_a97360f64023d12b805147a080b7cb815}\label{structSpriteComponent_a97360f64023d12b805147a080b7cb815} 
+std\+::string {\bfseries texture\+Id}
+\begin{DoxyCompactList}\small\item\em ID of the texture resource to use. \end{DoxyCompactList}\item 
+\Hypertarget{structSpriteComponent_adc5b11a14b6698556822757f6c4a5376}\label{structSpriteComponent_adc5b11a14b6698556822757f6c4a5376} 
+int {\bfseries width}
+\begin{DoxyCompactList}\small\item\em Width of the sprite in pixels. \end{DoxyCompactList}\item 
+\Hypertarget{structSpriteComponent_a62ae7c4b06bd296958b8311c48e93138}\label{structSpriteComponent_a62ae7c4b06bd296958b8311c48e93138} 
+int {\bfseries height}
+\begin{DoxyCompactList}\small\item\em Height of the sprite in pixels. \end{DoxyCompactList}\item 
+\Hypertarget{structSpriteComponent_acdeab661b7108aae2fc9a4d08b4d5424}\label{structSpriteComponent_acdeab661b7108aae2fc9a4d08b4d5424} 
+SDL\+\_\+\+Renderer\+Flip {\bfseries flip}
+\begin{DoxyCompactList}\small\item\em Current flip state (none, horizontal, vertical) \end{DoxyCompactList}\item 
+\Hypertarget{structSpriteComponent_a2e4c4a07652ec4f7ade2610c28b56cdb}\label{structSpriteComponent_a2e4c4a07652ec4f7ade2610c28b56cdb} 
+bool {\bfseries active}
+\begin{DoxyCompactList}\small\item\em Whether the sprite should be rendered. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{classComponent}{Component} that handles sprite rendering properties. 
+
+Stores texture information, dimensions, and rendering state for an entity. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structSpriteComponent_a6d8c68264f8f24865f333105f96804c5}\label{structSpriteComponent_a6d8c68264f8f24865f333105f96804c5} 
+\index{SpriteComponent@{SpriteComponent}!SpriteComponent@{SpriteComponent}}
+\index{SpriteComponent@{SpriteComponent}!SpriteComponent@{SpriteComponent}}
+\doxyparagraph{\texorpdfstring{SpriteComponent()}{SpriteComponent()}}
+{\footnotesize\ttfamily Sprite\+Component\+::\+Sprite\+Component (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{texture\+Id = {\ttfamily "{}none"{}},  }\item[{int}]{width = {\ttfamily 0},  }\item[{int}]{height = {\ttfamily 0},  }\item[{int}]{src\+RectX = {\ttfamily 0},  }\item[{int}]{src\+RectY = {\ttfamily 0},  }\item[{bool}]{active = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new Sprite \doxylink{classComponent}{Component} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture\+Id} & ID of the texture to use (default\+: "{}none"{}) \\
+\hline
+{\em width} & Sprite width in pixels (default\+: 0) \\
+\hline
+{\em height} & Sprite height in pixels (default\+: 0) \\
+\hline
+{\em src\+RectX} & X position in source texture (default\+: 0) \\
+\hline
+{\em src\+RectY} & Y position in source texture (default\+: 0) \\
+\hline
+{\em active} & Whether sprite is initially active (default\+: true) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Components/Sprite\+Component.\+hpp\end{DoxyCompactItemize}

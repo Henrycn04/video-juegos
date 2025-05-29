@@ -1,0 +1,158 @@
+\doxysubsection{Enemy\+System.\+hpp}
+\hypertarget{EnemySystem_8hpp_source}{}\label{EnemySystem_8hpp_source}\index{Systems/EnemySystem.hpp@{Systems/EnemySystem.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ENEMYSYSTEM\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ENEMYSYSTEM\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}../ECS/ECS.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}../Components/EnemyComponent.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}../Components/AnimationComponent.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}../Components/CircleColliderComponent.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}../Components/HealthComponent.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}../Components/RigidBodyComponent.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}../Components/SpriteComponent.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}../Components/TransformComponent.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}../Components/ScriptComponent.hpp"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}../Components/DrawableComponent.hpp"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}../Components/EnemyComponent.hpp"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}../Components/EffectReceiverComponent.hpp"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}../Components/TextComponent.hpp"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}../Components/ProjectileComponent.hpp"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEnemySystem}{EnemySystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classSystem}{System}}\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classEnemySystem_a067ca0906266b484525e8511edfb2c31}{EnemySystem}}()\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ RequireComponent<EnemyComponent>();}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEnemySystem_ae945d6adc3509aa025c04585c2857a65}{Update}}(std::unique\_ptr<Registry>\&\ registry)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGame}{Game}}\&\ game\ =\ \mbox{\hyperlink{classGame_a689dc1143da4a51248eb9feeed5b2aba}{Game::GetInstance}}();}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ spawner\ :\ \mbox{\hyperlink{classSystem_aec0388b6db4900c4d4a9e1dea0f09205}{GetSystemEntities}}())\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ enemySpawner\ =\ spawner.GetComponent<\mbox{\hyperlink{structEnemyComponent}{EnemyComponent}}>();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ currentAlive\ =\ CountClonesFrom(spawner.GetId());}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (currentAlive\ <\ enemySpawner.amountToSpawn\ \&\&\ enemySpawner.totalAmount\ >\ 0)\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEntity}{Entity}}\ newEnemy\ =\ registry-\/>CreateEntity();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CloneEntityFromTemplate(spawner,\ newEnemy);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ enemySpawner.totalAmount-\/-\/;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ game.\mbox{\hyperlink{classGame_acdd86d4a81f53700c9ad2a6870213147}{enemiesLeftToSpawn}}-\/-\/;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classEnemySystem_a3ac8adabc5fef1f93c8b94451b40abf5}{CreateEnemyProjectile}}(std::unique\_ptr<Registry>\&\ registry,\ glm::vec2\ velocity,\ glm::vec2\ position,\ \textcolor{keywordtype}{double}\ rotation,\ \textcolor{keywordtype}{int}\ damage)\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ spawner\ :\ \mbox{\hyperlink{classSystem_aec0388b6db4900c4d4a9e1dea0f09205}{GetSystemEntities}}())\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (spawner.HasComponent<\mbox{\hyperlink{structProjectileComponent}{ProjectileComponent}}>())\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classEntity}{Entity}}\ newEnemy\ =\ registry-\/>CreateEntity();}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CloneEntityFromTemplate(spawner,\ newEnemy);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ newEnemy.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structTransformComponent}{TransformComponent}}>().position\ =\ position;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ newEnemy.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structTransformComponent}{TransformComponent}}>().rotation\ =\ rotation;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ newEnemy.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structRigidBodyComponent}{RigidBodyComponent}}>().velocity\ =\ velocity;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ newEnemy.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>().damage\ =\ damage;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{int}\ CountClonesFrom(\textcolor{keywordtype}{int}\ spawnerId)\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 0;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ entity\ :\ \mbox{\hyperlink{classSystem_aec0388b6db4900c4d4a9e1dea0f09205}{GetSystemEntities}}())\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ enemy\ =\ entity.GetComponent<\mbox{\hyperlink{structEnemyComponent}{EnemyComponent}}>();}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (entity.GetId()\ !=\ spawnerId\ \&\&\ enemy.spawnerId\ ==\ spawnerId)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count++;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ count;}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ CloneEntityFromTemplate(\mbox{\hyperlink{classEntity}{Entity}}\ source,\ \mbox{\hyperlink{classEntity}{Entity}}\ target)\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Animation}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structAnimationComponent}{AnimationComponent}}>())\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ target.\mbox{\hyperlink{classEntity_a125342c7309de6be6e518da6bffb7452}{AddComponent}}<\mbox{\hyperlink{structAnimationComponent}{AnimationComponent}}>(source.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structAnimationComponent}{AnimationComponent}}>());}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Collider}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structCircleColliderComponent}{CircleColliderComponent}}>())\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ target.\mbox{\hyperlink{classEntity_a125342c7309de6be6e518da6bffb7452}{AddComponent}}<\mbox{\hyperlink{structCircleColliderComponent}{CircleColliderComponent}}>(source.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structCircleColliderComponent}{CircleColliderComponent}}>());}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Health}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>())\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ target.\mbox{\hyperlink{classEntity_a125342c7309de6be6e518da6bffb7452}{AddComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>(source.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structHealthComponent}{HealthComponent}}>());}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Rigidbody}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structRigidBodyComponent}{RigidBodyComponent}}>())\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ target.\mbox{\hyperlink{classEntity_a125342c7309de6be6e518da6bffb7452}{AddComponent}}<\mbox{\hyperlink{structRigidBodyComponent}{RigidBodyComponent}}>(source.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structRigidBodyComponent}{RigidBodyComponent}}>());}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Script}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structScriptComponent}{ScriptComponent}}>())\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ script\ =\ source.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structScriptComponent}{ScriptComponent}}>();}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ target.\mbox{\hyperlink{classEntity_a125342c7309de6be6e518da6bffb7452}{AddComponent}}<\mbox{\hyperlink{structScriptComponent}{ScriptComponent}}>(script);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sprite}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structSpriteComponent}{SpriteComponent}}>())\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ sprite\ =\ source.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structSpriteComponent}{SpriteComponent}}>();}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ sprite.\mbox{\hyperlink{structSpriteComponent_a2e4c4a07652ec4f7ade2610c28b56cdb}{active}}\ =\ \textcolor{keyword}{true};\ \ \textcolor{comment}{//\ Activate\ visibility\ for\ clone}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ target.\mbox{\hyperlink{classEntity_a125342c7309de6be6e518da6bffb7452}{AddComponent}}<\mbox{\hyperlink{structSpriteComponent}{SpriteComponent}}>(sprite);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Transform\ with\ random\ position}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structTransformComponent}{TransformComponent}}>())\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ transform\ =\ source.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structTransformComponent}{TransformComponent}}>();}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ transform.\mbox{\hyperlink{structTransformComponent_a28bd72ac14736930eb3357a78037a555}{position}}\ =\ GetRandomSpawnPosition();}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ target.\mbox{\hyperlink{classEntity_a125342c7309de6be6e518da6bffb7452}{AddComponent}}<\mbox{\hyperlink{structTransformComponent}{TransformComponent}}>(transform);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structEffectReceiverComponent}{EffectReceiverComponent}}>())\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ target.\mbox{\hyperlink{classEntity_a125342c7309de6be6e518da6bffb7452}{AddComponent}}<\mbox{\hyperlink{structEffectReceiverComponent}{EffectReceiverComponent}}>(source.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structEffectReceiverComponent}{EffectReceiverComponent}}>());}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structTextComponent}{TextComponent}}>())\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ target.\mbox{\hyperlink{classEntity_a125342c7309de6be6e518da6bffb7452}{AddComponent}}<\mbox{\hyperlink{structTextComponent}{TextComponent}}>(source.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structTextComponent}{TextComponent}}>());}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structProjectileComponent}{ProjectileComponent}}>())\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ target.\mbox{\hyperlink{classEntity_a125342c7309de6be6e518da6bffb7452}{AddComponent}}<\mbox{\hyperlink{structProjectileComponent}{ProjectileComponent}}>(source.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structProjectileComponent}{ProjectileComponent}}>());}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ EnemyComponent\ without\ spawn\ capability}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (source.\mbox{\hyperlink{classEntity_a21a5c382bca76fadf22668d51439f3a6}{HasComponent}}<\mbox{\hyperlink{structEnemyComponent}{EnemyComponent}}>())\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ target.\mbox{\hyperlink{classEntity_a125342c7309de6be6e518da6bffb7452}{AddComponent}}<\mbox{\hyperlink{structEnemyComponent}{EnemyComponent}}>(source.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structEnemyComponent}{EnemyComponent}}>());}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ target.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structEnemyComponent}{EnemyComponent}}>().amountToSpawn\ =\ 0;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ target.\mbox{\hyperlink{classEntity_ac79960abe9d3005efc7ce39ebedc0776}{GetComponent}}<\mbox{\hyperlink{structEnemyComponent}{EnemyComponent}}>().spawnerId\ =\ source.\mbox{\hyperlink{classEntity_a478be4b3bc1cc77e5fd92a7dda6689a4}{GetId}}();}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00166\ \ \ \ \ glm::vec2\ GetRandomSpawnPosition()\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x,\ y;}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Choose\ left\ or\ right\ side}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ leftRight\ =\ rand()\ \%\ 2;}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (leftRight)\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ rand()\ \%\ 41;\ \textcolor{comment}{//\ 0\ -\/\ 40}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ 760\ +\ (rand()\ \%\ 41);\ \textcolor{comment}{//\ 760\ -\/\ 800}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Choose\ top\ or\ bottom}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ topBottom\ =\ rand()\ \%\ 2;}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (topBottom)\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ 75\ +\ (rand()\ \%\ 31);\ \textcolor{comment}{//\ 75\ -\/\ 105}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ y\ =\ 560\ +\ (rand()\ \%\ 41);\ \textcolor{comment}{//\ 560\ -\/\ 600}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ glm::vec2(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(x),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(y));}
+\DoxyCodeLine{00186\ \ \ \ \ \}}
+\DoxyCodeLine{00187\ \};}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ENEMYSYSTEM\_HPP}}
+
+\end{DoxyCode}

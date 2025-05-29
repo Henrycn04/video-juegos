@@ -1,0 +1,38 @@
+\doxysubsection{Animation\+System.\+hpp}
+\hypertarget{AnimationSystem_8hpp_source}{}\label{AnimationSystem_8hpp_source}\index{Systems/AnimationSystem.hpp@{Systems/AnimationSystem.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ANIMATIONSYSTEM\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ANIMATIONSYSTEM\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}../ECS/ECS.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}../Components/AnimationComponent.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}../Components/SpriteComponent.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <SDL2/SDL.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classAnimationSystem}{AnimationSystem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classSystem}{System}}\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classAnimationSystem_a4571e901f8aa557b1435aa2ebd9ecf48}{AnimationSystem}}()\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ RequireComponent<AnimationComponent>();}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ RequireComponent<SpriteComponent>();}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classAnimationSystem_a028f5b6784b761594a6181bcf2ee36c0}{Update}}()\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ entity\ :\ \mbox{\hyperlink{classSystem_aec0388b6db4900c4d4a9e1dea0f09205}{GetSystemEntities}}())\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ animation\ =\ entity.GetComponent<\mbox{\hyperlink{structAnimationComponent}{AnimationComponent}}>();}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\&\ sprite\ =\ entity.GetComponent<\mbox{\hyperlink{structSpriteComponent}{SpriteComponent}}>();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ current\ frame\ based\ on\ elapsed\ time\ and\ animation\ speed}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ animation.currentFrame\ =\ ((SDL\_GetTicks()\ -\/\ animation.startTime)\ *\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ animation.frameSpeedRate\ /\ 1000)\ \%\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ animation.numFrames;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ sprite\ source\ rectangle\ to\ show\ current\ frame}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ sprite.srcRect.x\ =\ animation.\mbox{\hyperlink{structAnimationComponent_a307af1a2894a53cf6322d0c5429bb0fb}{currentFrame}}\ *\ sprite.width;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ANIMATIONSYSTEM\_HPP}}
+
+\end{DoxyCode}

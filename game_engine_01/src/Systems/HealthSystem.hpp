@@ -7,21 +7,38 @@
 #include "../Components/RigidBodyComponent.hpp"
 #include "../ECS/ECS.hpp"
 
+/**
+ * @brief System that manages health and damage effects for entities
+ * 
+ * Handles health management, damage application, healing, and status effects
+ * including damage zones, speed boosts, and slowdown effects.
+ */
 class HealthSystem : public System {
 public:
+    /**
+     * @brief Construct a new Health System object
+     * 
+     * Requires entities to have HealthComponent
+     */
     HealthSystem() {
         RequireComponent<HealthComponent>();
     }
     
+    /**
+     * @brief Update health status and process effects
+     * 
+     * Processes zone damage, speed effects, and other status effects
+     * for all entities with health components.
+     */
     void Update() {
         auto& registry = Game::GetInstance().registry;
         Entity playerEntity(-1);
         bool foundPlayer = false;
 
-        // Obtener entidades manejadas por HealthSystem
+        // Get entities managed by HealthSystem
         auto entities = registry->GetEntitiesFromSystem<HealthSystem>();
 
-        // Encontrar el jugador
+        // Find the player entity
         for (auto& entity : entities) {
             if (entity.HasComponent<HealthComponent>()) {
                 auto& health = entity.GetComponent<HealthComponent>();
@@ -38,26 +55,26 @@ public:
             auto& playerDamage = playerHealth.damage;
             auto& playerTimeout = playerHealth.attackTimeout;
 
-            // Procesar todas las entidades que pueden recibir efectos
+            // Process all effect-receiving entities
             for (auto& entity : entities) {
                 if (entity.HasComponent<HealthComponent>() && entity.HasComponent<EffectReceiverComponent>()) {
                     auto& effectReceiver = entity.GetComponent<EffectReceiverComponent>();
                     auto& entityHealth = entity.GetComponent<HealthComponent>();
 
-                    // Procesar daño de zona SOLO si la entidad está actualmente en el trazo
+                    // Process zone damage ONLY if entity is currently in damage zone
                     if (effectReceiver.takingDamage && !entityHealth.isPlayer) {
                         ProcessZoneDamage(entity, playerDamage, playerTimeout);
                     }
                     ApplySpeedEffect(entity, effectReceiver, entityHealth);
-                    // Procesar otros efectos
+                    // Process other effects
                     if (effectReceiver.slowed && !entityHealth.isPlayer) {
-                        // Aplicar lógica de ralentización
-                        // std::cout << "Enemigo ralentizado" << std::endl;
+                        // Apply slow logic
+                        // std::cout << "Enemy slowed" << std::endl;
                     }
                     
                     if (effectReceiver.speedBoosted && entityHealth.isPlayer) {
-                        // Aplicar lógica de velocidad aumentada
-                        // std::cout << "Jugador con speed boost" << std::endl;
+                        // Apply speed boost logic
+                        // std::cout << "Player speed boosted" << std::endl;
                     }
                 }
             }
@@ -65,49 +82,61 @@ public:
     }
 
 private:
+    /**
+     * @brief Apply speed effects to entity
+     * @param entity Target entity
+     * @param effectReceiver Effect component reference
+     * @param entityHealth Health component reference
+     */
     void ApplySpeedEffect(Entity& entity, EffectReceiverComponent& effectReceiver, HealthComponent& entityHealth) {
         bool isPlayer = entityHealth.isPlayer;
         if (isPlayer && effectReceiver.speedBoosted) {
-            entity.GetComponent<RigidBodyComponent>().velocity *= 1.5f; // Aumentar velocidad
+            entity.GetComponent<RigidBodyComponent>().velocity *= 1.5f; // Increase speed
         } else if (!isPlayer && effectReceiver.slowed) {
-            entity.GetComponent<RigidBodyComponent>().velocity *= 0.3f; // Reducir velocidad
+            entity.GetComponent<RigidBodyComponent>().velocity *= 0.3f; // Reduce speed
         }
-
     }
+
+    /**
+     * @brief Process zone damage over time
+     * @param entity Target entity
+     * @param damage Damage amount
+     * @param damageInterval Time between damage ticks
+     */
     void ProcessZoneDamage(Entity entity, int damage, float damageInterval) {
         if (!entity.HasComponent<HealthComponent>()) return;
         
         auto& targetHealth = entity.GetComponent<HealthComponent>();
         
-        // Obtener tiempo actual
+        // Get current time
         auto now = std::chrono::steady_clock::now();
         
-        // Calcular tiempo transcurrido desde el último daño recibido por esta entidad específica
+        // Calculate time since last damage
         auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - targetHealth.lastDamageReceived).count();
-        int intervalMs = static_cast<int>(damageInterval * 1000); // segundos a ms
+        int intervalMs = static_cast<int>(damageInterval * 1000); // seconds to ms
         
-        // Si no ha pasado suficiente tiempo, no aplicar daño
+        // Skip if not enough time passed
         if (elapsed < intervalMs) {
             return;
         }
         
-        // Verificar una vez más que la entidad sigue recibiendo daño
+        // Verify entity is still taking damage
         if (!entity.HasComponent<EffectReceiverComponent>()) return;
         auto& effectReceiver = entity.GetComponent<EffectReceiverComponent>();
         if (!effectReceiver.takingDamage) return;
         
-        // Actualizar el tiempo del último daño recibido
+        // Update last damage time
         targetHealth.lastDamageReceived = now;
         
-        // Aplicar daño
+        // Apply damage
         targetHealth.health -= damage;
         
-        // Verificar muerte
+        // Check for death
         if (targetHealth.health <= 0) {
             targetHealth.health = 0;
             if (!targetHealth.isPlayer) {
                 Game::GetInstance().totalPoints += entity.GetComponent<EnemyComponent>().points;
-                Game::GetInstance().enemiesLeft --;
+                Game::GetInstance().enemiesLeft--;
                 entity.Kill();
                 if (Game::GetInstance().enemiesLeft == 0) {                     
                     Game::GetInstance().finDelNivel = true;                     
@@ -118,17 +147,23 @@ private:
     }
 
 public:
-    void ReduceHP(Entity entity, int damage, Entity attacker) { // Para ataques directos de enemigos
+    /**
+     * @brief Apply direct damage from an attacker
+     * @param entity Target entity
+     * @param damage Damage amount
+     * @param attacker Attacking entity
+     */
+    void ReduceHP(Entity entity, int damage, Entity attacker) {
         if (!entity.HasComponent<HealthComponent>()) return;
         if (!attacker.HasComponent<HealthComponent>()) return;
 
         auto& attackerHealth = attacker.GetComponent<HealthComponent>();
         auto& targetHealth = entity.GetComponent<HealthComponent>();
 
-        // Obtener tiempo actual
+        // Get current time
         auto now = std::chrono::steady_clock::now();
 
-        // Calcular tiempo transcurrido desde el último ataque del atacante
+        // Calculate time since attacker's last attack
         auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - attackerHealth.attackTimeoutDuration).count();
         int timeoutMs = static_cast<int>(attackerHealth.attackTimeout * 1000);
 
@@ -136,10 +171,10 @@ public:
             return;
         }
 
-        // Actualizar el tiempo del último ataque del atacante
+        // Update attacker's last attack time
         attackerHealth.attackTimeoutDuration = now;
 
-        // Aplicar daño a la víctima
+        // Apply damage
         targetHealth.health -= damage;
 
         if (targetHealth.health <= 0) {
@@ -153,6 +188,11 @@ public:
         }
     }
 
+    /**
+     * @brief Set entity's health to specific value
+     * @param entity Target entity
+     * @param value New health value
+     */
     void SetHealth(Entity entity, int value) {
         if (entity.HasComponent<HealthComponent>()) {
             auto& health = entity.GetComponent<HealthComponent>();
@@ -164,6 +204,11 @@ public:
         }
     }
 
+    /**
+     * @brief Heal entity by specified amount
+     * @param entity Target entity
+     * @param amount Healing amount
+     */
     void Heal(Entity entity, int amount) {
         if (entity.HasComponent<HealthComponent>()) {
             auto& health = entity.GetComponent<HealthComponent>();
@@ -173,4 +218,4 @@ public:
     }
 };
 
-#endif
+#endif // HEALTHSYSTEM_HPP

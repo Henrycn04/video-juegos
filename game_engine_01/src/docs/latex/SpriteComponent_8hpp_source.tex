@@ -1,0 +1,35 @@
+\doxysubsection{Sprite\+Component.\+hpp}
+\hypertarget{SpriteComponent_8hpp_source}{}\label{SpriteComponent_8hpp_source}\index{Components/SpriteComponent.hpp@{Components/SpriteComponent.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SPRITECOMPONENT\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SPRITECOMPONENT\_HPP}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SDL2/SDL.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structSpriteComponent}{SpriteComponent}}\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ SDL\_Rect\ \mbox{\hyperlink{structSpriteComponent_acd23cc7dacc7291e2412b5bb2937feff}{srcRect}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00013\ \ \ \ \ std::string\ \mbox{\hyperlink{structSpriteComponent_a97360f64023d12b805147a080b7cb815}{textureId}};\ \ \ \ \ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structSpriteComponent_adc5b11a14b6698556822757f6c4a5376}{width}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structSpriteComponent_a62ae7c4b06bd296958b8311c48e93138}{height}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00016\ \ \ \ \ SDL\_RendererFlip\ \mbox{\hyperlink{structSpriteComponent_acdeab661b7108aae2fc9a4d08b4d5424}{flip}};\ \ \ \ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structSpriteComponent_a2e4c4a07652ec4f7ade2610c28b56cdb}{active}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{structSpriteComponent_a6d8c68264f8f24865f333105f96804c5}{SpriteComponent}}(\textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{structSpriteComponent_a97360f64023d12b805147a080b7cb815}{textureId}}\ =\ \textcolor{stringliteral}{"{}none"{}},\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structSpriteComponent_adc5b11a14b6698556822757f6c4a5376}{width}}\ =\ 0,\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structSpriteComponent_a62ae7c4b06bd296958b8311c48e93138}{height}}\ =\ 0,\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ srcRectX\ =\ 0,\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ srcRectY\ =\ 0,\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structSpriteComponent_a2e4c4a07652ec4f7ade2610c28b56cdb}{active}}\ =\ \textcolor{keyword}{true})}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ this-\/>textureId\ =\ \mbox{\hyperlink{structSpriteComponent_a97360f64023d12b805147a080b7cb815}{textureId}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ this-\/>width\ =\ \mbox{\hyperlink{structSpriteComponent_adc5b11a14b6698556822757f6c4a5376}{width}};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ this-\/>height\ =\ \mbox{\hyperlink{structSpriteComponent_a62ae7c4b06bd296958b8311c48e93138}{height}};}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ this-\/>srcRect\ =\ \{\ srcRectX,\ srcRectY,\ \mbox{\hyperlink{structSpriteComponent_adc5b11a14b6698556822757f6c4a5376}{width}},\ \mbox{\hyperlink{structSpriteComponent_a62ae7c4b06bd296958b8311c48e93138}{height}}\ \};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ this-\/>flip\ =\ SDL\_FLIP\_NONE;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ this-\/>active\ =\ \mbox{\hyperlink{structSpriteComponent_a2e4c4a07652ec4f7ade2610c28b56cdb}{active}};}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SPRITECOMPONENT\_HPP}}
+
+\end{DoxyCode}

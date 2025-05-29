@@ -1,0 +1,110 @@
+\doxysubsection{Game Class Reference}
+\hypertarget{classGame}{}\label{classGame}\index{Game@{Game}}
+
+
+Main game class that manages the game loop, rendering, and resources.  
+
+
+
+
+{\ttfamily \#include $<$Game.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classGame_a6f3a33940524b6ba9d83f627ccb14bbf}\label{classGame_a6f3a33940524b6ba9d83f627ccb14bbf} 
+void {\bfseries init} ()
+\begin{DoxyCompactList}\small\item\em Initializes the game, setting up SDL and other resources. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_a1ab78f5ed0d5ea879157357cf2fb2afa}\label{classGame_a1ab78f5ed0d5ea879157357cf2fb2afa} 
+void {\bfseries run} ()
+\begin{DoxyCompactList}\small\item\em Runs the main game loop. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_a9896347cdc3da739d0099fbd7645b796}\label{classGame_a9896347cdc3da739d0099fbd7645b796} 
+void {\bfseries destroy} ()
+\begin{DoxyCompactList}\small\item\em Cleans up and destroys game resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classGame}{Game}} \& \mbox{\hyperlink{classGame_a689dc1143da4a51248eb9feeed5b2aba}{Get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Gets the singleton instance of the \doxylink{classGame}{Game} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classGame_ae5164c37c0dc74cfb56041174017bf57}\label{classGame_ae5164c37c0dc74cfb56041174017bf57} 
+SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*} {\bfseries renderer} = nullptr
+\begin{DoxyCompactList}\small\item\em SDL renderer for drawing graphics. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_aafa62ebc26b04f365485368a8858e371}\label{classGame_aafa62ebc26b04f365485368a8858e371} 
+size\+\_\+t {\bfseries window\+Width} = 0
+\begin{DoxyCompactList}\small\item\em Width of the game window. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_a620a67dc32eebec7fdceca28601beb0d}\label{classGame_a620a67dc32eebec7fdceca28601beb0d} 
+size\+\_\+t {\bfseries window\+Height} = 0
+\begin{DoxyCompactList}\small\item\em Height of the game window. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_a12ed49dbe5d7b4140716679f9ba28f49}\label{classGame_a12ed49dbe5d7b4140716679f9ba28f49} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classControllerManager}{Controller\+Manager}} $>$ {\bfseries controller\+Manager}
+\begin{DoxyCompactList}\small\item\em Unique pointer to the controller manager for handling input. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_ae3a5f7864602c8de404ab19e1b667543}\label{classGame_ae3a5f7864602c8de404ab19e1b667543} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classAssetManager}{Asset\+Manager}} $>$ {\bfseries asset\+Manager}
+\begin{DoxyCompactList}\small\item\em Unique pointer to the asset manager for handling game assets. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_a07c4f2f1c8795ba30ac68a5d05c56d6e}\label{classGame_a07c4f2f1c8795ba30ac68a5d05c56d6e} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classEventManager}{Event\+Manager}} $>$ {\bfseries event\+Manager}
+\begin{DoxyCompactList}\small\item\em Unique pointer to the event manager for handling game events. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_ab9ec8204418df1ecb54b9522fc7fac0a}\label{classGame_ab9ec8204418df1ecb54b9522fc7fac0a} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classRegistry}{Registry}} $>$ {\bfseries registry}
+\begin{DoxyCompactList}\small\item\em Unique pointer to the ECS registry for managing entities and components. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_a7a5fecf4173a685208f485e95eeda913}\label{classGame_a7a5fecf4173a685208f485e95eeda913} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classSceneManager}{Scene\+Manager}} $>$ {\bfseries scene\+Manager}
+\begin{DoxyCompactList}\small\item\em Unique pointer to the scene manager for handling game scenes. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_a62b0a47833567f7333f9e2ec95bf2d79}\label{classGame_a62b0a47833567f7333f9e2ec95bf2d79} 
+sol\+::state {\bfseries lua}
+\begin{DoxyCompactList}\small\item\em Lua state for scripting support. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_acdd86d4a81f53700c9ad2a6870213147}\label{classGame_acdd86d4a81f53700c9ad2a6870213147} 
+int {\bfseries enemies\+Left\+To\+Spawn} = 0
+\begin{DoxyCompactList}\small\item\em Number of enemies left to spawn in the current level. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_aebffbb0eded014a48f514d87d03601b2}\label{classGame_aebffbb0eded014a48f514d87d03601b2} 
+int {\bfseries enemies\+Left} = 0
+\begin{DoxyCompactList}\small\item\em Number of enemies currently active in the game. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_a152d8fe67f8a082d080e6722c23a22c2}\label{classGame_a152d8fe67f8a082d080e6722c23a22c2} 
+int {\bfseries total\+Points} = 0
+\begin{DoxyCompactList}\small\item\em Total points accumulated by the player. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_adae0276d414b3512756d7bbdb61f6f18}\label{classGame_adae0276d414b3512756d7bbdb61f6f18} 
+int {\bfseries total\+Points\+Prev} = 0
+\begin{DoxyCompactList}\small\item\em Previous total points for tracking changes. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_a70eff9268a8c52281347fe13871c0072}\label{classGame_a70eff9268a8c52281347fe13871c0072} 
+bool {\bfseries fin\+Del\+Nivel} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether the current level has ended. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_a0f9c877a1b34d307bfbcb0d759a2bc3b}\label{classGame_a0f9c877a1b34d307bfbcb0d759a2bc3b} 
+bool {\bfseries win} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether the player has won the game. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_a75207cac8e7ef5a9c08985d3f9615faa}\label{classGame_a75207cac8e7ef5a9c08985d3f9615faa} 
+bool {\bfseries is\+Paused} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether the game is paused. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_afabb3b40fd20f17e71d9e4a7793f2d14}\label{classGame_afabb3b40fd20f17e71d9e4a7793f2d14} 
+int {\bfseries draw\+Index} = -\/1
+\begin{DoxyCompactList}\small\item\em Index used for drawing order. \end{DoxyCompactList}\item 
+\Hypertarget{classGame_aaada4067cae2998a16e9fb407944f597}\label{classGame_aaada4067cae2998a16e9fb407944f597} 
+int {\bfseries current\+Level} = 0
+\begin{DoxyCompactList}\small\item\em Current level of the game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Main game class that manages the game loop, rendering, and resources. 
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classGame_a689dc1143da4a51248eb9feeed5b2aba}\label{classGame_a689dc1143da4a51248eb9feeed5b2aba} 
+\index{Game@{Game}!GetInstance@{GetInstance}}
+\index{GetInstance@{GetInstance}!Game@{Game}}
+\doxyparagraph{\texorpdfstring{GetInstance()}{GetInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGame}{Game}} \& Game\+::\+Get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Gets the singleton instance of the \doxylink{classGame}{Game} class. 
+
+\begin{DoxyReturn}{Returns}
+Reference to the \doxylink{classGame}{Game} instance. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game/Game.\+hpp\item 
+Game/Game.\+cpp\end{DoxyCompactItemize}

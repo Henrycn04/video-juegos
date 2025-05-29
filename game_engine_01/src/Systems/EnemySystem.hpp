@@ -18,16 +18,30 @@
 #include <memory>
 #include <cstdlib>
 
+/**
+ * @brief System that manages enemy spawning and behavior
+ * 
+ * Handles enemy spawning from spawner entities, projectile creation,
+ * and cloning of enemy templates with random positions.
+ */
 class EnemySystem : public System {
 public:
+    /**
+     * @brief Construct a new Enemy System object
+     * 
+     * Requires entities to have EnemyComponent
+     */
     EnemySystem() {
         RequireComponent<EnemyComponent>();
     }
 
+    /**
+     * @brief Update enemy spawners and spawn new enemies
+     * @param registry Reference to the ECS registry
+     */
     void Update(std::unique_ptr<Registry>& registry) {
         Game& game = Game::GetInstance();
         for (auto spawner : GetSystemEntities()) {
-
             auto& enemySpawner = spawner.GetComponent<EnemyComponent>();
 
             int currentAlive = CountClonesFrom(spawner.GetId());
@@ -37,16 +51,20 @@ public:
                 enemySpawner.totalAmount--;
                 game.enemiesLeftToSpawn--;
             }
-            
-
         }
-
     }
 
-    // este es el disparo como tal, trabajar con rotacion igual
+    /**
+     * @brief Create an enemy projectile
+     * @param registry Reference to the ECS registry
+     * @param velocity Projectile velocity vector
+     * @param position Starting position
+     * @param rotation Initial rotation
+     * @param damage Damage value of the projectile
+     */
     void CreateEnemyProjectile(std::unique_ptr<Registry>& registry, glm::vec2 velocity, glm::vec2 position, double rotation, int damage) {
         for (auto spawner : GetSystemEntities()) {
-            if (spawner.HasComponent<ProjectileComponent>() ) {
+            if (spawner.HasComponent<ProjectileComponent>()) {
                 Entity newEnemy = registry->CreateEntity();
                 CloneEntityFromTemplate(spawner, newEnemy);
                 newEnemy.GetComponent<TransformComponent>().position = position;
@@ -55,11 +73,15 @@ public:
                 newEnemy.GetComponent<HealthComponent>().damage = damage;
                 break;
             }
-
         }
     }
 
 private:
+    /**
+     * @brief Count active enemies spawned from a specific spawner
+     * @param spawnerId ID of the spawner entity
+     * @return int Number of active enemies
+     */
     int CountClonesFrom(int spawnerId) {
         int count = 0;
         for (auto entity : GetSystemEntities()) {
@@ -71,8 +93,11 @@ private:
         return count;
     }
 
-
-
+    /**
+     * @brief Clone an entity from a template source
+     * @param source Source entity to clone from
+     * @param target Target entity to clone to
+     */
     void CloneEntityFromTemplate(Entity source, Entity target) {
         // Animation
         if (source.HasComponent<AnimationComponent>()) {
@@ -103,28 +128,30 @@ private:
         // Sprite
         if (source.HasComponent<SpriteComponent>()) {
             auto sprite = source.GetComponent<SpriteComponent>();
-            sprite.active = true;  // Activar visibilidad para el clon
+            sprite.active = true;  // Activate visibility for clone
             target.AddComponent<SpriteComponent>(sprite);
         }
 
-        // Transform con posición aleatoria
+        // Transform with random position
         if (source.HasComponent<TransformComponent>()) {
             auto transform = source.GetComponent<TransformComponent>();
             transform.position = GetRandomSpawnPosition();
             target.AddComponent<TransformComponent>(transform);
         }
+
         if (source.HasComponent<EffectReceiverComponent>()) {
             target.AddComponent<EffectReceiverComponent>(source.GetComponent<EffectReceiverComponent>());
         }
+
         if (source.HasComponent<TextComponent>()) {
             target.AddComponent<TextComponent>(source.GetComponent<TextComponent>());
         }
+
         if (source.HasComponent<ProjectileComponent>()) {
             target.AddComponent<ProjectileComponent>(source.GetComponent<ProjectileComponent>());
         }
 
-
-        // EnemyComponent sin capacidad de spawnear otros
+        // EnemyComponent without spawn capability
         if (source.HasComponent<EnemyComponent>()) {
             target.AddComponent<EnemyComponent>(source.GetComponent<EnemyComponent>());
             target.GetComponent<EnemyComponent>().amountToSpawn = 0;
@@ -132,10 +159,14 @@ private:
         }
     }
 
+    /**
+     * @brief Generate a random spawn position at screen edges
+     * @return glm::vec2 Random position vector
+     */
     glm::vec2 GetRandomSpawnPosition() {
         int x, y;
 
-        // Elegir entre izquierda o derecha
+        // Choose left or right side
         bool leftRight = rand() % 2;
         if (leftRight) {
             x = rand() % 41; // 0 - 40
@@ -143,7 +174,7 @@ private:
             x = 760 + (rand() % 41); // 760 - 800
         }
 
-        // Elegir entre arriba o abajo
+        // Choose top or bottom
         bool topBottom = rand() % 2;
         if (topBottom) {
             y = 75 + (rand() % 31); // 75 - 105
@@ -155,4 +186,4 @@ private:
     }
 };
 
-#endif
+#endif // ENEMYSYSTEM_HPP

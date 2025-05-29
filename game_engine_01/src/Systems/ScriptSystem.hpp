@@ -7,11 +7,32 @@
 #include "../Components/ScriptComponent.hpp"
 #include "../ECS/ECS.hpp"
 
+/**
+ * @class ScriptSystem
+ * @brief System for handling script components and Lua bindings.
+ * 
+ * This system manages entities with ScriptComponents and provides Lua bindings
+ * for game functionality.
+ */
 class ScriptSystem : public System {
 public:
+    /**
+     * @brief Constructs a ScriptSystem and requires ScriptComponent for entities.
+     */
     ScriptSystem() {
         RequireComponent<ScriptComponent>();
     }
+
+    /**
+     * @brief Creates Lua bindings for game functions and types.
+     * @param lua Reference to the Lua state to bind functions to.
+     * 
+     * Sets up various game-related functions in the Lua environment including:
+     * - Input handling
+     * - Entity manipulation
+     * - Drawing functions
+     * - Game state management
+     */
     void CreateLuaBinding(sol::state& lua) {
         lua.script("math.randomseed(os.time())");
         lua.new_usertype<Entity>("entity");
@@ -33,6 +54,14 @@ public:
         lua.set_function("set_draw_index", CurrentDrawIndex);
         lua.set_function("set_level", SetLevel);
     }
+
+    /**
+     * @brief Updates all script components in the system.
+     * @param lua Reference to the Lua state for script execution.
+     * 
+     * Iterates through all entities with ScriptComponents and calls their
+     * update function if it exists.
+     */
     void Update(sol::state& lua) {
         for (auto entity : GetSystemEntities()) {
             const auto& script = entity.GetComponent<ScriptComponent>();
@@ -41,12 +70,8 @@ public:
                 lua["this"] = entity;
                 script.update();
             }
-
         }
     }
-
-
-
 };
 
 #endif // SCRIPt_SYSTEM_HPP

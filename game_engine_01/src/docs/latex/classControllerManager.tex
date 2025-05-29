@@ -1,0 +1,221 @@
+\doxysubsection{Controller\+Manager Class Reference}
+\hypertarget{classControllerManager}{}\label{classControllerManager}\index{ControllerManager@{ControllerManager}}
+
+
+Manages keyboard and mouse input states.  
+
+
+
+
+{\ttfamily \#include $<$Controller\+Manager.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classControllerManager_a9888279ea2d5aede348d39d5efe913cc}\label{classControllerManager_a9888279ea2d5aede348d39d5efe913cc} 
+{\bfseries Controller\+Manager} ()
+\begin{DoxyCompactList}\small\item\em Construct a new Controller Manager object. \end{DoxyCompactList}\item 
+\Hypertarget{classControllerManager_a2907bd660f1a870b6d50aa07fdf745d9}\label{classControllerManager_a2907bd660f1a870b6d50aa07fdf745d9} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Controller\+Manager} ()
+\begin{DoxyCompactList}\small\item\em Destroy the Controller Manager object. \end{DoxyCompactList}\item 
+\Hypertarget{classControllerManager_a53fcc8ef5ff8f6b44539af306edd11d7}\label{classControllerManager_a53fcc8ef5ff8f6b44539af306edd11d7} 
+void {\bfseries Clear} ()
+\begin{DoxyCompactList}\small\item\em Clears all input states and mappings. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classControllerManager_afb76cab20e4079e7e55f06f51c34e8de}{Add\+Action\+Key}} (const std\+::string \&action, int key\+Code)
+\begin{DoxyCompactList}\small\item\em Add a keyboard action mapping. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classControllerManager_ae9dd42186315a9c4ac5345e720cd45d3}{Key\+Down}} (int key\+Code)
+\begin{DoxyCompactList}\small\item\em Set key state to pressed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classControllerManager_a307b3731844045f5eedcb7b61660bd22}{Key\+Up}} (int key\+Code)
+\begin{DoxyCompactList}\small\item\em Set key state to released. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classControllerManager_a45eee2a4a63c3ad5060c2de6e7736f23}{Is\+Action\+Activated}} (const std\+::string \&action)
+\begin{DoxyCompactList}\small\item\em Check if an action is currently active (key pressed) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classControllerManager_aab73c7ee6fbc1dd2324353d8d8e7fa60}{Add\+Mouse\+Button}} (const std\+::string \&action, int button\+Code)
+\begin{DoxyCompactList}\small\item\em Add a mouse button action mapping. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classControllerManager_a7c45f3722d7af86f965b3eda8cf9f42e}{Mouse\+Button\+Down}} (int button\+Code)
+\begin{DoxyCompactList}\small\item\em Set mouse button state to pressed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classControllerManager_a5a47f6c869bcd435dc5eb7e68d6ae100}{Mouse\+Button\+Up}} (int button\+Code)
+\begin{DoxyCompactList}\small\item\em Set mouse button state to released. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classControllerManager_adada9a48cfbfed2ff647d72f186f5016}{Is\+Mouse\+Button\+Down}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Check if a mouse button action is pressed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classControllerManager_a242fc93e82a562885f9dbd67b298cd90}{Set\+Mouse\+Position}} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Update mouse cursor position. \end{DoxyCompactList}\item 
+std\+::tuple$<$ int, int $>$ \mbox{\hyperlink{classControllerManager_ac6fd76205ef4622757f8f0cb77126596}{Get\+Mouse\+Position}} ()
+\begin{DoxyCompactList}\small\item\em Get current mouse cursor position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Manages keyboard and mouse input states. 
+
+Tracks keyboard actions, mouse buttons, and cursor position with action-\/name mapping functionality. 
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classControllerManager_afb76cab20e4079e7e55f06f51c34e8de}\label{classControllerManager_afb76cab20e4079e7e55f06f51c34e8de} 
+\index{ControllerManager@{ControllerManager}!AddActionKey@{AddActionKey}}
+\index{AddActionKey@{AddActionKey}!ControllerManager@{ControllerManager}}
+\doxyparagraph{\texorpdfstring{AddActionKey()}{AddActionKey()}}
+{\footnotesize\ttfamily void Controller\+Manager\+::\+Add\+Action\+Key (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{action,  }\item[{int}]{key\+Code }\end{DoxyParamCaption})}
+
+
+
+Add a keyboard action mapping. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & Name of the action to map \\
+\hline
+{\em key\+Code} & SDL key code for the action \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classControllerManager_aab73c7ee6fbc1dd2324353d8d8e7fa60}\label{classControllerManager_aab73c7ee6fbc1dd2324353d8d8e7fa60} 
+\index{ControllerManager@{ControllerManager}!AddMouseButton@{AddMouseButton}}
+\index{AddMouseButton@{AddMouseButton}!ControllerManager@{ControllerManager}}
+\doxyparagraph{\texorpdfstring{AddMouseButton()}{AddMouseButton()}}
+{\footnotesize\ttfamily void Controller\+Manager\+::\+Add\+Mouse\+Button (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{action,  }\item[{int}]{button\+Code }\end{DoxyParamCaption})}
+
+
+
+Add a mouse button action mapping. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & Name of the action to map \\
+\hline
+{\em button\+Code} & SDL mouse button code \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classControllerManager_ac6fd76205ef4622757f8f0cb77126596}\label{classControllerManager_ac6fd76205ef4622757f8f0cb77126596} 
+\index{ControllerManager@{ControllerManager}!GetMousePosition@{GetMousePosition}}
+\index{GetMousePosition@{GetMousePosition}!ControllerManager@{ControllerManager}}
+\doxyparagraph{\texorpdfstring{GetMousePosition()}{GetMousePosition()}}
+{\footnotesize\ttfamily std\+::tuple$<$ int, int $>$ Controller\+Manager\+::\+Get\+Mouse\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get current mouse cursor position. 
+
+\begin{DoxyReturn}{Returns}
+std\+::tuple$<$int, int$>$ Current (x, y) coordinates 
+\end{DoxyReturn}
+\Hypertarget{classControllerManager_a45eee2a4a63c3ad5060c2de6e7736f23}\label{classControllerManager_a45eee2a4a63c3ad5060c2de6e7736f23} 
+\index{ControllerManager@{ControllerManager}!IsActionActivated@{IsActionActivated}}
+\index{IsActionActivated@{IsActionActivated}!ControllerManager@{ControllerManager}}
+\doxyparagraph{\texorpdfstring{IsActionActivated()}{IsActionActivated()}}
+{\footnotesize\ttfamily bool Controller\+Manager\+::\+Is\+Action\+Activated (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{action }\end{DoxyParamCaption})}
+
+
+
+Check if an action is currently active (key pressed) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & Name of the action to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the action\textquotesingle{}s key is pressed 
+
+false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classControllerManager_adada9a48cfbfed2ff647d72f186f5016}\label{classControllerManager_adada9a48cfbfed2ff647d72f186f5016} 
+\index{ControllerManager@{ControllerManager}!IsMouseButtonDown@{IsMouseButtonDown}}
+\index{IsMouseButtonDown@{IsMouseButtonDown}!ControllerManager@{ControllerManager}}
+\doxyparagraph{\texorpdfstring{IsMouseButtonDown()}{IsMouseButtonDown()}}
+{\footnotesize\ttfamily bool Controller\+Manager\+::\+Is\+Mouse\+Button\+Down (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Check if a mouse button action is pressed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the mouse action to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the button is pressed 
+
+false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classControllerManager_ae9dd42186315a9c4ac5345e720cd45d3}\label{classControllerManager_ae9dd42186315a9c4ac5345e720cd45d3} 
+\index{ControllerManager@{ControllerManager}!KeyDown@{KeyDown}}
+\index{KeyDown@{KeyDown}!ControllerManager@{ControllerManager}}
+\doxyparagraph{\texorpdfstring{KeyDown()}{KeyDown()}}
+{\footnotesize\ttfamily void Controller\+Manager\+::\+Key\+Down (\begin{DoxyParamCaption}\item[{int}]{key\+Code }\end{DoxyParamCaption})}
+
+
+
+Set key state to pressed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key\+Code} & SDL key code of the pressed key \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classControllerManager_a307b3731844045f5eedcb7b61660bd22}\label{classControllerManager_a307b3731844045f5eedcb7b61660bd22} 
+\index{ControllerManager@{ControllerManager}!KeyUp@{KeyUp}}
+\index{KeyUp@{KeyUp}!ControllerManager@{ControllerManager}}
+\doxyparagraph{\texorpdfstring{KeyUp()}{KeyUp()}}
+{\footnotesize\ttfamily void Controller\+Manager\+::\+Key\+Up (\begin{DoxyParamCaption}\item[{int}]{key\+Code }\end{DoxyParamCaption})}
+
+
+
+Set key state to released. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key\+Code} & SDL key code of the released key \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classControllerManager_a7c45f3722d7af86f965b3eda8cf9f42e}\label{classControllerManager_a7c45f3722d7af86f965b3eda8cf9f42e} 
+\index{ControllerManager@{ControllerManager}!MouseButtonDown@{MouseButtonDown}}
+\index{MouseButtonDown@{MouseButtonDown}!ControllerManager@{ControllerManager}}
+\doxyparagraph{\texorpdfstring{MouseButtonDown()}{MouseButtonDown()}}
+{\footnotesize\ttfamily void Controller\+Manager\+::\+Mouse\+Button\+Down (\begin{DoxyParamCaption}\item[{int}]{button\+Code }\end{DoxyParamCaption})}
+
+
+
+Set mouse button state to pressed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em button\+Code} & SDL mouse button code \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classControllerManager_a5a47f6c869bcd435dc5eb7e68d6ae100}\label{classControllerManager_a5a47f6c869bcd435dc5eb7e68d6ae100} 
+\index{ControllerManager@{ControllerManager}!MouseButtonUp@{MouseButtonUp}}
+\index{MouseButtonUp@{MouseButtonUp}!ControllerManager@{ControllerManager}}
+\doxyparagraph{\texorpdfstring{MouseButtonUp()}{MouseButtonUp()}}
+{\footnotesize\ttfamily void Controller\+Manager\+::\+Mouse\+Button\+Up (\begin{DoxyParamCaption}\item[{int}]{button\+Code }\end{DoxyParamCaption})}
+
+
+
+Set mouse button state to released. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em button\+Code} & SDL mouse button code \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classControllerManager_a242fc93e82a562885f9dbd67b298cd90}\label{classControllerManager_a242fc93e82a562885f9dbd67b298cd90} 
+\index{ControllerManager@{ControllerManager}!SetMousePosition@{SetMousePosition}}
+\index{SetMousePosition@{SetMousePosition}!ControllerManager@{ControllerManager}}
+\doxyparagraph{\texorpdfstring{SetMousePosition()}{SetMousePosition()}}
+{\footnotesize\ttfamily void Controller\+Manager\+::\+Set\+Mouse\+Position (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Update mouse cursor position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & New X coordinate \\
+\hline
+{\em y} & New Y coordinate \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Controller\+Manager/Controller\+Manager.\+hpp\item 
+Controller\+Manager/Controller\+Manager.\+cpp\end{DoxyCompactItemize}

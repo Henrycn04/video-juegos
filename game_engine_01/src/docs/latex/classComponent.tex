@@ -1,0 +1,56 @@
+\doxysubsection{Component\texorpdfstring{$<$}{<} TComponent \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classComponent}{}\label{classComponent}\index{Component$<$ TComponent $>$@{Component$<$ TComponent $>$}}
+
+
+Templated base class for components, providing unique ID generation.  
+
+
+
+
+{\ttfamily \#include $<$ECS.\+hpp$>$}
+
+\doxysubsubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{classComponent_a44ecd04a89b4c110f6915985eef6fe68}{Get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Gets the unique ID for the component type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Additional Inherited Members}
+\doxyparagraph*{Static Protected Attributes inherited from \mbox{\hyperlink{structIComponent}{IComponent}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries next\+Id} = 0
+\begin{DoxyCompactList}\small\item\em Static counter for assigning unique component IDs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\subsubsection*{template$<$typename TComponent$>$\newline
+class Component$<$ TComponent $>$}
+Templated base class for components, providing unique ID generation. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em TComponent} & The specific component type. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsubsection{Member Function Documentation}
+\Hypertarget{classComponent_a44ecd04a89b4c110f6915985eef6fe68}\label{classComponent_a44ecd04a89b4c110f6915985eef6fe68} 
+\index{Component$<$ TComponent $>$@{Component$<$ TComponent $>$}!GetId@{GetId}}
+\index{GetId@{GetId}!Component$<$ TComponent $>$@{Component$<$ TComponent $>$}}
+\doxyparagraph{\texorpdfstring{GetId()}{GetId()}}
+{\footnotesize\ttfamily template$<$typename TComponent $>$ \\
+static int \mbox{\hyperlink{classComponent}{Component}}$<$ TComponent $>$\+::\+Get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Gets the unique ID for the component type. 
+
+\begin{DoxyReturn}{Returns}
+The component\textquotesingle{}s unique ID. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ECS/ECS.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,69 @@
+\doxysubsection{Projectile\+Component Struct Reference}
+\hypertarget{structProjectileComponent}{}\label{structProjectileComponent}\index{ProjectileComponent@{ProjectileComponent}}
+
+
+\doxylink{classComponent}{Component} for managing projectile properties in the ECS.  
+
+
+
+
+{\ttfamily \#include $<$Projectile\+Component.\+hpp$>$}
+
+\doxysubsubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structProjectileComponent_aacb3a6ef246ca7a532e89c51f80c7650}{Projectile\+Component}} (glm\+::vec2 \mbox{\hyperlink{structProjectileComponent_ac82e742bdff996ca02c4ae99f74c5629}{position}}=glm\+::vec2(0.\+0, 0.\+0), glm\+::vec2 \mbox{\hyperlink{structProjectileComponent_af074576384946c5302582b055d116ebb}{scale}}=glm\+::vec2(1.\+0, 1.\+0), double \mbox{\hyperlink{structProjectileComponent_aa566ed12696ad4676e3046814530fecc}{rotation}}=0.\+0, const glm\+::vec2 \&\mbox{\hyperlink{structProjectileComponent_a845a4b9ea2850c924a93594f1c106998}{velocity}}=glm\+::vec2(0.\+0f, 0.\+0f))
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{structProjectileComponent}{Projectile\+Component} with specified parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structProjectileComponent_a845a4b9ea2850c924a93594f1c106998}\label{structProjectileComponent_a845a4b9ea2850c924a93594f1c106998} 
+glm\+::vec2 {\bfseries velocity}
+\begin{DoxyCompactList}\small\item\em Velocity vector of the projectile. \end{DoxyCompactList}\item 
+\Hypertarget{structProjectileComponent_ac82e742bdff996ca02c4ae99f74c5629}\label{structProjectileComponent_ac82e742bdff996ca02c4ae99f74c5629} 
+glm\+::vec2 {\bfseries position}
+\begin{DoxyCompactList}\small\item\em Position vector of the projectile. \end{DoxyCompactList}\item 
+\Hypertarget{structProjectileComponent_af074576384946c5302582b055d116ebb}\label{structProjectileComponent_af074576384946c5302582b055d116ebb} 
+glm\+::vec2 {\bfseries scale}
+\begin{DoxyCompactList}\small\item\em Scale vector of the projectile. \end{DoxyCompactList}\item 
+\Hypertarget{structProjectileComponent_aa566ed12696ad4676e3046814530fecc}\label{structProjectileComponent_aa566ed12696ad4676e3046814530fecc} 
+double {\bfseries rotation}
+\begin{DoxyCompactList}\small\item\em Rotation angle of the projectile in radians. \end{DoxyCompactList}\item 
+\Hypertarget{structProjectileComponent_acaed8c798f23140216745362ea9c07cc}\label{structProjectileComponent_acaed8c798f23140216745362ea9c07cc} 
+bool {\bfseries has\+Hit} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether the projectile has hit a target. \end{DoxyCompactList}\item 
+\Hypertarget{structProjectileComponent_a6c87c1af36e905d59e256f8cb86f62fe}\label{structProjectileComponent_a6c87c1af36e905d59e256f8cb86f62fe} 
+int {\bfseries damage}
+\begin{DoxyCompactList}\small\item\em Damage dealt by the projectile upon impact. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+\doxylink{classComponent}{Component} for managing projectile properties in the ECS. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structProjectileComponent_aacb3a6ef246ca7a532e89c51f80c7650}\label{structProjectileComponent_aacb3a6ef246ca7a532e89c51f80c7650} 
+\index{ProjectileComponent@{ProjectileComponent}!ProjectileComponent@{ProjectileComponent}}
+\index{ProjectileComponent@{ProjectileComponent}!ProjectileComponent@{ProjectileComponent}}
+\doxyparagraph{\texorpdfstring{ProjectileComponent()}{ProjectileComponent()}}
+{\footnotesize\ttfamily Projectile\+Component\+::\+Projectile\+Component (\begin{DoxyParamCaption}\item[{glm\+::vec2}]{position = {\ttfamily glm\+:\+:vec2(0.0,~0.0)},  }\item[{glm\+::vec2}]{scale = {\ttfamily glm\+:\+:vec2(1.0,~1.0)},  }\item[{double}]{rotation = {\ttfamily 0.0},  }\item[{const glm\+::vec2 \&}]{velocity = {\ttfamily glm\+:\+:vec2(0.0f,~0.0f)} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{structProjectileComponent}{Projectile\+Component} with specified parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Initial position of the projectile (default\+: (0.\+0, 0.\+0)). \\
+\hline
+{\em scale} & Scale of the projectile (default\+: (1.\+0, 1.\+0)). \\
+\hline
+{\em rotation} & Initial rotation in radians (default\+: 0.\+0). \\
+\hline
+{\em velocity} & Initial velocity vector (default\+: (0.\+0, 0.\+0)). \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Components/Projectile\+Component.\+hpp\end{DoxyCompactItemize}
