@@ -10,22 +10,21 @@
 struct SoundComponent {
     /** @brief Identifier for the sound asset. */
     std::string soundId;
-
     /** @brief Volume level of the sound (0 to 128). */
     int volume;
-
     /** @brief Number of times to loop the sound (-1 for infinite). */
     int loops;
-
     /** @brief Indicates whether the sound is currently playing. */
     bool isPlaying;
-
     /** @brief Indicates whether the sound component is active. */
     bool active;
-
     /** @brief Indicates whether the sound should play automatically. */
     bool autoPlay;
-
+    /** @brief Indicates whether the sound is currently paused. */
+    bool isPaused;
+    /** @brief Audio channel assigned to this sound (-1 if not assigned). */
+    int channel;
+    
     /**
      * @brief Constructs a SoundComponent with specified parameters.
      * @param soundId Identifier for the sound asset (default: "none").
@@ -41,6 +40,8 @@ struct SoundComponent {
         this->isPlaying = false;
         this->active = active;
         this->autoPlay = autoPlay;
+        this->isPaused = false;  // Inicializar nuevo campo
+        this->channel = -1;     // Inicializar nuevo campo
     }
 };
 

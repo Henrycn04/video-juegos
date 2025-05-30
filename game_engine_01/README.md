@@ -22,7 +22,7 @@ Explora tres niveles únicos ambientados en cuevas de cristales, cada uno con su
 |--------------------------|------------------------|
 | Moverse                  | WASD                   |
 | Dibujar hechizo          | Mouse + Clic izquierdo |
-| Cambiar color de hechizo | 1 / 2 / 3 (o clic en botones) |
+| Cambiar color de hechizo | 1 / 2 / 3 |
 | Pausar juego             | P                      |
 | Seleccionar nivel        | Mouse (pantalla inicial) |
 | Cerrar el juego          | Esc                    |
@@ -43,8 +43,8 @@ make run   # Para ejecutar el juego
 ## 🧪 Niveles
 
 - **Nivel 1** – Cristal azul claro – Introducción básica a enemigos y hechizos.
-- **Nivel 2** – Cristal morado pastel – Más enemigos, empieza el desafío.
-- **Nivel 3** – Cristal rojo – Batalla final con jefe incluido.
+- **Nivel 2** – Cristal verde – Más enemigos, empieza el desafío.
+- **Nivel 3** – Cristal rojo carmesi – Batalla final con jefe incluido.
 
 Cada nivel es jugable desde el inicio. Elige tu reto desde la pantalla principal.
 

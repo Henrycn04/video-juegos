@@ -96,7 +96,7 @@ public:
 
     /** @brief Current level of the game. */
     int currentLevel = 0;
-
+    bool wasPaused = false;  
 private:
     /**
      * @brief Initializes game resources and setup.

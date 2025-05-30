@@ -166,14 +166,17 @@ void Game::update() {
     this->millisecsPreviousFrame = SDL_GetTicks();
     // Registry
     eventManager->Restart();
-
     if (!isPaused) {
+        // Si acabamos de salir de pausa, notificar al SoundSystem
+        if (wasPaused) {
+            this->registry->GetSystem<SoundSystem>().OnGameResumed();
+            wasPaused = false;
+        }
+        
         this->registry->GetSystem<UISystem>().SubscribeToClickEvent(eventManager);
         this->registry->GetSystem<DamageSystem>().SubscribeToCollisionEvent(eventManager);
-
         this->registry->Update();
         this->registry->GetSystem<ScriptSystem>().Update(lua);
-        
         this->registry->GetSystem<AnimationSystem>().Update();
         this->registry->GetSystem<CollisionSystem>().Update(eventManager);
         this->registry->GetSystem<EnemySystem>().Update(registry);
@@ -181,24 +184,27 @@ void Game::update() {
         this->registry->GetSystem<HealthSystem>().Update();
         this->registry->GetSystem<MovementSystem>().Update(dt);
         this->registry->GetSystem<ChargeManageSystem>().Update();
+        this->registry->GetSystem<SoundSystem>().Update(this->assetManager);
+        
         if (finDelNivel && win && currentLevel != 0) {
-                    std::cout << "[GAME] NIVEEEEEEEEL: " << Game::GetInstance().currentLevel << std::endl;
-
             std::string sceneName = "win_scene" + std::to_string(currentLevel);
             Game::GetInstance().sceneManager->SetNextScene(sceneName);
             Game::GetInstance().sceneManager->StopScene();
             win = false;
             finDelNivel = false;
-            std::cout << "[GAME] Se cambio a la escena de win: " << sceneName << std::endl;
         } else if (finDelNivel && !win && currentLevel != 0) {
-                    std::cout << "[GAME] NIVEEEEEEEEL: " << Game::GetInstance().currentLevel << std::endl;
-
             std::string sceneName = "lose_scene" + std::to_string(currentLevel);
             Game::GetInstance().sceneManager->SetNextScene(sceneName);
             Game::GetInstance().sceneManager->StopScene();
             finDelNivel = false;
             win = false;
-            std::cout << "[GAME] Se cambio a la escena de lose: " << sceneName << std::endl;
+        }
+    } else {
+        // Si acabamos de pausar, notificar al SoundSystem
+        if (!wasPaused) {
+            this->registry->GetSystem<SoundSystem>().OnGamePaused();
+            wasPaused = true;
+            std::cout << "[GAME] Pausando el JUEGO" << std::endl;
         }
     }
     
@@ -216,7 +222,7 @@ void Game::render() {
 
 
     SDL_RenderPresent(this->renderer);
-    this->registry->GetSystem<SoundSystem>().Update(this->assetManager);
+
 }
 
 void Game::RunScene() {

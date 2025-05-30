@@ -1,7 +1,7 @@
 
 scene = {
     background = {
-        [0] = {assetId = "background06", file_path = "./assets/images/background06.png"},
+        [0] = {assetId = "background06", file_path = "./assets/images/background05.png"},
     },
     -- Tabla de imagenes
     sprites = {
