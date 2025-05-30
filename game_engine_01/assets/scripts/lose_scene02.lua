@@ -15,7 +15,7 @@ scene = {
 
     },
         sounds = {
-        [0] = {soundId = "vvv", filePath = "./assets/sounds/VVV.mp3"},
+        [0] = {soundId = "lose_music", filePath = "./assets/sounds/lose_music.mp3"},
     },
     -- Tabla de acciones y teclas
     keys = {
@@ -61,7 +61,7 @@ scene = {
                 {
             components = { -- sonido
                 sound = {
-                    soundId = "vvv",
+                    soundId = "lose_music",
                     volume = 20,
                     loops = -1,
                     autoPlay = true,

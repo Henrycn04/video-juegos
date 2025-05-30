@@ -1,3 +1,0 @@
-Con LuaBindig y el ScriptSystem es que uno puede agregar funciones usables para Lua.
-
-Hay que crear el componente y luego el sistema, despues se agregan en el game setup y en el update.

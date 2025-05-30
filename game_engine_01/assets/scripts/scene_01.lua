@@ -28,7 +28,7 @@ scene = {
     },
 
     sounds = {
-        [0] = {soundId = "vvv", filePath = "./assets/sounds/VVV.mp3"},
+        [0] = {soundId = "game_music", filePath = "./assets/sounds/game_music.mp3"},
     },
     -- Tabla de acciones y teclas
     keys = {
@@ -89,11 +89,11 @@ scene = {
         {
             components = { -- sonido
                 sound = {
-                    soundId = "vvv",
+                    soundId = "game_music",
                     volume = 20,
                     loops = -1,
                     autoPlay = true,
-                    active = false,
+                    active = true,
                 },
             }
 
@@ -114,12 +114,12 @@ scene = {
                     health = 30,
                     maxHealth = 30,
                     isPlayer = false,
-                    damage = 20,
+                    damage = 10,
                     attack_timeout = 1.0,
                 },
                 enemy = {
                     amountToSpawn = 3,
-                    totalAmount = 5,
+                    totalAmount = 10,
                     points = 20
                 },
                 rigidbody = {
@@ -187,7 +187,7 @@ scene = {
                 },
                 enemy = {
                     amountToSpawn = 4,
-                    totalAmount = 8,
+                    totalAmount = 12,
                     points = 15
                 },
                 rigidbody = {
@@ -250,7 +250,7 @@ scene = {
                     health = 80,
                     maxHealth = 80,
                     isPlayer = false,
-                    damage = 10,
+                    damage = 20,
                     attack_timeout = 1.0,
                 },
                 enemy = {

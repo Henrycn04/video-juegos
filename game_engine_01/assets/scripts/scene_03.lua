@@ -29,7 +29,7 @@ scene = {
     },
 
     sounds = {
-        [0] = {soundId = "vvv", filePath = "./assets/sounds/VVV.mp3"},
+        [0] = {soundId = "game_music", filePath = "./assets/sounds/game_music.mp3"},
     },
     -- Tabla de acciones y teclas
     keys = {
@@ -90,11 +90,11 @@ scene = {
         {
             components = { -- sonido
                 sound = {
-                    soundId = "vvv",
+                    soundId = "game_music",
                     volume = 20,
                     loops = -1,
                     autoPlay = true,
-                    active = false,
+                    active = true,
                 },
             }
 
@@ -112,14 +112,14 @@ scene = {
                     height = 20
                 },
                 health = {
-                    health = 30,
-                    maxHealth = 30,
+                    health = 50,
+                    maxHealth = 50,
                     isPlayer = false,
-                    damage = 20,
+                    damage = 10,
                     attack_timeout = 1.0,
                 },
                 enemy = {
-                    amountToSpawn = 10,
+                    amountToSpawn = 12,
                     totalAmount = 90,
                     points = 20
                 },
@@ -180,8 +180,8 @@ scene = {
                     height = 29
                 },
                 health = {
-                    health = 40,
-                    maxHealth = 40,
+                    health = 70,
+                    maxHealth = 70,
                     isPlayer = false,
                     damage = 15,
                     attack_timeout = 1.0,
@@ -248,15 +248,15 @@ scene = {
                     height = 30
                 },
                 health = {
-                    health = 80,
-                    maxHealth = 80,
+                    health = 100,
+                    maxHealth = 100,
                     isPlayer = false,
-                    damage = 10,
+                    damage = 20,
                     attack_timeout = 1.0,
                 },
                 enemy = {
-                    amountToSpawn = 0,
-                    totalAmount = 0,
+                    amountToSpawn = 2,
+                    totalAmount = 2,
                     points = 10
                 },
                 rigidbody = {
@@ -319,8 +319,8 @@ scene = {
                     health = 500,
                     maxHealth = 500,
                     isPlayer = false,
-                    damage = 15,
-                    attack_timeout = 1.0,
+                    damage = 25,
+                    attack_timeout = 2.0,
                 },
                 enemy = {
                     amountToSpawn = 1,
@@ -698,10 +698,10 @@ scene = {
                     height = 24
                 },
                 health = {
-                    health = 100,
-                    maxHealth = 100,
+                    health = 200,
+                    maxHealth = 200,
                     isPlayer = true,
-                    damage = 10,
+                    damage = 15,
                     attack_timeout = 1.0,
                 },
                 rigidbody = {
